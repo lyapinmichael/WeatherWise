@@ -1,24 +1,386 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pIw-QH-d8j">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Bold.ttf">
+            <string>Rubik-Bold</string>
+        </array>
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+        <array key="Rubik-SemiBold.ttf">
+            <string>Rubik-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="WWMainViewController" customModule="WeatherWise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iE9-B2-ai2">
+                                <rect key="frame" x="20" y="114.5" width="374" height="238.5"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iE9-B2-ai2" secondAttribute="height" multiplier="350:223" id="20G-yf-rbD"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZA-jd-b54">
+                                <rect key="frame" x="247" y="361" width="150" height="33.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Button">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="16"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XbD-Ku-Fsg">
+                                <rect key="frame" x="20" y="402.5" width="374" height="90.5"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XbD-Ku-Fsg" secondAttribute="height" multiplier="70:17" id="m5J-kL-nSC"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FhU-ZL-ZYE">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gH7-fI-qcL">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PjY-eR-ynX">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RNT-Uv-0L0">
+                                <rect key="frame" x="20" y="501" width="372" height="353"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="80" id="qUc-KA-mjZ" customClass="WWWeatherCellTableViewCell" customModule="WeatherWise" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="372" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qUc-KA-mjZ" id="rw3-8B-Zk5">
+                                            <rect key="frame" x="0.0" y="0.0" width="372" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwF-Zx-RsA">
+                                                    <rect key="frame" x="20" y="0.0" width="43" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Ims-CF-FO3"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ew-NE-hjg">
+                                                    <rect key="frame" x="244" y="26" width="50" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="o6I-d6-h2n"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yw-Tm-WfA">
+                                                    <rect key="frame" x="302" y="26" width="50" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="fEB-A1-t8o"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jA-AN-etq">
+                                                    <rect key="frame" x="71" y="26" width="165" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uSs-jZ-xZJ">
+                                                    <rect key="frame" x="10" y="35" width="31" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="uSs-jZ-xZJ" secondAttribute="height" multiplier="10:11" id="7LI-WP-Z6m"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="WeatherCellCyan"/>
+                                            <constraints>
+                                                <constraint firstItem="6ew-NE-hjg" firstAttribute="top" secondItem="rw3-8B-Zk5" secondAttribute="topMargin" constant="15" id="4aO-nJ-qsU"/>
+                                                <constraint firstItem="6ew-NE-hjg" firstAttribute="leading" secondItem="1jA-AN-etq" secondAttribute="trailing" constant="8" id="9oe-rU-QDC"/>
+                                                <constraint firstAttribute="trailing" secondItem="4Yw-Tm-WfA" secondAttribute="trailing" constant="20" symbolic="YES" id="DV9-TZ-hor"/>
+                                                <constraint firstAttribute="bottom" secondItem="uSs-jZ-xZJ" secondAttribute="bottom" constant="11" id="KdP-VY-NSu"/>
+                                                <constraint firstItem="6ew-NE-hjg" firstAttribute="baseline" secondItem="4Yw-Tm-WfA" secondAttribute="baseline" id="NTl-ed-bjK"/>
+                                                <constraint firstItem="1jA-AN-etq" firstAttribute="top" secondItem="rw3-8B-Zk5" secondAttribute="topMargin" constant="15" id="QAo-8Q-ijq"/>
+                                                <constraint firstItem="mwF-Zx-RsA" firstAttribute="top" secondItem="rw3-8B-Zk5" secondAttribute="top" id="QeN-K5-Ahd"/>
+                                                <constraint firstItem="6ew-NE-hjg" firstAttribute="centerY" secondItem="rw3-8B-Zk5" secondAttribute="centerY" constant="1" id="VVD-9J-juE"/>
+                                                <constraint firstItem="4Yw-Tm-WfA" firstAttribute="leading" secondItem="6ew-NE-hjg" secondAttribute="trailing" constant="8" symbolic="YES" id="X50-Zp-0d0"/>
+                                                <constraint firstItem="1jA-AN-etq" firstAttribute="centerY" secondItem="rw3-8B-Zk5" secondAttribute="centerY" constant="1" id="djd-sB-6h3"/>
+                                                <constraint firstItem="mwF-Zx-RsA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rw3-8B-Zk5" secondAttribute="leading" id="jmw-zw-GEN"/>
+                                                <constraint firstItem="uSs-jZ-xZJ" firstAttribute="leading" secondItem="mwF-Zx-RsA" secondAttribute="leading" constant="-10" id="nGj-Kc-oIZ"/>
+                                                <constraint firstItem="uSs-jZ-xZJ" firstAttribute="firstBaseline" secondItem="mwF-Zx-RsA" secondAttribute="baseline" constant="9.5" id="rdz-ME-AA1"/>
+                                                <constraint firstItem="1jA-AN-etq" firstAttribute="leading" secondItem="mwF-Zx-RsA" secondAttribute="trailing" constant="8" id="y7k-9y-n5a"/>
+                                                <constraint firstItem="uSs-jZ-xZJ" firstAttribute="leading" secondItem="rw3-8B-Zk5" secondAttribute="leadingMargin" constant="-10" id="zNj-ok-Kvr"/>
+                                                <constraint firstItem="4Yw-Tm-WfA" firstAttribute="centerY" secondItem="rw3-8B-Zk5" secondAttribute="centerY" constant="1" id="zg4-Ae-MGi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="mwF-Zx-RsA" id="gMc-Wv-fkw"/>
+                                            <outlet property="maxTemperatureLabel" destination="4Yw-Tm-WfA" id="nFp-xx-GRQ"/>
+                                            <outlet property="minTemperatureLabel" destination="6ew-NE-hjg" id="IIH-Ns-Ngg"/>
+                                            <outlet property="overallConditionLabel" destination="1jA-AN-etq" id="jBg-tK-eID"/>
+                                            <outlet property="weatherImage" destination="uSs-jZ-xZJ" id="n10-1k-9Gy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cd-wX-Rqf">
+                                <rect key="frame" x="20" y="48" width="374" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2cd-wX-Rqf" secondAttribute="height" multiplier="372:59" constant="2" id="zuk-0g-Xlz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RNT-Uv-0L0" secondAttribute="bottom" constant="8" id="6Kb-2L-PW4"/>
+                            <constraint firstItem="xZA-jd-b54" firstAttribute="firstBaseline" secondItem="iE9-B2-ai2" secondAttribute="baseline" constant="30" symbolType="layoutAnchor" id="8iA-9M-Cbl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XbD-Ku-Fsg" secondAttribute="trailing" constant="20" id="9aw-Pl-cAP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2cd-wX-Rqf" secondAttribute="trailing" constant="20" id="Isw-X6-vzd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RNT-Uv-0L0" secondAttribute="trailing" constant="22" id="IxS-MO-Orv"/>
+                            <constraint firstItem="iE9-B2-ai2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Kd2-Xm-Rmx"/>
+                            <constraint firstItem="XbD-Ku-Fsg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="MQP-hL-cLY"/>
+                            <constraint firstItem="xZA-jd-b54" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="247" id="New-Vv-war"/>
+                            <constraint firstItem="RNT-Uv-0L0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SoQ-q5-jgI"/>
+                            <constraint firstItem="RNT-Uv-0L0" firstAttribute="firstBaseline" secondItem="XbD-Ku-Fsg" secondAttribute="baseline" constant="8" symbolType="layoutAnchor" id="azE-2J-exf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iE9-B2-ai2" secondAttribute="trailing" constant="20" id="gKL-Vn-Sms"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xZA-jd-b54" secondAttribute="trailing" constant="17" id="q27-Ka-VEB"/>
+                            <constraint firstItem="XbD-Ku-Fsg" firstAttribute="top" secondItem="xZA-jd-b54" secondAttribute="bottom" constant="8" symbolic="YES" id="rF4-eZ-XBR"/>
+                            <constraint firstItem="2cd-wX-Rqf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="t52-CP-9CA"/>
+                            <constraint firstItem="2cd-wX-Rqf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="taK-9Y-yqJ"/>
+                            <constraint firstItem="iE9-B2-ai2" firstAttribute="top" secondItem="2cd-wX-Rqf" secondAttribute="bottom" constant="7.5" id="vJ2-ps-BX8"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7Gm-lD-TF5"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="locationLabel" destination="2cd-wX-Rqf" id="Wnk-Ff-5eH"/>
+                        <outlet property="mainTable" destination="RNT-Uv-0L0" id="M7T-6D-qLR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3537.68115942029" y="-662.27678571428567"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="B8o-Wv-N6e">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingViewController" modalPresentationStyle="fullScreen" id="CSg-Tw-DzO" customClass="WWOnboardingViewController" customModule="WeatherWise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q1R-QF-ymw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjT-bh-RE7">
+                                <rect key="frame" x="39" y="330" width="336" height="85.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bjT-bh-RE7" secondAttribute="height" multiplier="297:76" id="Zbz-Zn-4hX"/>
+                                </constraints>
+                                <string key="text">Разрешить приложению  Weather использовать данные 
+о местоположении вашего устройства </string>
+                                <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Вы можете изменить свой выбор в любое время из меню приложения" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fop-6d-tGU">
+                                <rect key="frame" x="48" y="489" width="314" height="42.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Fop-6d-tGU" secondAttribute="height" multiplier="25:3" constant="-41.666666666666686" id="vlG-gM-Imc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTX-IC-Gpd">
+                                <rect key="frame" x="18.5" y="539.5" width="374.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="DVx-2L-BHd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <size key="titleShadowOffset" width="18" height="15"/>
+                                <state key="normal" title="ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" name="ShadowyOrange"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleShadowColor" name="ShadowyOrange"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="filled" title="ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА">
+                                    <backgroundConfiguration key="background" cornerRadius="10"/>
+                                    <fontDescription key="titleFontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="12"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" name="AccentOrange"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="useLocation:" destination="CSg-Tw-DzO" eventType="touchUpInside" id="ms6-0P-UCQ"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GirlWithUmbrella" translatesAutoresizingMaskIntoConstraints="NO" id="xwS-jn-Qiq">
+                                <rect key="frame" x="93" y="89" width="229" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xwS-jn-Qiq" secondAttribute="height" multiplier="38:29" id="vIE-ab-odY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Чтобы получить более точные прогнозы погоды во время движения или путешествия" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnC-UO-tIY">
+                                <rect key="frame" x="48" y="423.5" width="314" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZnC-UO-tIY" secondAttribute="height" multiplier="11:2" id="m3U-UK-OLz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buE-M0-vcD">
+                                <rect key="frame" x="93" y="587" width="300" height="33"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="НЕТ, Я БУДУ ДОБАВЛЯТЬ ЛОКАЦИИ">
+                                    <fontDescription key="titleFontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="chooseLocationManually:" destination="CSg-Tw-DzO" eventType="touchUpInside" id="oDI-1h-QQs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zwW-Jo-cOC"/>
+                        <color key="backgroundColor" name="BaseBlue"/>
+                        <constraints>
+                            <constraint firstItem="zwW-Jo-cOC" firstAttribute="trailing" secondItem="RTX-IC-Gpd" secondAttribute="trailing" constant="21" id="0Bc-Lb-gTy"/>
+                            <constraint firstItem="xwS-jn-Qiq" firstAttribute="top" secondItem="zwW-Jo-cOC" secondAttribute="top" constant="89" id="0Xe-Lo-Jif"/>
+                            <constraint firstItem="ZnC-UO-tIY" firstAttribute="leading" secondItem="zwW-Jo-cOC" secondAttribute="leading" constant="48" id="D2R-cd-5L2"/>
+                            <constraint firstItem="zwW-Jo-cOC" firstAttribute="trailing" secondItem="bjT-bh-RE7" secondAttribute="trailing" constant="39" id="E1c-3x-bG9"/>
+                            <constraint firstItem="RTX-IC-Gpd" firstAttribute="top" secondItem="Fop-6d-tGU" secondAttribute="bottom" constant="8" id="G5c-1O-MSl"/>
+                            <constraint firstItem="Fop-6d-tGU" firstAttribute="top" secondItem="ZnC-UO-tIY" secondAttribute="bottom" constant="8" symbolic="YES" id="SpX-q8-dCu"/>
+                            <constraint firstItem="xwS-jn-Qiq" firstAttribute="leading" secondItem="zwW-Jo-cOC" secondAttribute="leading" constant="93" id="VgI-Qd-LMa"/>
+                            <constraint firstItem="bjT-bh-RE7" firstAttribute="leading" secondItem="zwW-Jo-cOC" secondAttribute="leading" constant="39" id="agp-8s-2Ct"/>
+                            <constraint firstItem="buE-M0-vcD" firstAttribute="leading" secondItem="zwW-Jo-cOC" secondAttribute="leading" constant="93" id="bqQ-yo-ET2"/>
+                            <constraint firstItem="ZnC-UO-tIY" firstAttribute="top" secondItem="bjT-bh-RE7" secondAttribute="bottom" constant="8" symbolic="YES" id="gBF-37-WwH"/>
+                            <constraint firstItem="zwW-Jo-cOC" firstAttribute="trailing" secondItem="Fop-6d-tGU" secondAttribute="trailing" constant="52" id="hg9-xC-9pL"/>
+                            <constraint firstItem="zwW-Jo-cOC" firstAttribute="trailing" secondItem="xwS-jn-Qiq" secondAttribute="trailing" constant="92" id="jBH-YK-Cpu"/>
+                            <constraint firstItem="buE-M0-vcD" firstAttribute="top" secondItem="RTX-IC-Gpd" secondAttribute="bottom" constant="7.5" id="jDj-42-EVb"/>
+                            <constraint firstItem="zwW-Jo-cOC" firstAttribute="trailing" secondItem="buE-M0-vcD" secondAttribute="trailing" constant="21" id="jes-8S-1v8"/>
+                            <constraint firstItem="Fop-6d-tGU" firstAttribute="leading" secondItem="zwW-Jo-cOC" secondAttribute="leading" constant="48" id="qSm-b1-DxY"/>
+                            <constraint firstItem="RTX-IC-Gpd" firstAttribute="leading" secondItem="zwW-Jo-cOC" secondAttribute="leading" constant="18.5" id="tnL-lB-ak0"/>
+                            <constraint firstItem="bjT-bh-RE7" firstAttribute="top" secondItem="xwS-jn-Qiq" secondAttribute="bottom" constant="66" id="y97-Ge-fAR"/>
+                            <constraint firstItem="zwW-Jo-cOC" firstAttribute="trailing" secondItem="ZnC-UO-tIY" secondAttribute="trailing" constant="52" id="zDf-br-e12"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nwO-GD-OQQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JMg-yD-huD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1903.2" y="9.4452773613193415"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lgV-7p-Ykh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pIw-QH-d8j" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHw-Et-45s">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SjW-4s-Idn" kind="relationship" relationship="rootViewController" id="ZaI-Nz-yOE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EFS-kZ-vAI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2798.5507246376815" y="19.419642857142858"/>
+        </scene>
+        <!--Page Controller-->
+        <scene sceneID="9Nh-bH-rMH">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SjW-4s-Idn" customClass="WWPageController" customModule="WeatherWise" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Lw0-Hv-d6J"/>
+                    <connections>
+                        <segue destination="CSg-Tw-DzO" kind="presentation" identifier="presentOnboarding" id="rc6-lD-hl0"/>
+                    </connections>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1F9-Mh-y5x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3538" y="19"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sHE-kk-Oah">
+            <objects>
+                <viewController storyboardIdentifier="cityPage2" id="c6p-Xc-mcl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="91z-H5-OoR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="qmL-gL-ImU"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYv-OJ-AkN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4275" y="-662"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="GirlWithUmbrella" width="360" height="392"/>
+        <namedColor name="AccentOrange">
+            <color red="0.94901960784313721" green="0.43137254901960786" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BaseBlue">
+            <color red="0.12549019607843137" green="0.30588235294117649" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ShadowyOrange">
+            <color red="0.71764705882352942" green="0.31764705882352939" blue="0.039215686274509803" alpha="0.62999999523162842" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WeatherCellCyan">
+            <color red="0.9137254901960784" green="0.93333333333333335" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

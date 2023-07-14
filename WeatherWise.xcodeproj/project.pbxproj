@@ -7,23 +7,85 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC006F502A55E75800AAADE7 /* WWOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC006F4F2A55E75800AAADE7 /* WWOnboardingViewController.swift */; };
 		EC05B2EB2A545CBF00F7EB24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05B2EA2A545CBF00F7EB24 /* AppDelegate.swift */; };
 		EC05B2ED2A545CBF00F7EB24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05B2EC2A545CBF00F7EB24 /* SceneDelegate.swift */; };
-		EC05B2EF2A545CBF00F7EB24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05B2EE2A545CBF00F7EB24 /* ViewController.swift */; };
+		EC05B2EF2A545CBF00F7EB24 /* WWMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05B2EE2A545CBF00F7EB24 /* WWMainViewController.swift */; };
 		EC05B2F22A545CBF00F7EB24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC05B2F02A545CBF00F7EB24 /* Main.storyboard */; };
 		EC05B2F42A545CC000F7EB24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC05B2F32A545CC000F7EB24 /* Assets.xcassets */; };
 		EC05B2F72A545CC000F7EB24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC05B2F52A545CC000F7EB24 /* LaunchScreen.storyboard */; };
+		EC858C582A5752F300419A13 /* WWLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C572A5752F300419A13 /* WWLocationService.swift */; };
+		EC858C5C2A5AE9E500419A13 /* WWPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C5B2A5AE9E500419A13 /* WWPageController.swift */; };
+		EC858C612A5C005000419A13 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC858C602A5C005000419A13 /* Alamofire */; };
+		EC858C632A5C007D00419A13 /* WWNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C622A5C007D00419A13 /* WWNetworkService.swift */; };
+		EC858C672A5C2F4500419A13 /* GeocoderPesponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C662A5C2F4500419A13 /* GeocoderPesponse.swift */; };
+		EC858C692A5C515800419A13 /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C682A5C515800419A13 /* WeatherForecast.swift */; };
+		EC858C6B2A5C829200419A13 /* WWMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C6A2A5C829200419A13 /* WWMainViewModel.swift */; };
+		EC858C6D2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C6C2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift */; };
+		EC858C8F2A5ECF4200419A13 /* DailyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C8E2A5ECF4200419A13 /* DailyWeather.swift */; };
+		EC858C922A60671B00419A13 /* SevenDayWeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */; };
+		EC858C942A60684C00419A13 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C932A60684C00419A13 /* Date+.swift */; };
+		EC858C972A60944500419A13 /* WMOCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = EC858C962A60944500419A13 /* WMOCodes.json */; };
+		ECCDD88A2A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */; };
+		ECCDD88B2A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */; };
+		ECCDD88C2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */; };
+		ECCDD88D2A55DF8C008BCF1D /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87B2A55DF8C008BCF1D /* Rubik-Bold.ttf */; };
+		ECCDD88E2A55DF8C008BCF1D /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87C2A55DF8C008BCF1D /* Rubik-SemiBoldItalic.ttf */; };
+		ECCDD88F2A55DF8C008BCF1D /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87D2A55DF8C008BCF1D /* Rubik-Light.ttf */; };
+		ECCDD8902A55DF8C008BCF1D /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87E2A55DF8C008BCF1D /* Rubik-Medium.ttf */; };
+		ECCDD8912A55DF8C008BCF1D /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87F2A55DF8C008BCF1D /* Rubik-ExtraBoldItalic.ttf */; };
+		ECCDD8922A55DF8C008BCF1D /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8802A55DF8C008BCF1D /* Rubik-Black.ttf */; };
+		ECCDD8932A55DF8C008BCF1D /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8812A55DF8C008BCF1D /* Rubik-Italic.ttf */; };
+		ECCDD8942A55DF8C008BCF1D /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8822A55DF8C008BCF1D /* Rubik-LightItalic.ttf */; };
+		ECCDD8952A55DF8C008BCF1D /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8832A55DF8C008BCF1D /* Rubik-SemiBold.ttf */; };
+		ECCDD8962A55DF8C008BCF1D /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8842A55DF8C008BCF1D /* Rubik-BlackItalic.ttf */; };
+		ECCDD8972A55DF8C008BCF1D /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8852A55DF8C008BCF1D /* Rubik-ExtraBold.ttf */; };
+		ECCDD8982A55DF8C008BCF1D /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8862A55DF8C008BCF1D /* Rubik-Regular.ttf */; };
+		ECCDD8992A55DF8C008BCF1D /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8872A55DF8C008BCF1D /* Rubik-BoldItalic.ttf */; };
+		ECCDD89A2A55DF8C008BCF1D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8882A55DF8C008BCF1D /* OFL.txt */; };
+		ECCDD89B2A55DF8C008BCF1D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8892A55DF8C008BCF1D /* README.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC006F4F2A55E75800AAADE7 /* WWOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWOnboardingViewController.swift; sourceTree = "<group>"; };
 		EC05B2E72A545CBF00F7EB24 /* WeatherWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC05B2EA2A545CBF00F7EB24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC05B2EC2A545CBF00F7EB24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EC05B2EE2A545CBF00F7EB24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC05B2EE2A545CBF00F7EB24 /* WWMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWMainViewController.swift; sourceTree = "<group>"; };
 		EC05B2F12A545CBF00F7EB24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC05B2F32A545CC000F7EB24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC05B2F62A545CC000F7EB24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC05B2F82A545CC000F7EB24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC858C572A5752F300419A13 /* WWLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWLocationService.swift; sourceTree = "<group>"; };
+		EC858C5B2A5AE9E500419A13 /* WWPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWPageController.swift; sourceTree = "<group>"; };
+		EC858C622A5C007D00419A13 /* WWNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWNetworkService.swift; sourceTree = "<group>"; };
+		EC858C642A5C105A00419A13 /* neccessaryStuff.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = neccessaryStuff.rtf; sourceTree = "<group>"; };
+		EC858C662A5C2F4500419A13 /* GeocoderPesponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderPesponse.swift; sourceTree = "<group>"; };
+		EC858C682A5C515800419A13 /* WeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
+		EC858C6A2A5C829200419A13 /* WWMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWMainViewModel.swift; sourceTree = "<group>"; };
+		EC858C6C2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWWeatherCellTableViewCell.swift; sourceTree = "<group>"; };
+		EC858C8E2A5ECF4200419A13 /* DailyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeather.swift; sourceTree = "<group>"; };
+		EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenDayWeatherForecast.swift; sourceTree = "<group>"; };
+		EC858C932A60684C00419A13 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		EC858C962A60944500419A13 /* WMOCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WMOCodes.json; sourceTree = "<group>"; };
+		ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
+		ECCDD87B2A55DF8C008BCF1D /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		ECCDD87C2A55DF8C008BCF1D /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		ECCDD87D2A55DF8C008BCF1D /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		ECCDD87E2A55DF8C008BCF1D /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		ECCDD87F2A55DF8C008BCF1D /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		ECCDD8802A55DF8C008BCF1D /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
+		ECCDD8812A55DF8C008BCF1D /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		ECCDD8822A55DF8C008BCF1D /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
+		ECCDD8832A55DF8C008BCF1D /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
+		ECCDD8842A55DF8C008BCF1D /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
+		ECCDD8852A55DF8C008BCF1D /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBold.ttf"; sourceTree = "<group>"; };
+		ECCDD8862A55DF8C008BCF1D /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		ECCDD8872A55DF8C008BCF1D /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		ECCDD8882A55DF8C008BCF1D /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		ECCDD8892A55DF8C008BCF1D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,15 +93,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC858C612A5C005000419A13 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC006F4E2A55E71B00AAADE7 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				EC006F4F2A55E75800AAADE7 /* WWOnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		EC05B2DE2A545CBF00F7EB24 = {
 			isa = PBXGroup;
 			children = (
+				EC858C642A5C105A00419A13 /* neccessaryStuff.rtf */,
 				EC05B2E92A545CBF00F7EB24 /* WeatherWise */,
 				EC05B2E82A545CBF00F7EB24 /* Products */,
 			);
@@ -56,15 +128,117 @@
 		EC05B2E92A545CBF00F7EB24 /* WeatherWise */ = {
 			isa = PBXGroup;
 			children = (
-				EC05B2EA2A545CBF00F7EB24 /* AppDelegate.swift */,
-				EC05B2EC2A545CBF00F7EB24 /* SceneDelegate.swift */,
-				EC05B2EE2A545CBF00F7EB24 /* ViewController.swift */,
+				EC858C952A60938700419A13 /* misc */,
+				ECCDD8732A55DCDE008BCF1D /* App */,
+				EC858C902A60666D00419A13 /* Extensions */,
+				EC858C562A5752D800419A13 /* Services */,
+				EC858C652A5C2F3600419A13 /* Models */,
+				EC858C592A5AE8B100419A13 /* MainScreen */,
+				EC006F4E2A55E71B00AAADE7 /* Onboarding */,
 				EC05B2F02A545CBF00F7EB24 /* Main.storyboard */,
 				EC05B2F32A545CC000F7EB24 /* Assets.xcassets */,
 				EC05B2F52A545CC000F7EB24 /* LaunchScreen.storyboard */,
+				ECCDD8742A55DF3E008BCF1D /* CustomFonts */,
 				EC05B2F82A545CC000F7EB24 /* Info.plist */,
 			);
 			path = WeatherWise;
+			sourceTree = "<group>";
+		};
+		EC858C562A5752D800419A13 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EC858C572A5752F300419A13 /* WWLocationService.swift */,
+				EC858C622A5C007D00419A13 /* WWNetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EC858C592A5AE8B100419A13 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EC858C5B2A5AE9E500419A13 /* WWPageController.swift */,
+				EC05B2EE2A545CBF00F7EB24 /* WWMainViewController.swift */,
+				EC858C6A2A5C829200419A13 /* WWMainViewModel.swift */,
+				EC858C6C2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		EC858C652A5C2F3600419A13 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EC858C662A5C2F4500419A13 /* GeocoderPesponse.swift */,
+				EC858C682A5C515800419A13 /* WeatherForecast.swift */,
+				EC858C8E2A5ECF4200419A13 /* DailyWeather.swift */,
+				EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EC858C902A60666D00419A13 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC858C932A60684C00419A13 /* Date+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EC858C952A60938700419A13 /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				EC858C962A60944500419A13 /* WMOCodes.json */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		ECCDD8732A55DCDE008BCF1D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EC05B2EA2A545CBF00F7EB24 /* AppDelegate.swift */,
+				EC05B2EC2A545CBF00F7EB24 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		ECCDD8742A55DF3E008BCF1D /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+				ECCDD8762A55DF8C008BCF1D /* Rubik */,
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
+		ECCDD8762A55DF8C008BCF1D /* Rubik */ = {
+			isa = PBXGroup;
+			children = (
+				ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */,
+				ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */,
+				ECCDD8792A55DF8C008BCF1D /* static */,
+				ECCDD8882A55DF8C008BCF1D /* OFL.txt */,
+				ECCDD8892A55DF8C008BCF1D /* README.txt */,
+			);
+			path = Rubik;
+			sourceTree = "<group>";
+		};
+		ECCDD8792A55DF8C008BCF1D /* static */ = {
+			isa = PBXGroup;
+			children = (
+				ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */,
+				ECCDD87B2A55DF8C008BCF1D /* Rubik-Bold.ttf */,
+				ECCDD87C2A55DF8C008BCF1D /* Rubik-SemiBoldItalic.ttf */,
+				ECCDD87D2A55DF8C008BCF1D /* Rubik-Light.ttf */,
+				ECCDD87E2A55DF8C008BCF1D /* Rubik-Medium.ttf */,
+				ECCDD87F2A55DF8C008BCF1D /* Rubik-ExtraBoldItalic.ttf */,
+				ECCDD8802A55DF8C008BCF1D /* Rubik-Black.ttf */,
+				ECCDD8812A55DF8C008BCF1D /* Rubik-Italic.ttf */,
+				ECCDD8822A55DF8C008BCF1D /* Rubik-LightItalic.ttf */,
+				ECCDD8832A55DF8C008BCF1D /* Rubik-SemiBold.ttf */,
+				ECCDD8842A55DF8C008BCF1D /* Rubik-BlackItalic.ttf */,
+				ECCDD8852A55DF8C008BCF1D /* Rubik-ExtraBold.ttf */,
+				ECCDD8862A55DF8C008BCF1D /* Rubik-Regular.ttf */,
+				ECCDD8872A55DF8C008BCF1D /* Rubik-BoldItalic.ttf */,
+			);
+			path = static;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +257,9 @@
 			dependencies = (
 			);
 			name = WeatherWise;
+			packageProductDependencies = (
+				EC858C602A5C005000419A13 /* Alamofire */,
+			);
 			productName = WeatherWise;
 			productReference = EC05B2E72A545CBF00F7EB24 /* WeatherWise.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +288,9 @@
 				Base,
 			);
 			mainGroup = EC05B2DE2A545CBF00F7EB24;
+			packageReferences = (
+				EC858C5F2A5C005000419A13 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = EC05B2E82A545CBF00F7EB24 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +305,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECCDD89A2A55DF8C008BCF1D /* OFL.txt in Resources */,
+				ECCDD88E2A55DF8C008BCF1D /* Rubik-SemiBoldItalic.ttf in Resources */,
+				EC858C972A60944500419A13 /* WMOCodes.json in Resources */,
+				ECCDD89B2A55DF8C008BCF1D /* README.txt in Resources */,
+				ECCDD8922A55DF8C008BCF1D /* Rubik-Black.ttf in Resources */,
 				EC05B2F72A545CC000F7EB24 /* LaunchScreen.storyboard in Resources */,
 				EC05B2F42A545CC000F7EB24 /* Assets.xcassets in Resources */,
+				ECCDD8932A55DF8C008BCF1D /* Rubik-Italic.ttf in Resources */,
+				ECCDD8992A55DF8C008BCF1D /* Rubik-BoldItalic.ttf in Resources */,
 				EC05B2F22A545CBF00F7EB24 /* Main.storyboard in Resources */,
+				ECCDD8942A55DF8C008BCF1D /* Rubik-LightItalic.ttf in Resources */,
+				ECCDD8952A55DF8C008BCF1D /* Rubik-SemiBold.ttf in Resources */,
+				ECCDD88B2A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf in Resources */,
+				ECCDD88C2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf in Resources */,
+				ECCDD8972A55DF8C008BCF1D /* Rubik-ExtraBold.ttf in Resources */,
+				ECCDD8912A55DF8C008BCF1D /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				ECCDD8962A55DF8C008BCF1D /* Rubik-BlackItalic.ttf in Resources */,
+				ECCDD88D2A55DF8C008BCF1D /* Rubik-Bold.ttf in Resources */,
+				ECCDD88F2A55DF8C008BCF1D /* Rubik-Light.ttf in Resources */,
+				ECCDD8982A55DF8C008BCF1D /* Rubik-Regular.ttf in Resources */,
+				ECCDD8902A55DF8C008BCF1D /* Rubik-Medium.ttf in Resources */,
+				ECCDD88A2A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +337,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC05B2EF2A545CBF00F7EB24 /* ViewController.swift in Sources */,
+				EC858C692A5C515800419A13 /* WeatherForecast.swift in Sources */,
+				EC05B2EF2A545CBF00F7EB24 /* WWMainViewController.swift in Sources */,
+				EC858C632A5C007D00419A13 /* WWNetworkService.swift in Sources */,
 				EC05B2EB2A545CBF00F7EB24 /* AppDelegate.swift in Sources */,
+				EC858C922A60671B00419A13 /* SevenDayWeatherForecast.swift in Sources */,
+				EC006F502A55E75800AAADE7 /* WWOnboardingViewController.swift in Sources */,
+				EC858C6B2A5C829200419A13 /* WWMainViewModel.swift in Sources */,
+				EC858C6D2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift in Sources */,
+				EC858C5C2A5AE9E500419A13 /* WWPageController.swift in Sources */,
 				EC05B2ED2A545CBF00F7EB24 /* SceneDelegate.swift in Sources */,
+				EC858C672A5C2F4500419A13 /* GeocoderPesponse.swift in Sources */,
+				EC858C582A5752F300419A13 /* WWLocationService.swift in Sources */,
+				EC858C8F2A5ECF4200419A13 /* DailyWeather.swift in Sources */,
+				EC858C942A60684C00419A13 /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,11 +500,11 @@
 				DEVELOPMENT_TEAM = 6RRYH7RTN7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherWise/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Пожалуйста, разрешите получать данные о вашем текущем местоположения, чтобы WeatherWise автоматически определило погодные условия в вашей местности.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,11 +528,11 @@
 				DEVELOPMENT_TEAM = 6RRYH7RTN7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherWise/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Пожалуйста, разрешите получать данные о вашем текущем местоположения, чтобы WeatherWise автоматически определило погодные условия в вашей местности.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,6 +568,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EC858C5F2A5C005000419A13 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EC858C602A5C005000419A13 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC858C5F2A5C005000419A13 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EC05B2DF2A545CBF00F7EB24 /* Project object */;
 }

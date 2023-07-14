@@ -7,13 +7,24 @@
 
 import UIKit
 
+
+/// Method used while app is in-dev to encrypt API keys:
+
+//func encode(key: String) {
+//    var array: [UInt8] = []
+//    for byte in key.data(using: .utf8)! {
+//        array.append(byte)
+//    }
+//    print(array)
+//}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         return true
     }
 
