@@ -14,6 +14,8 @@ class WWWeatherCellTableViewCell: UITableViewCell {
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var overallConditionLabel: UILabel!
+    @IBOutlet weak var overallPicture: UIImageView!
+    @IBOutlet weak var humidityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

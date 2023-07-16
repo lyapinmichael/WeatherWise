@@ -30,24 +30,26 @@ struct SevenDayWeahterForecast: Codable {
 struct Daily: Codable {
     let time: [String]
     let weathercode: [Int]
-    let temperature2MMax, temperature2MMin, precipitationSum: [Double]
+    let temperature2MMax, temperature2MMin: [Double]
+    let precipitationProbabilityMax: [Int]
 
     enum CodingKeys: String, CodingKey {
         case time, weathercode
         case temperature2MMax = "temperature_2m_max"
         case temperature2MMin = "temperature_2m_min"
-        case precipitationSum = "precipitation_sum"
+        case precipitationProbabilityMax = "precipitation_probability_max"
     }
 }
 
 // MARK: - DailyUnits
 struct DailyUnits: Codable {
-    let time, weathercode, temperature2MMax, temperature2MMin, precipitationSum : String
+    let time, weathercode, temperature2MMax, temperature2MMin: String
+    let precipitationProbabilityMax: String
 
     enum CodingKeys: String, CodingKey {
         case time, weathercode
         case temperature2MMax = "temperature_2m_max"
         case temperature2MMin = "temperature_2m_min"
-        case precipitationSum = "precipitation_sum"
+        case precipitationProbabilityMax = "precipitation_probability_max"
     }
 }

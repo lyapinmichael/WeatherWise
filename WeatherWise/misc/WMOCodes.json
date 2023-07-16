@@ -2,281 +2,281 @@
     "0":{
         "day":{
             "description":"Солнечно",
-            "image":"http://openweathermap.org/img/wn/01d@2x.png"
+            "image":"LittleSun"
         },
         "night":{
             "description":"Ясно",
-            "image":"http://openweathermap.org/img/wn/01n@2x.png"
+            "image":"LittleSun"
         }
     },
     "1":{
         "day":{
             "description":"В основном солнечно",
-            "image":"http://openweathermap.org/img/wn/01d@2x.png"
+            "image":"LittleSun"
         },
         "night":{
             "description":"В основном ясно",
-            "image":"http://openweathermap.org/img/wn/01n@2x.png"
+            "image":"LittleSun"
         }
     },
     "2":{
         "day":{
             "description":"Малооблачно",
-            "image":"http://openweathermap.org/img/wn/02d@2x.png"
+            "image":"LittleCloud"
         },
         "night":{
             "description":"Малооблачно",
-            "image":"http://openweathermap.org/img/wn/02n@2x.png"
+            "image":"LittleCloud"
         }
     },
     "3":{
         "day":{
             "description":"Облачно",
-            "image":"http://openweathermap.org/img/wn/03d@2x.png"
+            "image":"LittleCloud"
         },
         "night":{
             "description":"Облачно",
-            "image":"http://openweathermap.org/img/wn/03n@2x.png"
+            "image":"LittleCloud"
         }
     },
     "45":{
         "day":{
             "description":"Туманно",
-            "image":"http://openweathermap.org/img/wn/50d@2x.png"
+            "image":"LittleCloud"
         },
         "night":{
             "description":"Туманно",
-            "image":"http://openweathermap.org/img/wn/50n@2x.png"
+            "image":"LittleCloud"
         }
     },
     "48":{
         "day":{
             "description":"Ледяной туман",
-            "image":"http://openweathermap.org/img/wn/50d@2x.png"
+            "image":"LittleCloud"
         },
         "night":{
             "description":"Ледяной туман",
-            "image":"http://openweathermap.org/img/wn/50n@2x.png"
+            "image":"LittleCloud"
         }
     },
     "51":{
         "day":{
             "description":"Небольшая морось",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleCloud"
         },
         "night":{
             "description":"Небольшая морось",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleCloud"
         }
     },
     "53":{
         "day":{
             "description":"Морось",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Морось",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleRain"
         }
     },
     "55":{
         "day":{
             "description":"Сильная морось",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Сильная морось",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleRain"
         }
     },
     "56":{
         "day":{
             "description":"Небольшая ледяная морось",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Небольшая ледяная морось",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleRain"
         }
     },
     "57":{
         "day":{
             "description":"Ледяная морось",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Ледяная морось",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleRain"
         }
     },
     "61":{
         "day":{
             "description":"Небольшой дождь",
-            "image":"http://openweathermap.org/img/wn/10d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Небольшой дождь",
-            "image":"http://openweathermap.org/img/wn/10n@2x.png"
+            "image":"LittleRain"
         }
     },
     "63":{
         "day":{
             "description":"Дождь",
-            "image":"http://openweathermap.org/img/wn/10d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Дождь",
-            "image":"http://openweathermap.org/img/wn/10n@2x.png"
+            "image":"LittleRain"
         }
     },
     "65":{
         "day":{
             "description":"Сильный дождь",
-            "image":"http://openweathermap.org/img/wn/10d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Сильный дождь",
-            "image":"http://openweathermap.org/img/wn/10n@2x.png"
+            "image":"LittleShower"
         }
     },
     "66":{
         "day":{
             "description":"Ледяной дождь",
-            "image":"http://openweathermap.org/img/wn/10d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Ледяной дождь",
-            "image":"http://openweathermap.org/img/wn/10n@2x.png"
+            "image":"LittleRain"
         }
     },
     "67":{
         "day":{
             "description":"Ледяной дождь",
-            "image":"http://openweathermap.org/img/wn/10d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Ледяной дождь",
-            "image":"http://openweathermap.org/img/wn/10n@2x.png"
+            "image":"LittleRain"
         }
     },
     "71":{
         "day":{
             "description":"Небольшой снегопад",
-            "image":"http://openweathermap.org/img/wn/13d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Небольшой снегопад",
-            "image":"http://openweathermap.org/img/wn/13n@2x.png"
+            "image":"LittleRain"
         }
     },
     "73":{
         "day":{
             "description":"Снегопад",
-            "image":"http://openweathermap.org/img/wn/13d@2x.png"
+            "image":"LittleRain"
         },
         "night":{
             "description":"Снегопад",
-            "image":"http://openweathermap.org/img/wn/13n@2x.png"
+            "image":"LittleRain"
         }
     },
     "75":{
         "day":{
             "description":"Сильный снегопад",
-            "image":"http://openweathermap.org/img/wn/13d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Сильный снегопад",
-            "image":"http://openweathermap.org/img/wn/13n@2x.png"
+            "image":"LittleShower"
         }
     },
     "77":{
         "day":{
             "description":"Град",
-            "image":"http://openweathermap.org/img/wn/13d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Град",
-            "image":"http://openweathermap.org/img/wn/13n@2x.png"
+            "image":"LittleShower"
         }
     },
     "80":{
         "day":{
             "description":"Небольшой ливень",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Небольшой ливень",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleShower"
         }
     },
     "81":{
         "day":{
             "description":"Ливень",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Ливень",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleShower"
         }
     },
     "82":{
         "day":{
             "description":"Сильный ливень",
-            "image":"http://openweathermap.org/img/wn/09d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Сильный ливень",
-            "image":"http://openweathermap.org/img/wn/09n@2x.png"
+            "image":"LittleShower"
         }
     },
     "85":{
         "day":{
             "description":"Метель",
-            "image":"http://openweathermap.org/img/wn/13d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Метель",
-            "image":"http://openweathermap.org/img/wn/13n@2x.png"
+            "image":"LittleShower"
         }
     },
     "86":{
         "day":{
             "description":"Метель",
-            "image":"http://openweathermap.org/img/wn/13d@2x.png"
+            "image":"LittleShower"
         },
         "night":{
             "description":"Метель",
-            "image":"http://openweathermap.org/img/wn/13n@2x.png"
+            "image":"LittleShower"
         }
     },
     "95":{
         "day":{
             "description":"Гроза",
-            "image":"http://openweathermap.org/img/wn/11d@2x.png"
+            "image":"LittleThunder"
         },
         "night":{
             "description":"Гроза",
-            "image":"http://openweathermap.org/img/wn/11n@2x.png"
+            "image":"LittleThunder"
         }
     },
     "96":{
         "day":{
             "description":"Гроза с градом",
-            "image":"http://openweathermap.org/img/wn/11d@2x.png"
+            "image":"LittleThunder"
         },
         "night":{
             "description":"Гроза с градом",
-            "image":"http://openweathermap.org/img/wn/11n@2x.png"
+            "image":"LittleThunder"
         }
     },
     "99":{
         "day":{
             "description":"Гроза с градом",
-            "image":"http://openweathermap.org/img/wn/11d@2x.png"
+            "image":"LittleThunder"
         },
         "night":{
             "description":"Гроза с градом",
-            "image":"http://openweathermap.org/img/wn/11n@2x.png"
+            "image":"LittleThunder"
         }
     }
 }

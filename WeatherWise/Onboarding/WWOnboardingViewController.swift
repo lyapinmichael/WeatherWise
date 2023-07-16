@@ -12,7 +12,7 @@ class WWOnboardingViewController: UIViewController {
     // MARK: - IBActionos
     
     @IBAction func useLocation(_ sender: Any) {
-        self.locationService?.getPermission()
+        self.locationService.getPermission()
         
     }
     
@@ -20,24 +20,22 @@ class WWOnboardingViewController: UIViewController {
         self.proceedToMainScreen()
     }
     
-    private var locationService: WWLocationService?
+    private var locationService = WWLocationService()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad()  {
         super.viewDidLoad()
-        self.locationService = WWLocationService()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Set location auth status to:", locationService?.authorizationStatus?.rawValue ?? "Bad status")
+        print("Set location auth status to:", locationService.authorizationStatus?.rawValue ?? "Bad status")
         NotificationCenter.default.addObserver(self, selector: #selector(proceedToMainScreen(_:)), name: WWCLNotifications.permissionGranted, object: nil)
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-        self.locationService = nil
     }
     
     // MARK: - ObjC methods

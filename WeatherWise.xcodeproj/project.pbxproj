@@ -22,7 +22,6 @@
 		EC858C692A5C515800419A13 /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C682A5C515800419A13 /* WeatherForecast.swift */; };
 		EC858C6B2A5C829200419A13 /* WWMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C6A2A5C829200419A13 /* WWMainViewModel.swift */; };
 		EC858C6D2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C6C2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift */; };
-		EC858C8F2A5ECF4200419A13 /* DailyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C8E2A5ECF4200419A13 /* DailyWeather.swift */; };
 		EC858C922A60671B00419A13 /* SevenDayWeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */; };
 		EC858C942A60684C00419A13 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C932A60684C00419A13 /* Date+.swift */; };
 		EC858C972A60944500419A13 /* WMOCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = EC858C962A60944500419A13 /* WMOCodes.json */; };
@@ -64,7 +63,6 @@
 		EC858C682A5C515800419A13 /* WeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
 		EC858C6A2A5C829200419A13 /* WWMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWMainViewModel.swift; sourceTree = "<group>"; };
 		EC858C6C2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWWeatherCellTableViewCell.swift; sourceTree = "<group>"; };
-		EC858C8E2A5ECF4200419A13 /* DailyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeather.swift; sourceTree = "<group>"; };
 		EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenDayWeatherForecast.swift; sourceTree = "<group>"; };
 		EC858C932A60684C00419A13 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		EC858C962A60944500419A13 /* WMOCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WMOCodes.json; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 			children = (
 				EC858C662A5C2F4500419A13 /* GeocoderPesponse.swift */,
 				EC858C682A5C515800419A13 /* WeatherForecast.swift */,
-				EC858C8E2A5ECF4200419A13 /* DailyWeather.swift */,
 				EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */,
 			);
 			path = Models;
@@ -349,7 +346,6 @@
 				EC05B2ED2A545CBF00F7EB24 /* SceneDelegate.swift in Sources */,
 				EC858C672A5C2F4500419A13 /* GeocoderPesponse.swift in Sources */,
 				EC858C582A5752F300419A13 /* WWLocationService.swift in Sources */,
-				EC858C8F2A5ECF4200419A13 /* DailyWeather.swift in Sources */,
 				EC858C942A60684C00419A13 /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

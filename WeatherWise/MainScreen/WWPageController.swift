@@ -27,9 +27,11 @@ final class WWPageController: UIPageViewController, UIPageViewControllerDataSour
     }
     
     override func viewDidAppear(_ animated: Bool) {
+
         if !UserDefaults.standard.bool(forKey: "isOnboardingPassed") {
             performSegue(withIdentifier: "presentOnboarding", sender: self)
         }
+        
     }
     
 

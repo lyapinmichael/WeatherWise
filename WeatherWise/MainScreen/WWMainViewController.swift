@@ -27,8 +27,6 @@ final class WWMainViewController: UIViewController {
         }
     }
     
-//    private var weeklyForecast: 
-    
     // MARK: - Lifacycle
     
     override func viewDidLoad() {
@@ -81,8 +79,10 @@ extension WWMainViewController: UITableViewDataSource {
         let day = dateSubstringArray[2]
         cell.dateLabel.text = "\(day)/\(month)"
         cell.maxTemperatureLabel.text = String(format: "%.1f", weeklyForecast.daily.temperature2MMax[indexPath.row]) + "°"
-        cell.minTemperatureLabel.text = String(format: "%.1f", weeklyForecast.daily.temperature2MMin[indexPath.row]) + "°"
-        cell.overallConditionLabel.text = viewModel.decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)
+        cell.minTemperatureLabel.text = String(format: "%.1f", weeklyForecast.daily.temperature2MMin[indexPath.row]) + "°  -"
+        cell.overallConditionLabel.text = viewModel.decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[0]
+        cell.humidityLabel.text = String(weeklyForecast.daily.precipitationProbabilityMax[indexPath.row]) + "%"
+        cell.overallPicture.image = UIImage(named: viewModel.decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[1])
         return cell
     }
 }
@@ -91,6 +91,10 @@ extension WWMainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        84
     }
 }
 

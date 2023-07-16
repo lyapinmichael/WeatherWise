@@ -77,7 +77,7 @@ final class WWNetworkService {
         let startDateString = dateFormatter.string(from: Date().dayAfter)
         let endDateString = dateFormatter.string(from: Date().dayAfter.weekAfter)
         
-        let openMeteoURL = "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FMoscow&start_date=\(startDateString)&end_date=\(endDateString)"
+        let openMeteoURL = "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe%2FMoscow&start_date=\(startDateString)&end_date=\(endDateString)"
         
         AF.request(openMeteoURL).responseDecodable(of: SevenDayWeahterForecast.self) { [weak self] response in
             guard let decodedSevenDayWeatherForecast = response.value else {

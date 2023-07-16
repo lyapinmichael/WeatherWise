@@ -44,7 +44,7 @@ final class WWMainViewModel {
     // MARK: - Public methods
     
     // TODO: - Needs optimisation
-    func decodeWMOcode(_ code: Int, isDay: Bool) -> String {
+    func decodeWMOcode(_ code: Int, isDay: Bool) -> [String] {
         var daytime: String
         
         switch isDay {
@@ -56,7 +56,7 @@ final class WWMainViewModel {
         
         guard let path = Bundle.main.path(forResource: "WMOCodes", ofType: "json") else {
             print("Failed to acces WMO codes data")
-            return "" }
+            return [""] }
         let codeString = String(code)
         
         do {
@@ -66,13 +66,15 @@ final class WWMainViewModel {
             if let serializedData = serializedData as? [String: Any],
                let codeInfo = serializedData[codeString] as? [String: Any],
                let time = codeInfo[daytime] as? [String: Any],
-               let description = time["description"] as? String {
-                return description
+               let description = time["description"] as? String,
+               let image = time["image"] as? String
+            {
+                return [description, image]
             }
         } catch {
             preconditionFailure(error.localizedDescription)
         }
-        return ""
+        return [""]
     }
     
     // MARK: - Private methods
