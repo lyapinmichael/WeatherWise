@@ -60,6 +60,7 @@ final class WWMainViewController: UIViewController {
     private func setupSubviews() {
         mainTable.delegate = self
         mainTable.dataSource = self
+        mainTable.layer.cornerRadius = 12
     }
 }
 
