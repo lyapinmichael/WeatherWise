@@ -75,7 +75,7 @@
                                 <rect key="frame" x="20" y="432.5" width="333" height="226.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="84" translatesAutoresizingMaskIntoConstraints="NO" id="qUc-KA-mjZ" customClass="WWWeatherCellTableViewCell" customModule="WeatherWise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="84" translatesAutoresizingMaskIntoConstraints="NO" id="qUc-KA-mjZ" customClass="WWWeatherCellTableViewCell" customModule="WeatherWise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="333" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qUc-KA-mjZ" id="rw3-8B-Zk5">
@@ -488,7 +488,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <color key="backgroundColor" name="BaseBlue"/>
                                 <constraints>
                                     <constraint firstItem="zOl-hR-X7r" firstAttribute="top" secondItem="8NJ-bx-nkh" secondAttribute="bottom" constant="21" id="07n-U0-nFg"/>
                                     <constraint firstItem="n1I-Kd-UXF" firstAttribute="centerY" secondItem="XvI-Kx-PMj" secondAttribute="centerY" id="0YC-hp-5gw"/>
@@ -526,6 +526,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="QP6-YQ-TdR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6VR-Iu-uNO" firstAttribute="centerY" secondItem="WMm-WN-41K" secondAttribute="centerY" id="SQ5-9Q-3wa"/>
@@ -538,7 +539,9 @@
                         <outlet property="UVfactorLabel" destination="wuk-Hy-1fJ" id="964-QW-tAI"/>
                         <outlet property="backgroundView" destination="6VR-Iu-uNO" id="Yng-Vu-3p2"/>
                         <outlet property="currentTempLabel" destination="8QH-JM-WQi" id="ztZ-9V-VNs"/>
+                        <outlet property="dawnImage" destination="RVB-Dd-C5y" id="upo-3G-njy"/>
                         <outlet property="dawnTimeLabel" destination="4pQ-jD-imo" id="XFc-b3-uI3"/>
+                        <outlet property="duskImage" destination="g93-KN-QfX" id="6YE-bM-o33"/>
                         <outlet property="duskTimeLabel" destination="L1S-gH-fR8" id="W6D-vm-Fpj"/>
                         <outlet property="minMaxTempLabel" destination="kSi-4R-eDn" id="qYe-5X-Zf2"/>
                         <outlet property="overallConditionLabel" destination="8NJ-bx-nkh" id="vNj-To-rUJ"/>
@@ -577,9 +580,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
