@@ -81,9 +81,9 @@ extension WWMainViewController: UITableViewDataSource {
         cell.dateLabel.text = "\(day)/\(month)"
         cell.maxTemperatureLabel.text = String(format: "%.1f", weeklyForecast.daily.temperature2MMax[indexPath.row]) + "°"
         cell.minTemperatureLabel.text = String(format: "%.1f", weeklyForecast.daily.temperature2MMin[indexPath.row]) + "°  -"
-        cell.overallConditionLabel.text = viewModel.decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[0]
+        cell.overallConditionLabel.text = decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[0]
         cell.humidityLabel.text = String(weeklyForecast.daily.precipitationProbabilityMax[indexPath.row]) + "%"
-        cell.overallPicture.image = UIImage(named: viewModel.decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[1])
+        cell.overallPicture.image = UIImage(named: decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[1])
         return cell
     }
 }

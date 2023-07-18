@@ -8,6 +8,9 @@
 import Foundation
 import Alamofire
 
+enum WWNSNotifications {
+    static let dailyOverallForecastReceived = Notification.Name("dailyOverallForecastReceived")
+}
 
 protocol WWNetworkServiceDelegate: AnyObject {
     
@@ -15,13 +18,14 @@ protocol WWNetworkServiceDelegate: AnyObject {
     
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast)
     
+    func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast)
 }
 
 extension WWNetworkServiceDelegate {
     
     func networkService(didRecieveLocation decodedGeodata: GeocoderResponse) {}
-    func networkService(didReceiveWeatherForecast decodedWeatherForecast: WeatherForecast) {}
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast) {}
+    func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast) {}
     
 }
 
@@ -43,7 +47,7 @@ final class WWNetworkService {
     
     // MARK: - Methods to access Yandex.Geocoder API
     
-    /// Function takes array of doubles, which are meant to be decoded from Longitude and Latitude of CLLocation.
+    /// Function takes array of floating point numbers, which are meant to be decoded from Longitude and Latitude of CLLocation.
     /// 0 index is for Longitude
     /// 1 index is for Latitude
     /// Abovementioned positioning of Longitude and Latitude conforms to standard positions of coordinate degrees in standard request to Yandex.Geocoder API.
@@ -81,7 +85,7 @@ final class WWNetworkService {
         
         AF.request(openMeteoURL).responseDecodable(of: SevenDayWeahterForecast.self) { [weak self] response in
             guard let decodedSevenDayWeatherForecast = response.value else {
-                print("Error occured while decoding weahter forecast from Yr API:\n\n" + (response.error?.localizedDescription ?? "Something went wrong"))
+                print("Error occured while decoding weahter forecast from OpenMeteo API:\n\n" + (response.error?.localizedDescription ?? "Something went wrong"))
                 return
             }
             
@@ -95,7 +99,16 @@ final class WWNetworkService {
         
         let today = dateFormatter.string(from: Date())
         
-//        let openMeteoURL =
+        let openMeteoURL = "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&hourly=temperature_2m,windspeed_10m,weathercode&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max,windspeed_10m_max&timezone=Europe%2FMoscow&forecast_days=1"
+        
+        AF.request(openMeteoURL).responseDecodable(of: DailyOverallForecast.self) { [weak self] response in
+            guard let decodedDailyOverallForecast = response.value else {
+                print("Error occured while decoding weahter forecast from OpenMeteo API:\n\n" + (response.error?.localizedDescription ?? "Something went wrong"))
+                return
+            }
+            
+            self?.delegate?.networkService(didReceiveDailyOverallForecast: decodedDailyOverallForecast)
+        }
         
     }
 }
