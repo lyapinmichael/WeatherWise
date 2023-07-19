@@ -85,7 +85,8 @@ final class WWNetworkService {
         
         AF.request(openMeteoURL).responseDecodable(of: SevenDayWeahterForecast.self) { [weak self] response in
             guard let decodedSevenDayWeatherForecast = response.value else {
-                print("Error occured while decoding weahter forecast from OpenMeteo API:\n\n" + (response.error?.localizedDescription ?? "Something went wrong"))
+                print("Error occured while decoding weahter forecast from OpenMeteo API:\n\n")
+                print(response.error)
                 return
             }
             

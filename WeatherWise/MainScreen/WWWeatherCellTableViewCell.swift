@@ -15,7 +15,7 @@ class WWWeatherCellTableViewCell: UITableViewCell {
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var overallConditionLabel: UILabel!
     @IBOutlet weak var overallPicture: UIImageView!
-    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var precipitationLabel: UILabel!
     @IBOutlet weak var weatherContentView: UIView!
     
     override func awakeFromNib() {

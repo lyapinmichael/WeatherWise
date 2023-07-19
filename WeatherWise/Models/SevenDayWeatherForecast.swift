@@ -31,7 +31,7 @@ struct Daily: Codable {
     let time: [String]
     let weathercode: [Int]
     let temperature2MMax, temperature2MMin: [Double]
-    let precipitationProbabilityMax: [Int]
+    let precipitationProbabilityMax: [Int?]
 
     enum CodingKeys: String, CodingKey {
         case time, weathercode
