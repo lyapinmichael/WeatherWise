@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class WWMainViewModel {
     
@@ -56,12 +57,19 @@ final class WWMainViewModel {
     // MARK: - ObjC methods
     
     @objc private func updateLocation(_ notification: Notification) {
-        guard let currentLocationDegrees = (notification.userInfo?["currentLocation"]) as? [Float],
+        guard let currentLocationDegrees = (notification.userInfo?["currentLocationDegrees"]) as? [Float],
+              let currentLocation = (notification.userInfo?["currentLocation"]) as? CLLocation,
               let currentTimezone = (notification.userInfo?["currentTimezone"]) as? String else { return }
-        state = .didUpdateLocation("\(currentLocationDegrees[0]), \(currentLocationDegrees[1])")
         
-        // TODO: - uncomment the following line to decode coordinates into location name
-//        self.networkService.decodeLocation(from: currentLocationDegrees)
+        self.locationService.reverseGeoDecode(from: currentLocation) { [weak self] locality, country in
+            guard let localitySafe = locality,
+                  let countrySafe = country else {
+                self?.state = .didUpdateLocation("\(currentLocationDegrees[1]), \(currentLocationDegrees[0])")
+                return
+            }
+            self?.state = .didUpdateLocation("\(localitySafe), \(countrySafe)")
+        }
+        
         
         networkService.getSevenDayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)
         networkService.getTodayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)

@@ -31,6 +31,19 @@ final class WWLocationService: NSObject {
     func getPermission() {
         self.coreLocationManager.requestWhenInUseAuthorization()
     }
+    
+    func reverseGeoDecode(from location: CLLocation, completion: @escaping (String?, String?) -> Void) {
+        let geoCoder = CLGeocoder()
+        
+        geoCoder.reverseGeocodeLocation(location) { locationName, error  in
+            guard let location = locationName?.last else {
+                print(error ?? "Something went wrong while performing reverse geocoding")
+                return
+            }
+            
+            completion(location.locality, location.country)
+        }
+    }
 }
 
 extension WWLocationService: CLLocationManagerDelegate {
@@ -59,7 +72,7 @@ extension WWLocationService: CLLocationManagerDelegate {
         
         let currentTimezone = TimeZone.current.identifier
         
-        NotificationCenter.default.post(Notification(name: WWCLNotifications.locationReceived, userInfo: ["currentLocation": currentLocationDegrees, "currentTimezone": currentTimezone]))
+        NotificationCenter.default.post(Notification(name: WWCLNotifications.locationReceived, userInfo: ["currentLocationDegrees": currentLocationDegrees, "currentLocation": currentLocation, "currentTimezone": currentTimezone]))
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

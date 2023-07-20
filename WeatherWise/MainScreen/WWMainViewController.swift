@@ -110,6 +110,10 @@ extension WWMainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         84
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Ежедневный прогноз"
+    }
 }
 
 extension WWMainViewController: UICollectionViewDataSource {
