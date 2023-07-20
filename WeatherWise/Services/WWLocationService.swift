@@ -57,7 +57,9 @@ extension WWLocationService: CLLocationManagerDelegate {
         currentLocationDegrees.append(Float(currentLocation.coordinate.longitude))
         currentLocationDegrees.append(Float(currentLocation.coordinate.latitude))
         
-        NotificationCenter.default.post(Notification(name: WWCLNotifications.locationReceived, userInfo: ["currentLocation": currentLocationDegrees]))
+        let currentTimezone = TimeZone.current.identifier
+        
+        NotificationCenter.default.post(Notification(name: WWCLNotifications.locationReceived, userInfo: ["currentLocation": currentLocationDegrees, "currentTimezone": currentTimezone]))
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

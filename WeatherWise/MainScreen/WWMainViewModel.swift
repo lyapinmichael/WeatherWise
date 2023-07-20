@@ -13,6 +13,7 @@ final class WWMainViewModel {
         case initial
         case didUpdateLocation(String)
         case didUpdateWeeklyWeatherForecast(SevenDayWeahterForecast)
+        case didUpdateHourlyTemperature(HourlyTemperature)
         
     }
     
@@ -55,14 +56,16 @@ final class WWMainViewModel {
     // MARK: - ObjC methods
     
     @objc private func updateLocation(_ notification: Notification) {
-        guard let currentLocationDegrees = (notification.userInfo?["currentLocation"]) as? [Float] else { return }
+        guard let currentLocationDegrees = (notification.userInfo?["currentLocation"]) as? [Float],
+              let currentTimezone = (notification.userInfo?["currentTimezone"]) as? String else { return }
         state = .didUpdateLocation("\(currentLocationDegrees[0]), \(currentLocationDegrees[1])")
         
         // TODO: - uncomment the following line to decode coordinates into location name
 //        self.networkService.decodeLocation(from: currentLocationDegrees)
         
-        networkService.getSevenDayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1])
-        networkService.getTodayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1])
+        networkService.getSevenDayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)
+        networkService.getTodayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)
+        networkService.getHourlyTemperature(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)
         
     }
     
@@ -82,6 +85,10 @@ extension WWMainViewModel: WWNetworkServiceDelegate {
     func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast) {
         let notification = Notification(name: WWNSNotifications.dailyOverallForecastReceived, userInfo: ["dailyOverallForecast": decodedDailyOverallWeatherForecast])
         NotificationCenter.default.post(notification)
+    }
+    
+    func networkService(didReceiveHourlyTemperature decodedHourlyTemperature: HourlyTemperature) {
+        state = .didUpdateHourlyTemperature(decodedHourlyTemperature)
     }
     
     

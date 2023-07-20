@@ -77,8 +77,10 @@ final class WWTodayOverallViewController: UIViewController{
             return
         }
         
+        let today = Date()
         let todayFormatter = DateFormatter()
         todayFormatter.dateFormat = "H:mm, EEE dd MMMM"
+        todayFormatter.timeZone = TimeZone(identifier: dailyOverallForecast.timezone)
         
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "H:mm"
@@ -86,10 +88,9 @@ final class WWTodayOverallViewController: UIViewController{
         let roughHourFormatter = DateFormatter()
         roughHourFormatter.dateFormat = "H"
         
-        let dawnTime = ISO8601DateFormatter().date(from: dailyOverallForecast.daily.sunrise[0])
-        let duskTime = ISO8601DateFormatter().date(from: dailyOverallForecast.daily.sunset[0])
+        let dawnTime = dailyOverallForecast.daily.sunrise[0].components(separatedBy: "T")[1]
+        let duskTime = dailyOverallForecast.daily.sunset[0].components(separatedBy: "T")[1]
         
-        let today = Date()
         let hourIndex = Int(roughHourFormatter.string(from: today)) ?? 11
         let currentTemperature = dailyOverallForecast.hourly.temperature2M[hourIndex]
         let currentWindspeed = dailyOverallForecast.hourly.windspeed10M[hourIndex]
@@ -99,8 +100,8 @@ final class WWTodayOverallViewController: UIViewController{
         print(dailyOverallForecast.daily.temperature2MMin[0])
         print(dailyOverallForecast.daily.temperature2MMax[0])
         currentTempLabel.text = "\(currentTemperature)°"
-        dawnTimeLabel.text = timeFormatter.string(from: dawnTime ?? today)
-        duskTimeLabel.text = timeFormatter.string(from: duskTime ?? today)
+        dawnTimeLabel.text = dawnTime
+        duskTimeLabel.text = duskTime
         todayLabel.text = todayFormatter.string(from: today)
         overallConditionLabel.text = currentOverallCondition
         windspeedLabel.text = "\(currentWindspeed) м/с"

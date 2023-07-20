@@ -28,6 +28,8 @@
 		EC858C922A60671B00419A13 /* SevenDayWeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */; };
 		EC858C942A60684C00419A13 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C932A60684C00419A13 /* Date+.swift */; };
 		EC858C972A60944500419A13 /* WMOCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = EC858C962A60944500419A13 /* WMOCodes.json */; };
+		EC9C25C62A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */; };
+		EC9C25C82A69409A0085F697 /* HourlyTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */; };
 		ECCDD88A2A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */; };
 		ECCDD88B2A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */; };
 		ECCDD88C2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */; };
@@ -72,6 +74,8 @@
 		EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenDayWeatherForecast.swift; sourceTree = "<group>"; };
 		EC858C932A60684C00419A13 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		EC858C962A60944500419A13 /* WMOCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WMOCodes.json; sourceTree = "<group>"; };
+		EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWHourlyPillCollectionViewCell.swift; sourceTree = "<group>"; };
+		EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyTemperature.swift; sourceTree = "<group>"; };
 		ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				EC858C6A2A5C829200419A13 /* WWMainViewModel.swift */,
 				EC858C6C2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift */,
 				EC62A3822A65744900246EBB /* WWTodayOverallView.swift */,
+				EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				EC858C682A5C515800419A13 /* WeatherForecast.swift */,
 				EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */,
 				EC62A3842A66802800246EBB /* DailyOverallForecast.swift */,
+				EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -360,7 +366,9 @@
 				EC006F502A55E75800AAADE7 /* WWOnboardingViewController.swift in Sources */,
 				EC62A3832A65744900246EBB /* WWTodayOverallView.swift in Sources */,
 				EC858C6B2A5C829200419A13 /* WWMainViewModel.swift in Sources */,
+				EC9C25C82A69409A0085F697 /* HourlyTemperature.swift in Sources */,
 				EC858C6D2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift in Sources */,
+				EC9C25C62A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift in Sources */,
 				EC62A3852A66802800246EBB /* DailyOverallForecast.swift in Sources */,
 				EC858C5C2A5AE9E500419A13 /* WWPageController.swift in Sources */,
 				EC05B2ED2A545CBF00F7EB24 /* SceneDelegate.swift in Sources */,
