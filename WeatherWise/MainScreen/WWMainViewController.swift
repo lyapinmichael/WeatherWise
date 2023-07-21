@@ -128,25 +128,8 @@ extension WWMainViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let time = hourlyTemperature.hourly.time[indexPath.row].components(separatedBy: "T")[1]
-        let hour = time.components(separatedBy: ":")[0]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH"
-        dateFormatter.timeZone = TimeZone(identifier: hourlyTemperature.timezone)
-        let currentHour = dateFormatter.string(from: Date())
-        
-        if hour == currentHour {
-            cell.pillView.backgroundColor = UIColor(named: "BaseBlue")
-            cell.tempLabel.textColor = UIColor.white
-            cell.timeLabel.textColor = UIColor.white
-        }
-        
-        let littleImageName = decodeWMOcode(hourlyTemperature.hourly.weathercode[indexPath.row], isDay: true)[1]
-        
-        cell.tempLabel.text = String(format: "%.1f", hourlyTemperature.hourly.temperature2M[indexPath.row]) + "°"
-        cell.timeLabel.text = time
-        cell.littleImage.image = UIImage(named: littleImageName)
+        cell.update(with: hourlyTemperature, at: indexPath)
+      
         return cell
     }
     
