@@ -30,6 +30,7 @@
 		EC858C972A60944500419A13 /* WMOCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = EC858C962A60944500419A13 /* WMOCodes.json */; };
 		EC9C25C62A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */; };
 		EC9C25C82A69409A0085F697 /* HourlyTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */; };
+		EC9C25CA2A6C140E0085F697 /* WWAddNewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C92A6C140E0085F697 /* WWAddNewLocationController.swift */; };
 		ECCDD88A2A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */; };
 		ECCDD88B2A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */; };
 		ECCDD88C2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */; };
@@ -76,6 +77,7 @@
 		EC858C962A60944500419A13 /* WMOCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WMOCodes.json; sourceTree = "<group>"; };
 		EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWHourlyPillCollectionViewCell.swift; sourceTree = "<group>"; };
 		EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyTemperature.swift; sourceTree = "<group>"; };
+		EC9C25C92A6C140E0085F697 /* WWAddNewLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWAddNewLocationController.swift; sourceTree = "<group>"; };
 		ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				EC858C6C2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift */,
 				EC62A3822A65744900246EBB /* WWTodayOverallView.swift */,
 				EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */,
+				EC9C25C92A6C140E0085F697 /* WWAddNewLocationController.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				EC05B2EB2A545CBF00F7EB24 /* AppDelegate.swift in Sources */,
 				EC858C922A60671B00419A13 /* SevenDayWeatherForecast.swift in Sources */,
 				EC006F502A55E75800AAADE7 /* WWOnboardingViewController.swift in Sources */,
+				EC9C25CA2A6C140E0085F697 /* WWAddNewLocationController.swift in Sources */,
 				EC62A3832A65744900246EBB /* WWTodayOverallView.swift in Sources */,
 				EC858C6B2A5C829200419A13 /* WWMainViewModel.swift in Sources */,
 				EC9C25C82A69409A0085F697 /* HourlyTemperature.swift in Sources */,

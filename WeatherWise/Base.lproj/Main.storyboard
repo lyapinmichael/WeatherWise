@@ -235,12 +235,17 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1VN-gp-GPx">
+                                <rect key="frame" x="129" y="57" width="117" height="26"/>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="1VN-gp-GPx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6HB-J3-CU5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RNT-Uv-0L0" secondAttribute="bottom" constant="8" id="6Kb-2L-PW4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XbD-Ku-Fsg" secondAttribute="trailing" constant="20" id="9aw-Pl-cAP"/>
+                            <constraint firstItem="RBd-SV-p2r" firstAttribute="top" secondItem="1VN-gp-GPx" secondAttribute="bottom" constant="-2" id="GN9-x3-qQ2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2cd-wX-Rqf" secondAttribute="trailing" constant="20" id="Isw-X6-vzd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RNT-Uv-0L0" secondAttribute="trailing" constant="22" id="IxS-MO-Orv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RBd-SV-p2r" secondAttribute="trailing" constant="22" id="JE6-sF-A1y"/>
@@ -252,6 +257,7 @@
                             <constraint firstItem="XbD-Ku-Fsg" firstAttribute="top" secondItem="xZA-jd-b54" secondAttribute="bottom" constant="6" id="frh-5h-Oft"/>
                             <constraint firstItem="RBd-SV-p2r" firstAttribute="top" secondItem="2cd-wX-Rqf" secondAttribute="bottom" constant="8" symbolic="YES" id="nnP-or-LHN"/>
                             <constraint firstItem="2cd-wX-Rqf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="t52-CP-9CA"/>
+                            <constraint firstItem="1VN-gp-GPx" firstAttribute="top" secondItem="2cd-wX-Rqf" secondAttribute="bottom" constant="-16" id="tOZ-nO-D8j"/>
                             <constraint firstItem="2cd-wX-Rqf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="taK-9Y-yqJ"/>
                             <constraint firstItem="RBd-SV-p2r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="wmB-Bo-juA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xZA-jd-b54" secondAttribute="trailing" constant="22" id="zRZ-np-kQV"/>
@@ -408,20 +414,47 @@
             </objects>
             <point key="canvasLocation" x="3538" y="19"/>
         </scene>
-        <!--View Controller-->
+        <!--Add New Location Controller-->
         <scene sceneID="sHE-kk-Oah">
             <objects>
-                <viewController storyboardIdentifier="cityPage2" id="c6p-Xc-mcl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewLocation" id="c6p-Xc-mcl" customClass="WWAddNewLocationController" customModule="WeatherWise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="91z-H5-OoR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHc-PQ-wEE">
+                                <rect key="frame" x="16" y="41" width="343" height="585"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jfy-lN-JwN">
+                                        <rect key="frame" x="51" y="174" width="240" height="236"/>
+                                        <color key="tintColor" name="BaseBlue"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="jfy-lN-JwN" firstAttribute="leading" secondItem="NHc-PQ-wEE" secondAttribute="leading" constant="51" id="BFv-Yn-DBJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="jfy-lN-JwN" secondAttribute="trailing" constant="52" id="qIn-yd-gih"/>
+                                    <constraint firstItem="jfy-lN-JwN" firstAttribute="top" secondItem="NHc-PQ-wEE" secondAttribute="top" constant="172" id="tNs-sf-rf5"/>
+                                    <constraint firstAttribute="bottom" secondItem="jfy-lN-JwN" secondAttribute="bottom" constant="173" id="vU2-To-ish"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qmL-gL-ImU"/>
-                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="NHc-PQ-wEE" firstAttribute="top" secondItem="qmL-gL-ImU" secondAttribute="top" constant="21" id="dPq-0s-Vgw"/>
+                            <constraint firstItem="qmL-gL-ImU" firstAttribute="trailing" secondItem="NHc-PQ-wEE" secondAttribute="trailing" constant="16" id="gqV-hf-SC1"/>
+                            <constraint firstItem="NHc-PQ-wEE" firstAttribute="leading" secondItem="qmL-gL-ImU" secondAttribute="leading" constant="16" id="luZ-4t-hcx"/>
+                            <constraint firstItem="qmL-gL-ImU" firstAttribute="bottom" secondItem="NHc-PQ-wEE" secondAttribute="bottom" constant="41" id="sXk-EQ-lCJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="NHc-PQ-wEE" id="wxG-kH-ZdT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYv-OJ-AkN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4275" y="-662"/>
+            <point key="canvasLocation" x="4274.3999999999996" y="-662.51874062968523"/>
         </scene>
         <!--Today Overall View Controller-->
         <scene sceneID="oaf-hQ-GQa">
@@ -612,6 +645,7 @@
         <image name="LittleSunnyCloud" width="80" height="68"/>
         <image name="LittleWind" width="90" height="56"/>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="AccentOrange">
             <color red="0.94901960784313721" green="0.43137254901960786" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -630,11 +664,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

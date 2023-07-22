@@ -18,7 +18,7 @@ final class WWPageController: UIPageViewController, UIPageViewControllerDataSour
         self.dataSource = self
         
         guard let page1 = storyboard?.instantiateViewController(withIdentifier: "MainViewController") else { return }
-        guard let page2 = storyboard?.instantiateViewController(withIdentifier: "cityPage2") else { return }
+        guard let page2 = storyboard?.instantiateViewController(withIdentifier: "AddNewLocation") else { return }
         
         pages.append(page1)
         pages.append(page2)
