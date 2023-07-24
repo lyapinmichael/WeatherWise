@@ -6,15 +6,36 @@
 //
 
 import UIKit
+import CoreLocation.CLLocation
 
-class WWAddNewLocationController: UIViewController {
+protocol WWNewLocationDelegate: AnyObject {
+    func newLocation(didAdd location: CLLocation)
+}
 
+final class WWAddNewLocationController: UIViewController {
+    
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var giantPlus: UIImageView!
+    @IBOutlet var tapOnPlus: UITapGestureRecognizer!
+    
+    weak var delegate: WWNewLocationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        backgroundView.layer.cornerRadius = 20
+        setupSubview()
+        tapOnPlus.addTarget(self, action: #selector(addNewLocation))
+        
     }
-  
+    
+    private func setupSubview() {
+        backgroundView.layer.cornerRadius = 20
+        
+    }
+    
+    @objc private func addNewLocation() {
+        self.presentTextPicker(title: "Введите название новой локации", completion: { text in
+            WWLocationService.shared.geocode(from: text) {[weak self] location in
+                self?.delegate?.newLocation(didAdd: location) }
+        })
+    }
 }

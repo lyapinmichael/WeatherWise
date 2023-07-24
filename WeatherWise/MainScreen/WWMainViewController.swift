@@ -16,9 +16,17 @@ final class WWMainViewController: UIViewController {
     @IBOutlet weak var mainTable: UITableView!
     
     @IBOutlet weak var hourlyPillsCollection: UICollectionView!
-    // MARK: - Private properties
     
-    private let viewModel = WWMainViewModel()
+    var todayContainer: WWTodayContainer?
+    
+    var viewModel: WWMainViewModel {
+        didSet {
+            loadViewIfNeeded()
+            bindViewModel()
+        }
+    }
+    
+    // MARK: - Private properties
     
     private var weeklyForecast: SevenDayWeahterForecast? {
         didSet {
@@ -36,18 +44,31 @@ final class WWMainViewController: UIViewController {
         }
     }
     
+    // MARK: - Init
+    
+    required init?(coder: NSCoder) {
+        self.viewModel = WWMainViewModel()
+        
+        super.init(coder: coder)
+        
+        bindViewModel()
+    }
+    
     // MARK: - Lifacycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        bindViewModel()
-        setupSubviews()
-       
-        locationLabel.text = WWLocationService.currentLocation?.coordinate.latitude.formatted()
         
+        setupSubviews()
     }
     
+    // MARK: - Segue related methods
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "embedTodayOverallViewController" {
+            todayContainer = segue.destination as? WWTodayContainer
+        }
+    }
     // MARK: - Private methods
     
     private func bindViewModel() {
@@ -56,12 +77,18 @@ final class WWMainViewController: UIViewController {
             switch state {
             case .initial:
                 return
+                
             case .didUpdateLocation(let location):
                 DispatchQueue.main.async {
                     self?.locationLabel.text = location
                 }
+                
             case .didUpdateWeeklyWeatherForecast(let forecast):
                 self?.weeklyForecast = forecast
+                
+            case .didUpdateTodayOverallForecast(let forecast):
+                self?.todayContainer?.update(with: forecast)
+                
             case .didUpdateHourlyTemperature(let temperature):
                 self?.hourlyTemperature = temperature
             }
@@ -72,7 +99,7 @@ final class WWMainViewController: UIViewController {
         mainTable.delegate = self
         mainTable.dataSource = self
         mainTable.layer.cornerRadius = 12
-        
+        locationLabel.text = "Текущая геолокация"
         hourlyPillsCollection.dataSource = self
     }
 }

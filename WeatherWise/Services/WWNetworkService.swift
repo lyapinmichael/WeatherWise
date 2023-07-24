@@ -78,14 +78,14 @@ final class WWNetworkService {
     // MARK: - Methods to access Open-Meteo API
     
     // TODO: Add option to choose between Celsius and Fahrenheit
-    func getSevenDayWeatherForecast(longitude: Float, latitude: Float, timezone: String) {
+    func getSevenDayWeatherForecast(longitude: Float, latitude: Float, timezone: String?) {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let startDateString = dateFormatter.string(from: Date().dayAfter)
         let endDateString = dateFormatter.string(from: Date().dayAfter.weekAfter)
-        let timezonePrepared = timezone.replacingOccurrences(of: "/", with: "%2F")
+        let timezonePrepared = timezone?.replacingOccurrences(of: "/", with: "%2F") ?? "auto"
         
         let openMeteoURL = "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=\(timezonePrepared)&start_date=\(startDateString)&end_date=\(endDateString)"
         
@@ -120,9 +120,9 @@ final class WWNetworkService {
         }
     }
     
-    func getHourlyTemperature(longitude: Float, latitude: Float, timezone: String) {
+    func getHourlyTemperature(longitude: Float, latitude: Float, timezone: String?) {
         
-        let timezonePrepared = timezone.replacingOccurrences(of: "/", with: "%2F")
+        let timezonePrepared = timezone?.replacingOccurrences(of: "/", with: "%2F") ?? "auto"
         
         let openMeteoURL = "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&hourly=temperature_2m,weathercode&forecast_days=1&timezone=\(timezonePrepared)"
         

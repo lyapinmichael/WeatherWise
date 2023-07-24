@@ -56,7 +56,7 @@
                                                     <rect key="frame" x="3" y="3" width="42" height="78"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cN-pL-uSh">
-                                                            <rect key="frame" x="2" y="13.5" width="38" height="14.5"/>
+                                                            <rect key="frame" x="2" y="14" width="38" height="14"/>
                                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="12"/>
                                                             <color key="textColor" name="BaseBlue"/>
                                                             <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                 <rect key="frame" x="20" y="424.5" width="333" height="234.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="84" translatesAutoresizingMaskIntoConstraints="NO" id="qUc-KA-mjZ" customClass="WWWeatherCellTableViewCell" customModule="WeatherWise" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="84" translatesAutoresizingMaskIntoConstraints="NO" id="qUc-KA-mjZ" customClass="WWWeatherCellTableViewCell" customModule="WeatherWise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="333" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qUc-KA-mjZ" id="rw3-8B-Zk5">
@@ -120,13 +120,13 @@
                                                     <rect key="frame" x="0.0" y="7" width="333" height="69"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwF-Zx-RsA">
-                                                            <rect key="frame" x="20" y="8" width="49.5" height="20"/>
+                                                            <rect key="frame" x="20" y="8" width="43" height="20"/>
                                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jA-AN-etq">
-                                                            <rect key="frame" x="83.5" y="25" width="137.5" height="21"/>
+                                                            <rect key="frame" x="76.5" y="25" width="144.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -170,12 +170,12 @@
                                                         <constraint firstItem="uSs-jZ-xZJ" firstAttribute="top" secondItem="mwF-Zx-RsA" secondAttribute="bottom" constant="8" symbolic="YES" id="K0v-oC-dCN"/>
                                                         <constraint firstItem="uSs-jZ-xZJ" firstAttribute="leading" secondItem="GPN-Fd-w1d" secondAttribute="leading" constant="20" symbolic="YES" id="Kq9-jO-ovb"/>
                                                         <constraint firstItem="6ew-NE-hjg" firstAttribute="centerY" secondItem="GPN-Fd-w1d" secondAttribute="centerY" id="Lbu-pK-YkB"/>
-                                                        <constraint firstItem="1jA-AN-etq" firstAttribute="leading" secondItem="mwF-Zx-RsA" secondAttribute="trailing" constant="14" id="NH8-8u-VOP"/>
+                                                        <constraint firstItem="1jA-AN-etq" firstAttribute="leading" relation="lessThanOrEqual" secondItem="mwF-Zx-RsA" secondAttribute="trailing" constant="14" id="NH8-8u-VOP"/>
                                                         <constraint firstItem="1jA-AN-etq" firstAttribute="centerY" secondItem="GPN-Fd-w1d" secondAttribute="centerY" constant="1" id="Pj1-tf-dhM"/>
                                                         <constraint firstItem="4Yw-Tm-WfA" firstAttribute="top" secondItem="GPN-Fd-w1d" secondAttribute="top" constant="25" id="PvI-u5-akB"/>
                                                         <constraint firstAttribute="trailing" secondItem="4Yw-Tm-WfA" secondAttribute="trailing" constant="10" id="TGF-Ah-9MN"/>
+                                                        <constraint firstItem="1jA-AN-etq" firstAttribute="leading" relation="lessThanOrEqual" secondItem="7GF-7A-yGf" secondAttribute="trailing" constant="7" id="gNR-Ck-iLm"/>
                                                         <constraint firstItem="4Yw-Tm-WfA" firstAttribute="centerY" secondItem="GPN-Fd-w1d" secondAttribute="centerY" id="gVb-0u-qsN"/>
-                                                        <constraint firstItem="7GF-7A-yGf" firstAttribute="trailing" secondItem="mwF-Zx-RsA" secondAttribute="trailing" id="q2d-DV-bhf"/>
                                                         <constraint firstAttribute="bottom" secondItem="7GF-7A-yGf" secondAttribute="bottom" constant="15" id="roB-Fd-ohC"/>
                                                         <constraint firstAttribute="bottom" secondItem="6ew-NE-hjg" secondAttribute="bottom" constant="24" id="zLq-2Z-acI"/>
                                                         <constraint firstItem="4Yw-Tm-WfA" firstAttribute="leading" secondItem="6ew-NE-hjg" secondAttribute="trailing" constant="8" symbolic="YES" id="zfK-O2-RIN"/>
@@ -217,7 +217,7 @@
                                     <constraint firstAttribute="width" secondItem="RBd-SV-p2r" secondAttribute="height" multiplier="111:71" id="Q4B-4u-Fun"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="9dy-9h-yU9" kind="embed" id="hff-Cf-Zha"/>
+                                    <segue destination="9dy-9h-yU9" kind="embed" identifier="embedTodayOverallViewController" id="hff-Cf-Zha"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZA-jd-b54">
@@ -425,9 +425,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHc-PQ-wEE">
                                 <rect key="frame" x="16" y="41" width="343" height="585"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jfy-lN-JwN">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jfy-lN-JwN">
                                         <rect key="frame" x="51" y="174" width="240" height="236"/>
                                         <color key="tintColor" name="BaseBlue"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="GOe-Le-7fA" appends="YES" id="hdy-qy-E0f"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -450,9 +454,12 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="NHc-PQ-wEE" id="wxG-kH-ZdT"/>
+                        <outlet property="giantPlus" destination="jfy-lN-JwN" id="O8J-BU-IVp"/>
+                        <outlet property="tapOnPlus" destination="GOe-Le-7fA" id="WH7-LU-9cq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYv-OJ-AkN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GOe-Le-7fA"/>
             </objects>
             <point key="canvasLocation" x="4274.3999999999996" y="-662.51874062968523"/>
         </scene>
@@ -634,7 +641,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDl-aK-eKg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3536.8000000000002" y="-1121.2893553223389"/>
+            <point key="canvasLocation" x="3537" y="-1128"/>
         </scene>
     </scenes>
     <resources>
