@@ -63,25 +63,25 @@ extension WWPageController: UIPageViewControllerDataSource, UIPageViewController
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        let cur = pages.firstIndex(of: viewController)!
+        let current = pages.firstIndex(of: viewController)!
 
-        if cur == 0 { return nil }
+        if current == 0 { return nil }
         
-        var prev = (cur - 1) % pages.count
-        if prev < 0 {
-            prev = pages.count - 1
+        var previous = (current - 1) % pages.count
+        if previous < 0 {
+            previous = pages.count - 1
         }
-        return pages[prev]
+        return pages[previous]
     }
     
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let cur = pages.firstIndex(of: viewController)!
+        let current = pages.firstIndex(of: viewController)!
         
-        if cur == (pages.count - 1) { return nil }
+        if current == (pages.count - 1) { return nil }
         
-        let nxt = abs((cur + 1) % pages.count)
-        return pages[nxt]
+        let next = abs((current + 1) % pages.count)
+        return pages[next]
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {

@@ -28,7 +28,7 @@ final class WWMainViewController: UIViewController {
     
     // MARK: - Private properties
     
-    private var weeklyForecast: SevenDayWeahterForecast? {
+    private var weeklyForecast: SevenDayWeatherForecastModel? {
         didSet {
             DispatchQueue.main.async {
                 self.mainTable.reloadData()
@@ -36,7 +36,7 @@ final class WWMainViewController: UIViewController {
         }
     }
     
-    private var hourlyTemperature: HourlyTemperature? {
+    private var hourlyTemperature: HourlyTemperatureModel? {
         didSet {
             DispatchQueue.main.async {
                 self.hourlyPillsCollection.reloadData()
@@ -107,7 +107,7 @@ final class WWMainViewController: UIViewController {
 extension WWMainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weeklyForecast?.daily.time.count ?? 0
+        return weeklyForecast?.time.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,15 +115,16 @@ extension WWMainViewController: UITableViewDataSource {
               let weeklyForecast = self.weeklyForecast else {
             return UITableViewCell()
         }
-        let dateSubstringArray = weeklyForecast.daily.time[indexPath.row].split(separator: "-")
-        let month = dateSubstringArray[1]
-        let day = dateSubstringArray[2]
-        cell.dateLabel.text = "\(day)/\(month)"
-        cell.maxTemperatureLabel.text = String(format: "%.1f", weeklyForecast.daily.temperature2MMax[indexPath.row]) + "°"
-        cell.minTemperatureLabel.text = String(format: "%.1f", weeklyForecast.daily.temperature2MMin[indexPath.row]) + "°  -"
-        cell.overallConditionLabel.text = decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[0]
-        cell.precipitationLabel.text = String(weeklyForecast.daily.precipitationProbabilityMax[indexPath.row] ?? 0) + "%"
-        cell.overallPicture.image = UIImage(named: decodeWMOcode(weeklyForecast.daily.weathercode[indexPath.row], isDay: true)[1])
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM"
+        
+        cell.dateLabel.text = dateFormatter.string(from: weeklyForecast.time[indexPath.row])
+        cell.maxTemperatureLabel.text = String(format: "%.1f", weeklyForecast.maxTemperature[indexPath.row]) + "°"
+        cell.minTemperatureLabel.text = String(format: "%.1f", weeklyForecast.minTemperature[indexPath.row]) + "°  -"
+        cell.overallConditionLabel.text = WMODecoder.decodeWMOcode(weeklyForecast.weatherCode[indexPath.row], isDay: true)?.description
+        cell.precipitationLabel.text = String(weeklyForecast.maxPrecipitationProbabily[indexPath.row]) + "%"
+        cell.overallPicture.image = WMODecoder.decodeWMOcode(weeklyForecast.weatherCode[indexPath.row], isDay: true)?.image
+        
         return cell
     }
 }
@@ -145,7 +146,7 @@ extension WWMainViewController: UITableViewDelegate {
 
 extension WWMainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        hourlyTemperature?.hourly.temperature2M.count ?? 0
+        hourlyTemperature?.time.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

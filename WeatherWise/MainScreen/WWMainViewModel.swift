@@ -13,9 +13,9 @@ final class WWMainViewModel {
     enum State {
         case initial
         case didUpdateLocation(String)
-        case didUpdateWeeklyWeatherForecast(SevenDayWeahterForecast)
-        case didUpdateTodayOverallForecast(DailyOverallForecast)
-        case didUpdateHourlyTemperature(HourlyTemperature)
+        case didUpdateWeeklyWeatherForecast(SevenDayWeatherForecastModel)
+        case didUpdateTodayOverallForecast(DailyOverallForecastModel)
+        case didUpdateHourlyTemperature(HourlyTemperatureModel)
         
     }
     
@@ -103,21 +103,25 @@ final class WWMainViewModel {
 
 extension WWMainViewModel: WWNetworkServiceDelegate {
     
-    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse) {
-        let locationName = decodedGeodata.response.geoObjectCollection.featureMember[0].geoObject.name
-        state = .didUpdateLocation(locationName)
-    }
+//    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse) {
+//        let locationName = decodedGeodata.response.geoObjectCollection.featureMember[0].geoObject.name
+//        state = .didUpdateLocation(locationName)
+//    }
     
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast) {
-        state = .didUpdateWeeklyWeatherForecast(decodedSevenDayWeatherForecast)
+        let sevenDayWeatherForecast = SevenDayWeatherForecastModel(from: decodedSevenDayWeatherForecast)
+        state = .didUpdateWeeklyWeatherForecast(sevenDayWeatherForecast)
     }
     
     func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast) {
-        state = .didUpdateTodayOverallForecast(decodedDailyOverallWeatherForecast)
+        let dailyOverallForecast = DailyOverallForecastModel(from: decodedDailyOverallWeatherForecast)
+        state = .didUpdateTodayOverallForecast(dailyOverallForecast)
     }
     
     func networkService(didReceiveHourlyTemperature decodedHourlyTemperature: HourlyTemperature) {
-        state = .didUpdateHourlyTemperature(decodedHourlyTemperature)
+        let hourlyTemperature = HourlyTemperatureModel(from: decodedHourlyTemperature)
+        state = .didUpdateHourlyTemperature(hourlyTemperature)
+        
     }
     
     

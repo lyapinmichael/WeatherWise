@@ -15,7 +15,7 @@ enum WWNSNotifications {
 
 protocol WWNetworkServiceDelegate: AnyObject {
     
-    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse)
+//    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse)
     
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast)
     
@@ -26,7 +26,7 @@ protocol WWNetworkServiceDelegate: AnyObject {
 
 extension WWNetworkServiceDelegate {
     
-    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse) {}
+//    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse) {}
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast) {}
     func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast) {}
     
@@ -44,11 +44,11 @@ final class WWNetworkService {
         
     }
     
-//    private let openWeatherAPISecureKey: [UInt8] = [101, 55, 48, 50, 52, 54, 52, 54, 48, 53, 97, 48, 48, 51, 54, 52, 53, 101, 50, 102, 99, 49, 48, 55, 55, 53, 50, 97, 49, 102, 99, 54]
-//    private var openWeatherAPIKey: String? {
-//        return String(data: Data(openWeatherAPISecureKey), encoding: .utf8)
-//    }
- 
+    //    private let openWeatherAPISecureKey: [UInt8] = [101, 55, 48, 50, 52, 54, 52, 54, 48, 53, 97, 48, 48, 51, 54, 52, 53, 101, 50, 102, 99, 49, 48, 55, 55, 53, 50, 97, 49, 102, 99, 54]
+    //    private var openWeatherAPIKey: String? {
+    //        return String(data: Data(openWeatherAPISecureKey), encoding: .utf8)
+    //    }
+    
     
     // MARK: - Methods to access Yandex.Geocoder API
     
@@ -65,21 +65,21 @@ final class WWNetworkService {
         
         let yandexGeocoderURL = "https://geocode-maps.yandex.ru/1.x/?apikey=\(key)&geocode=\(longitude),\(latitude)&kind=locality&format=json"
         
-        AF.request(yandexGeocoderURL).responseDecodable(of: GeocoderResponse.self) { [weak self] response in
-            guard let decodedGeodata = response.value else {
-                print(response.error?.localizedDescription ?? "Something went wrong. Failed go collect error info.")
-                return
-            }
-            
-            self?.delegate?.networkService(didRecieveLocation: decodedGeodata)
-        }
+        //        AF.request(yandexGeocoderURL).responseDecodable(of: GeocoderResponse.self) { [weak self] response in
+        //            guard let decodedGeodata = response.value else {
+        //                print(response.error?.localizedDescription ?? "Something went wrong. Failed go collect error info.")
+        //                return
+        //            }
+        //
+        //            self?.delegate?.networkService(didRecieveLocation: decodedGeodata)
     }
+    
     
     // MARK: - Methods to access Open-Meteo API
     
     // TODO: Add option to choose between Celsius and Fahrenheit
     func getSevenDayWeatherForecast(longitude: Float, latitude: Float, timezone: String?) {
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
