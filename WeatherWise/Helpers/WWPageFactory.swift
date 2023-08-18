@@ -17,12 +17,13 @@ final class WWPageFactory {
     
     enum PageType {
         case mainPageWithLocationDetected
-        case mainPageWithLocationPreselected(location: CLLocation)
+        case mainPageWithNewLocation(location: DecodedLocation)
+        case mainPageWithSavedLocation(location: DecodedLocation)
         case addNewLocationPage
         
         var viewControllerID: String {
             switch self {
-            case .mainPageWithLocationDetected, .mainPageWithLocationPreselected:
+            case .mainPageWithLocationDetected, .mainPageWithNewLocation, .mainPageWithSavedLocation:
                 return "MainViewController"
             case .addNewLocationPage:
                 return "AddNewLocation"
@@ -36,15 +37,27 @@ final class WWPageFactory {
     
     func makePage(ofType type: PageType, handler: @escaping pageCreationHandler ) {
         
+        let viewController = storyboard.instantiateViewController(withIdentifier: type.viewControllerID)
+        
         switch type {
         case .addNewLocationPage, .mainPageWithLocationDetected:
-            handler(storyboard.instantiateViewController(withIdentifier: type.viewControllerID))
-        case .mainPageWithLocationPreselected(let location):
-            let viewController = storyboard.instantiateViewController(withIdentifier: type.viewControllerID)
-            let viewModel = WWMainViewModel()
-            (viewController as? WWMainViewController)?.viewModel = viewModel
-            (viewController as? WWMainViewController)?.viewModel.updateLocation(with: location)
+            if viewController is WWMainViewController {
+                let viewModel = WWMainViewModel(.mainPageWithLocationDetected)
+                (viewController as? WWMainViewController)?.viewModel = viewModel
+            }
             handler(viewController)
+        case .mainPageWithNewLocation(let location):
+            guard let mainViewContoller = viewController as? WWMainViewController else { return }
+            let viewModel = WWMainViewModel(type)
+            mainViewContoller.viewModel = viewModel
+            mainViewContoller.viewModel.updateLocation(with: location)
+            handler(mainViewContoller)
+        case .mainPageWithSavedLocation(let location):
+            guard let mainViewContoller = viewController as? WWMainViewController else { return }
+            let viewModel = WWMainViewModel(type)
+            mainViewContoller.viewModel = viewModel
+            mainViewContoller.viewModel.updateLocation(with: location)
+            handler(mainViewContoller)
             
         }
         

@@ -17,6 +17,9 @@ final class WWPageController: UIPageViewController {
             setViewControllers([pages[0]], direction: .forward, animated: true)
         }
     }
+    var isCurrentLocationAdded = false
+    
+    private var savedLocations: [SavedLocation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +32,28 @@ final class WWPageController: UIPageViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if case .authorizedWhenInUse = WWLocationService.shared.authorizationStatus {
+        if case .authorizedWhenInUse = WWLocationService.shared.authorizationStatus,
+           !isCurrentLocationAdded {
+            
             pageFactory?.makePage(ofType: .mainPageWithLocationDetected, handler: { [weak self] viewController in
                 self?.pages.insert(viewController, at: 0)
+                self?.isCurrentLocationAdded = true
             })
-            WWLocationService.shared.requestLocation()
+        }
+        
+        WWLocationService.shared.requestLocation()
+        
+        if let savedLocations = WWSavedLocaitonService.shared.fetchSavedLocations() {
+            
+            for i in savedLocations.indices {
+                let decodedLocation = DecodedLocation(from: savedLocations[i])
+                pageFactory?.makePage(ofType: .mainPageWithSavedLocation(location: decodedLocation), handler: { [weak self] viewConroller in
+                    guard let self = self else { return }
+                    self.pages.insert(viewConroller, at: (self.pages.count - 1)
+                    )
+                    
+                })
+            }
         }
     }
     
@@ -64,7 +84,7 @@ extension WWPageController: UIPageViewControllerDataSource, UIPageViewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         let current = pages.firstIndex(of: viewController)!
-
+        
         if current == 0 { return nil }
         
         var previous = (current - 1) % pages.count
@@ -92,7 +112,9 @@ extension WWPageController: UIPageViewControllerDataSource, UIPageViewController
 
 extension WWPageController: WWOnboardingDelegate {
     func onboarding(withPermission permission: Bool) {
-        if permission {
+        if permission,
+           !isCurrentLocationAdded {
+            isCurrentLocationAdded = true
             pageFactory?.makePage(ofType: .mainPageWithLocationDetected, handler: { [weak self] viewController in
                 self?.pages.insert(viewController, at: 0)
             })
@@ -101,14 +123,18 @@ extension WWPageController: WWOnboardingDelegate {
 }
 
 extension WWPageController: WWNewLocationDelegate {
-    func newLocation(didAdd location: CLLocation) {
-        pageFactory?.makePage(ofType: .mainPageWithLocationPreselected(location: location), handler: { [weak self] viewController in
-            guard let self = self else {
-                return
-            }
+    func newLocation(didAdd decodedLocation: DecodedLocation) {
+        
+        do {
+            try WWSavedLocaitonService.shared.save(location: decodedLocation)
+        } catch {
+            print(error)
+            return
+        }
+        
+        pageFactory?.makePage(ofType: .mainPageWithNewLocation(location: decodedLocation), handler: { [weak self] viewController in
+            guard let self = self else { return }
             self.pages.insert(viewController, at: self.pages.count - 1)
         })
     }
-    
-    
 }

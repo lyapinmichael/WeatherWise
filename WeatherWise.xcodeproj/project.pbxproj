@@ -31,6 +31,9 @@
 		EC9C25CA2A6C140E0085F697 /* WWAddNewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C92A6C140E0085F697 /* WWAddNewLocationController.swift */; };
 		EC9C25CC2A6C26BC0085F697 /* WWPageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25CB2A6C26BC0085F697 /* WWPageFactory.swift */; };
 		EC9C25D02A6C41E20085F697 /* UIViewController+TextPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25CF2A6C41E20085F697 /* UIViewController+TextPicker.swift */; };
+		EC9C25DB2A8570050085F697 /* WWSavedLocaitonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25DA2A8570050085F697 /* WWSavedLocaitonService.swift */; };
+		EC9C25DE2A8570AF0085F697 /* WWSavedLocation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25DC2A8570AF0085F697 /* WWSavedLocation.xcdatamodeld */; };
+		EC9C25E02A8575210085F697 /* DecodedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25DF2A8575210085F697 /* DecodedLocation.swift */; };
 		ECCDD88A2A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */; };
 		ECCDD88B2A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */; };
 		ECCDD88C2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */; };
@@ -78,6 +81,9 @@
 		EC9C25C92A6C140E0085F697 /* WWAddNewLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWAddNewLocationController.swift; sourceTree = "<group>"; };
 		EC9C25CB2A6C26BC0085F697 /* WWPageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWPageFactory.swift; sourceTree = "<group>"; };
 		EC9C25CF2A6C41E20085F697 /* UIViewController+TextPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TextPicker.swift"; sourceTree = "<group>"; };
+		EC9C25DA2A8570050085F697 /* WWSavedLocaitonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWSavedLocaitonService.swift; sourceTree = "<group>"; };
+		EC9C25DD2A8570AF0085F697 /* WWSavedLocation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WWSavedLocation.xcdatamodel; sourceTree = "<group>"; };
+		EC9C25DF2A8575210085F697 /* DecodedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedLocation.swift; sourceTree = "<group>"; };
 		ECCDD8772A55DF8C008BCF1D /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		ECCDD8782A55DF8C008BCF1D /* Rubik-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		ECCDD87A2A55DF8C008BCF1D /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 			children = (
 				EC858C572A5752F300419A13 /* WWLocationService.swift */,
 				EC858C622A5C007D00419A13 /* WWNetworkService.swift */,
+				EC9C25DA2A8570050085F697 /* WWSavedLocaitonService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -193,6 +200,8 @@
 				EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */,
 				EC62A3842A66802800246EBB /* DailyOverallForecast.swift */,
 				EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */,
+				EC9C25DC2A8570AF0085F697 /* WWSavedLocation.xcdatamodeld */,
+				EC9C25DF2A8575210085F697 /* DecodedLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -367,11 +376,14 @@
 				EC05B2EB2A545CBF00F7EB24 /* AppDelegate.swift in Sources */,
 				EC9C25D02A6C41E20085F697 /* UIViewController+TextPicker.swift in Sources */,
 				EC858C922A60671B00419A13 /* SevenDayWeatherForecast.swift in Sources */,
+				EC9C25E02A8575210085F697 /* DecodedLocation.swift in Sources */,
+				EC9C25DE2A8570AF0085F697 /* WWSavedLocation.xcdatamodeld in Sources */,
 				EC006F502A55E75800AAADE7 /* WWOnboardingViewController.swift in Sources */,
 				EC9C25CA2A6C140E0085F697 /* WWAddNewLocationController.swift in Sources */,
 				EC62A3832A65744900246EBB /* WWTodayOverallView.swift in Sources */,
 				EC858C6B2A5C829200419A13 /* WWMainViewModel.swift in Sources */,
 				EC9C25C82A69409A0085F697 /* HourlyTemperature.swift in Sources */,
+				EC9C25DB2A8570050085F697 /* WWSavedLocaitonService.swift in Sources */,
 				EC858C6D2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift in Sources */,
 				EC9C25C62A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift in Sources */,
 				EC62A3852A66802800246EBB /* DailyOverallForecast.swift in Sources */,
@@ -615,6 +627,19 @@
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		EC9C25DC2A8570AF0085F697 /* WWSavedLocation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EC9C25DD2A8570AF0085F697 /* WWSavedLocation.xcdatamodel */,
+			);
+			currentVersion = EC9C25DD2A8570AF0085F697 /* WWSavedLocation.xcdatamodel */;
+			path = WWSavedLocation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EC05B2DF2A545CBF00F7EB24 /* Project object */;
 }

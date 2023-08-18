@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation.CLLocation
 
 protocol WWNewLocationDelegate: AnyObject {
-    func newLocation(didAdd location: CLLocation)
+    func newLocation(didAdd decodedLocation: DecodedLocation)
 }
 
 final class WWAddNewLocationController: UIViewController {
@@ -34,8 +34,10 @@ final class WWAddNewLocationController: UIViewController {
     
     @objc private func addNewLocation() {
         self.presentTextPicker(title: "Введите название новой локации", completion: { text in
-            WWLocationService.shared.geocode(from: text) {[weak self] location in
-                self?.delegate?.newLocation(didAdd: location) }
+            
+            WWLocationService.shared.geocode(from: text) {[weak self] DecodedLocation in
+                self?.delegate?.newLocation(didAdd: DecodedLocation)
+            }
         })
     }
 }

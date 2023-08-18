@@ -23,7 +23,7 @@ final class WWLocationService: NSObject {
     
     var authorizationStatus: CLAuthorizationStatus?
     
-    var currentLocation: CLLocation?
+//    var currentLocation: CLLocation?
     
     // MARK: - Private propertis
     
@@ -61,7 +61,7 @@ final class WWLocationService: NSObject {
         }
     }
     
-    func geocode(from addressString: String, completion: @escaping (CLLocation) -> Void) {
+    func geocode(from addressString: String, completion: @escaping (DecodedLocation) -> Void) {
         let geoCoder = CLGeocoder()
         
         geoCoder.geocodeAddressString(addressString) { placemarks, error in
@@ -74,9 +74,9 @@ final class WWLocationService: NSObject {
                 return
             }
             
-            if let location = placemark.location {
-                completion(location)
-            }
+            let decodedLocation = DecodedLocation(from: placemark)
+            
+            completion(decodedLocation)
             
         }
     }
@@ -87,7 +87,7 @@ extension WWLocationService: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
         
-        print("locationMangerDidChangeAuthorization")
+        print("locationMangerDidChangeAuthorization, \(authorizationStatus?.rawValue)")
         
         if case .authorizedWhenInUse = authorizationStatus {
             let userInfo = ["authStatus": true]
@@ -102,7 +102,7 @@ extension WWLocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = coreLocationManager.location else { return }
         
-        self.currentLocation = currentLocation
+//        self.currentLocation = currentLocation
         
         var currentLocationDegrees: [Float] = []
         currentLocationDegrees.append(Float(currentLocation.coordinate.longitude))
