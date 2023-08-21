@@ -7,12 +7,6 @@
 
 import Foundation
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let hourlyTemperature = try? JSONDecoder().decode(HourlyTemperature.self, from: jsonData)
-
-import Foundation
 
 // MARK: - Model to be used in presentation layer
 

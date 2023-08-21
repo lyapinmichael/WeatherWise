@@ -33,7 +33,6 @@ class WWHourlyPillCollectionViewCell: UICollectionViewCell {
     
     func update(with hourlyTemperature: HourlyTemperatureModel, at indexPath: IndexPath) {
         let time = hourlyTemperature.time[indexPath.row]
-//        let hour = time.components(separatedBy: ":")[0]
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH"

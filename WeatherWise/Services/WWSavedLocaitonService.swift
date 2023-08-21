@@ -14,7 +14,7 @@ final class WWSavedLocaitonService {
         case locationAlreadySaved
     }
     
-    static var shared = WWSavedLocaitonService()
+    static let shared = WWSavedLocaitonService()
     
     lazy var persistentContainer: NSPersistentContainer = {
        let container = NSPersistentContainer(name: "WWSavedLocation")

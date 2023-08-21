@@ -80,19 +80,20 @@ final class WWMainViewModel {
     // MARK: - ObjC methods
     
     @objc private func updateLocation(_ notification: Notification) {
-        guard let currentLocationDegrees = (notification.userInfo?["currentLocationDegrees"]) as? [Float],
+        guard let currentLocationDegrees = (notification.userInfo?["currentLocationDegrees"]) as? CLLocationCoordinate2D,
               let currentLocation = (notification.userInfo?["currentLocation"]) as? CLLocation,
               let currentTimezone = (notification.userInfo?["currentTimezone"]) as? String else { return }
         
         WWLocationService.shared.reverseGeoDecode(from: currentLocation) { [weak self] locality, country, _ in
             guard let localitySafe = locality,
                   let countrySafe = country else {
-                self?.state = .didUpdateLocation("\(currentLocationDegrees[1]), \(currentLocationDegrees[0])")
+                self?.state = .didUpdateLocation("Unknown location")
                 return
             }
             self?.state = .didUpdateLocation("\(localitySafe), \(countrySafe)")
         }
-        getForecasts(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezoneIdentifier: currentTimezone)
+        
+        getForecasts(longitude: Float(currentLocationDegrees.longitude), latitude: Float(currentLocationDegrees.latitude), timezoneIdentifier: currentTimezone)
     }
     
 }
@@ -114,6 +115,5 @@ extension WWMainViewModel: WWNetworkServiceDelegate {
         state = .didUpdateHourlyTemperature(hourlyTemperature)
         
     }
-    
     
 }

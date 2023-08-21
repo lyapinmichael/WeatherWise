@@ -13,7 +13,7 @@ final class WWPageFactory {
     
     var storyboard: UIStoryboard
     
-    typealias pageCreationHandler = (UIViewController) -> Void
+    typealias PageCreationHandler = (UIViewController) -> Void
     
     enum PageType {
         case mainPageWithLocationDetected
@@ -35,7 +35,7 @@ final class WWPageFactory {
         self.storyboard = storyboard
     }
     
-    func makePage(ofType type: PageType, handler: @escaping pageCreationHandler ) {
+    func makePage(ofType type: PageType, handler: @escaping PageCreationHandler ) {
         
         let viewController = storyboard.instantiateViewController(withIdentifier: type.viewControllerID)
         

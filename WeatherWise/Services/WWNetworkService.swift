@@ -15,7 +15,7 @@ enum WWNSNotifications {
 
 protocol WWNetworkServiceDelegate: AnyObject {
     
-//    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse)
+
     
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast)
     
@@ -26,7 +26,7 @@ protocol WWNetworkServiceDelegate: AnyObject {
 
 extension WWNetworkServiceDelegate {
     
-//    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse) {}
+
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast) {}
     func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast) {}
     
@@ -46,8 +46,11 @@ final class WWNetworkService {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let startDateString = dateFormatter.string(from: Date().dayAfter)
-        let endDateString = dateFormatter.string(from: Date().dayAfter.weekAfter)
+        guard let startDate = Date().dayAfter,
+              let endDate = Date().weekAfter else { return }
+        
+        let startDateString = dateFormatter.string(from: startDate)
+        let endDateString = dateFormatter.string(from: endDate)
         let timezonePrepared = timezoneIdentifier?.replacingOccurrences(of: "/", with: "%2F") ?? "auto"
         
         let openMeteoURL = "https://api.open-meteo.com/v1/forecast?latitude=\(latitude)&longitude=\(longitude)&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=\(timezonePrepared)&start_date=\(startDateString)&end_date=\(endDateString)"

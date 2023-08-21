@@ -17,13 +17,11 @@ final class WWLocationService: NSObject {
     
     // MARK: - Singleton instance
     
-    static var shared = WWLocationService()
+    static let shared = WWLocationService()
     
     // MARK: - Public propertis
     
     var authorizationStatus: CLAuthorizationStatus?
-    
-//    var currentLocation: CLLocation?
     
     // MARK: - Private propertis
     
@@ -69,7 +67,7 @@ final class WWLocationService: NSObject {
                 print(error)
             }
             
-            guard let placemark = placemarks?[0] else {
+            guard let placemark = placemarks?.first else {
                 print (error ?? "Something went wrong while performing reverse geocoding")
                 return
             }
@@ -102,11 +100,7 @@ extension WWLocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = coreLocationManager.location else { return }
         
-//        self.currentLocation = currentLocation
-        
-        var currentLocationDegrees: [Float] = []
-        currentLocationDegrees.append(Float(currentLocation.coordinate.longitude))
-        currentLocationDegrees.append(Float(currentLocation.coordinate.latitude))
+        var currentLocationDegrees = currentLocation.coordinate
         
         let currentTimezone = TimeZone.current.identifier
         
