@@ -9,17 +9,25 @@ import Foundation
 import CoreLocation
 
 enum WWCLNotifications {
-    static let permissionGranted = Notification.Name("permissionGranted")
+    static let authorizationChanged = Notification.Name("permissionChanged")
     static let locationReceived = Notification.Name("locationReceived")
 }
 
 final class WWLocationService: NSObject {
     
+    // MARK: - Singleton instance
+    
+    static let shared = WWLocationService()
+    
+    // MARK: - Public propertis
+    
     var authorizationStatus: CLAuthorizationStatus?
     
-    static var currentLocation: CLLocation?
+    // MARK: - Private propertis
     
     private var coreLocationManager = CLLocationManager()
+    
+    // MARK: - Init
     
     override init() {
         super.init()
@@ -28,8 +36,47 @@ final class WWLocationService: NSObject {
         
     }
     
+    // MARK: - Public functions
+    
     func getPermission() {
         self.coreLocationManager.requestWhenInUseAuthorization()
+    }
+    
+    func requestLocation() {
+        self.coreLocationManager.requestLocation()
+    }
+    
+    func reverseGeoDecode(from location: CLLocation, completion: @escaping (String?, String?, String?) -> Void) {
+        let geoCoder = CLGeocoder()
+        
+        geoCoder.reverseGeocodeLocation(location) { locationName, error  in
+            guard let location = locationName?.last else {
+                print(error ?? "Something went wrong while performing reverse geocoding")
+                return
+            }
+            
+            completion(location.locality, location.country, location.timeZone?.identifier)
+        }
+    }
+    
+    func geocode(from addressString: String, completion: @escaping (DecodedLocation) -> Void) {
+        let geoCoder = CLGeocoder()
+        
+        geoCoder.geocodeAddressString(addressString) { placemarks, error in
+            if let error {
+                print(error)
+            }
+            
+            guard let placemark = placemarks?.first else {
+                print (error ?? "Something went wrong while performing reverse geocoding")
+                return
+            }
+            
+            let decodedLocation = DecodedLocation(from: placemark)
+            
+            completion(decodedLocation)
+            
+        }
     }
 }
 
@@ -38,28 +85,26 @@ extension WWLocationService: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
         
-        let userInfo: [String: CLAuthorizationStatus] = ["authStatus": manager.authorizationStatus]
-        NotificationCenter.default.post(name: WWCLNotifications.permissionGranted,
-                                        object: nil,
-                                        userInfo: userInfo)
+        print("locationMangerDidChangeAuthorization, \(authorizationStatus?.rawValue)")
         
         if case .authorizedWhenInUse = authorizationStatus {
-            coreLocationManager.requestLocation()
+            let userInfo = ["authStatus": true]
+            NotificationCenter.default.post(name: WWCLNotifications.authorizationChanged,
+                                            object: nil,
+                                            userInfo: userInfo)
         }
+        
+
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = coreLocationManager.location else { return }
         
-        Self.currentLocation = currentLocation
-        
-        var currentLocationDegrees: [Float] = []
-        currentLocationDegrees.append(Float(currentLocation.coordinate.longitude))
-        currentLocationDegrees.append(Float(currentLocation.coordinate.latitude))
+        var currentLocationDegrees = currentLocation.coordinate
         
         let currentTimezone = TimeZone.current.identifier
         
-        NotificationCenter.default.post(Notification(name: WWCLNotifications.locationReceived, userInfo: ["currentLocation": currentLocationDegrees, "currentTimezone": currentTimezone]))
+        NotificationCenter.default.post(Notification(name: WWCLNotifications.locationReceived, userInfo: ["currentLocationDegrees": currentLocationDegrees, "currentLocation": currentLocation, "currentTimezone": currentTimezone]))
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

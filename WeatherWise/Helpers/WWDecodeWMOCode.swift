@@ -6,37 +6,48 @@
 //
 
 import Foundation
-
+import UIKit.UIImage
 // TODO: - Needs optimisation
-func decodeWMOcode(_ code: Int, isDay: Bool) -> [String] {
-    var daytime: String
-    
-    switch isDay {
-    case true:
-        daytime = "day"
-    case false:
-        daytime = "night"
-    }
-    
-    guard let path = Bundle.main.path(forResource: "WMOCodes", ofType: "json") else {
-        print("Failed to acces WMO codes data")
-        return [""] }
-    let codeString = String(code)
-    
-    do {
-        let data = try Data(contentsOf: URL(filePath: path))
-        let serializedData = try JSONSerialization.jsonObject(with: data)
+struct WMODecoder {
+   
+    static func decodeWMOcode(_ code: Int, isDay: Bool) -> WMODecoded? {
+
+        let daytime = isDay ? "day" : "night"
         
-        if let serializedData = serializedData as? [String: Any],
-           let codeInfo = serializedData[codeString] as? [String: Any],
-           let time = codeInfo[daytime] as? [String: Any],
-           let description = time["description"] as? String,
-           let image = time["image"] as? String
-        {
-            return [description, image]
+        guard let path = Bundle.main.path(forResource: "WMOCodes", ofType: "json") else {
+            print("Failed to acces WMO codes data")
+            return nil }
+        
+        let codeString = String(code)
+        
+        do {
+            let data = try Data(contentsOf: URL(filePath: path))
+            typealias WMOCodeStringArray = [String: WMODecodedIntermediate]
+            let jsonDecoder = JSONDecoder()
+            let serializedData = try jsonDecoder.decode(WMOCodeStringArray.self, from: data )
+            
+            let currentCode = serializedData.first(where: { $0.key == codeString})
+            
+            let description = currentCode?.value.day.description ?? "Failed to decode WMO code description"
+            let image = UIImage(named: currentCode?.value.day.image ?? "")
+            return WMODecoded(description: description, image: image)
+        } catch {
+            preconditionFailure(error.localizedDescription)
         }
-    } catch {
-        preconditionFailure(error.localizedDescription)
+        
     }
-    return [""]
 }
+
+struct WMODecoded {
+    let description: String
+    let image: UIImage?
+}
+
+private struct WMODecodedIntermediate: Codable {
+    let day: WMODay
+}
+
+private struct WMODay: Codable {
+    let description, image: String
+}
+

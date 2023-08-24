@@ -5,6 +5,30 @@
 
 import Foundation
 
+// MARK: - Model to be used in presentation layer
+
+struct DailyOverallForecastModel {
+    let timezone: TimeZone?
+    let sunrise, sunset: Date
+    let hourlyTemperature, hourlyWindspeed: [Double]
+    let maxTemperature, minTemperature, maxUVindex: Double
+    let hourlyWeatherCode: [Int]
+    let maxPrecipitationProbability: Int
+    
+    init(from codableDailyOverallForecast: DailyOverallForecast) {
+        self.timezone = TimeZone(secondsFromGMT: codableDailyOverallForecast.utcOffsetSeconds)
+        self.sunrise = Date.from(iso8601String: codableDailyOverallForecast.daily.sunrise.first ?? "1998.08.04T00:00", utcOffsetSeconds: codableDailyOverallForecast.utcOffsetSeconds) ?? Date()
+        self.sunset = Date.from(iso8601String: codableDailyOverallForecast.daily.sunset.first ?? "1998.08.04T00:00", utcOffsetSeconds: codableDailyOverallForecast.utcOffsetSeconds) ?? Date()
+        self.hourlyTemperature = codableDailyOverallForecast.hourly.temperature2M
+        self.maxTemperature = codableDailyOverallForecast.daily.temperature2MMax.first ?? 0.0
+        self.minTemperature = codableDailyOverallForecast.daily.temperature2MMin.first ?? 0.0
+        self.hourlyWindspeed = codableDailyOverallForecast.hourly.windspeed10M
+        self.hourlyWeatherCode = codableDailyOverallForecast.hourly.weathercode
+        self.maxPrecipitationProbability = codableDailyOverallForecast.daily.precipitationProbabilityMax.first ?? 0
+        self.maxUVindex = codableDailyOverallForecast.daily.uvIndexMax.first ?? 0.0
+    }
+}
+
 // MARK: - DailyOverallForecast
 struct DailyOverallForecast: Codable {
     let latitude, longitude, generationtimeMS: Double

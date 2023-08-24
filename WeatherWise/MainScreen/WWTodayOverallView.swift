@@ -7,14 +7,20 @@
 
 import UIKit
 
+protocol WWTodayContainer {
+    
+    func update(with dailyOverallForecast: DailyOverallForecastModel)
+    
+}
+
 final class WWTodayOverallViewController: UIViewController{
 
     @IBOutlet weak var minMaxTempLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var overallConditionLabel: UILabel!
-    @IBOutlet weak var dawnTimeLabel: UILabel!
-    @IBOutlet weak var duskTimeLabel: UILabel!
-    @IBOutlet weak var UVfactorLabel: UILabel!
+    @IBOutlet weak var sunriseTimeLabel: UILabel!
+    @IBOutlet weak var sunsetTimeLabel: UILabel!
+    @IBOutlet weak var UVindexLabel: UILabel!
     @IBOutlet weak var windspeedLabel: UILabel!
     @IBOutlet weak var precipitationProbabilityLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
@@ -39,8 +45,6 @@ final class WWTodayOverallViewController: UIViewController{
         super.viewDidLoad()
         setupSubviews()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(update(with:)), name: WWNSNotifications.dailyOverallForecastReceived, object: nil)
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,66 +55,11 @@ final class WWTodayOverallViewController: UIViewController{
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
-        
-    }
-    
     private func setupSubviews() {
         backgroundView.layer.cornerRadius = 12
         dawnImage.image = dawnImage.image?.withTintColor(UIColor(named: "SunnyYellow") ?? UIColor.systemYellow, renderingMode: .alwaysTemplate)
         duskImage.image = duskImage.image?.withTintColor(UIColor(named: "SunnyYellow") ?? UIColor.systemYellow, renderingMode: .alwaysTemplate)
         
-    }
-    
-    @objc private func update(with notification: Notification? = nil) {
-        guard let notification = notification,
-              let userInfo = notification.userInfo else {
-            print("Bad Notification")
-            return
-        }
-        
-        guard let dailyOverallForecast = userInfo["dailyOverallForecast"] as? DailyOverallForecast else {
-            print("Failed to cast received userInfo to DailyOverallForecast")
-            return
-        }
-        
-        let today = Date()
-        let todayFormatter = DateFormatter()
-        todayFormatter.dateFormat = "H:mm, EEE dd MMMM"
-        todayFormatter.timeZone = TimeZone(identifier: dailyOverallForecast.timezone)
-        
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "H:mm"
-        
-        let roughHourFormatter = DateFormatter()
-        roughHourFormatter.dateFormat = "H"
-        
-        let dawnTime = dailyOverallForecast.daily.sunrise[0].components(separatedBy: "T")[1]
-        let duskTime = dailyOverallForecast.daily.sunset[0].components(separatedBy: "T")[1]
-        
-        let hourIndex = Int(roughHourFormatter.string(from: today)) ?? 11
-        let currentTemperature = dailyOverallForecast.hourly.temperature2M[hourIndex]
-        let currentWindspeed = dailyOverallForecast.hourly.windspeed10M[hourIndex]
-        let currentOverallCondition = decodeWMOcode(dailyOverallForecast.hourly.weathercode[hourIndex], isDay: true)[0]
-        
-        minMaxTempLabel.text = "\(dailyOverallForecast.daily.temperature2MMin[0])°/\(dailyOverallForecast.daily.temperature2MMax[0])°"
-        print(dailyOverallForecast.daily.temperature2MMin[0])
-        print(dailyOverallForecast.daily.temperature2MMax[0])
-        currentTempLabel.text = "\(currentTemperature)°"
-        dawnTimeLabel.text = dawnTime
-        duskTimeLabel.text = duskTime
-        todayLabel.text = todayFormatter.string(from: today)
-        overallConditionLabel.text = currentOverallCondition
-        windspeedLabel.text = "\(currentWindspeed) м/с"
-        precipitationProbabilityLabel.text = "\(dailyOverallForecast.daily.precipitationProbabilityMax[0]) %"
-        UVfactorLabel.text = "\(dailyOverallForecast.daily.uvIndexMax[0])"
-        gradientLayer.removeFromSuperlayer()
-
-        isUpdated = true
-        stopShimmerAnimation()
     }
     
     private func startShimmerAnimation() {
@@ -128,29 +77,66 @@ final class WWTodayOverallViewController: UIViewController{
     }
     
     private func makeAnimationGroup() -> CAAnimationGroup {
-        let animDuration: CFTimeInterval = 1.0
+        let animationDuration: CFTimeInterval = 1.0
         
-        let anim1 = CABasicAnimation (keyPath:
+        let animationOne = CABasicAnimation (keyPath:
         #keyPath (CAGradientLayer.backgroundColor))
-        anim1.fromValue = UIColor(named: "LighterBlue")?.cgColor
-        anim1.toValue = UIColor(named: "BaseBlue")?.cgColor
-        anim1.duration = animDuration
-        anim1.beginTime = 0.0
+        animationOne.fromValue = UIColor(named: "LighterBlue")?.cgColor
+        animationOne.toValue = UIColor(named: "BaseBlue")?.cgColor
+        animationOne.duration = animationDuration
+        animationOne.beginTime = 0.0
         
-        let anim2 = CABasicAnimation (keyPath:
+        let animationTwo = CABasicAnimation (keyPath:
         #keyPath (CAGradientLayer.backgroundColor))
-        anim2.fromValue = UIColor(named: "BaseBlue")?.cgColor
-        anim2.toValue = UIColor(named: "LighterBlue")?.cgColor
-        anim2.duration = animDuration
-        anim2.beginTime = anim1.beginTime + anim1.duration
+        animationTwo.fromValue = UIColor(named: "BaseBlue")?.cgColor
+        animationTwo.toValue = UIColor(named: "LighterBlue")?.cgColor
+        animationTwo.duration = animationDuration
+        animationTwo.beginTime = animationOne.beginTime + animationOne.duration
         
-        let group = CAAnimationGroup ()
-        group.animations = [anim1, anim2]
-        group.repeatCount = .greatestFiniteMagnitude
-        group.duration = anim2.beginTime + anim2.duration
-        group.isRemovedOnCompletion = false
+        let animationGroup = CAAnimationGroup ()
+        animationGroup.animations = [animationOne, animationTwo]
+        animationGroup.repeatCount = .greatestFiniteMagnitude
+        animationGroup.duration = animationTwo.beginTime + animationOne.duration
+        animationGroup.isRemovedOnCompletion = false
         
-        return group
+        return animationGroup
     }
 
+}
+
+extension WWTodayOverallViewController: WWTodayContainer {
+    func update(with dailyOverallForecast: DailyOverallForecastModel) {
+        let today = Date()
+        let todayFormatter = DateFormatter()
+        todayFormatter.dateFormat = "H:mm, EEE dd MMMM"
+        todayFormatter.timeZone = dailyOverallForecast.timezone
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "H:mm"
+        
+        let roughHourFormatter = DateFormatter()
+        roughHourFormatter.dateFormat = "H"
+        
+        let sunriseTime = dailyOverallForecast.sunrise
+        let sunsetTime = dailyOverallForecast.sunset
+        
+        let hourIndex = Int(roughHourFormatter.string(from: today)) ?? 11
+        let currentTemperature = dailyOverallForecast.hourlyTemperature[hourIndex]
+        let currentWindspeed = dailyOverallForecast.hourlyTemperature[hourIndex]
+        let currentOverallCondition = WMODecoder.decodeWMOcode(dailyOverallForecast.hourlyWeatherCode[hourIndex], isDay: true)?.description
+        
+        minMaxTempLabel.text = "\(dailyOverallForecast.minTemperature)°/\(dailyOverallForecast.maxTemperature)°"
+        currentTempLabel.text = "\(currentTemperature)°"
+        sunriseTimeLabel.text = timeFormatter.string(from: sunriseTime)
+        sunsetTimeLabel.text = timeFormatter.string(from: sunsetTime)
+        todayLabel.text = todayFormatter.string(from: today)
+        overallConditionLabel.text = currentOverallCondition
+        windspeedLabel.text = "\(currentWindspeed) м/с"
+        precipitationProbabilityLabel.text = "\(dailyOverallForecast.maxPrecipitationProbability) %"
+        UVindexLabel.text = "\(dailyOverallForecast.maxUVindex)"
+        gradientLayer.removeFromSuperlayer()
+
+        isUpdated = true
+        stopShimmerAnimation()
+    }
 }

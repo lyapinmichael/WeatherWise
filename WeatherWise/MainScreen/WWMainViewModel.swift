@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class WWMainViewModel {
     
     enum State {
         case initial
         case didUpdateLocation(String)
-        case didUpdateWeeklyWeatherForecast(SevenDayWeahterForecast)
-        case didUpdateHourlyTemperature(HourlyTemperature)
+        case didUpdateWeeklyWeatherForecast(SevenDayWeatherForecastModel)
+        case didUpdateTodayOverallForecast(DailyOverallForecastModel)
+        case didUpdateHourlyTemperature(HourlyTemperatureModel)
         
     }
     
@@ -29,18 +31,34 @@ final class WWMainViewModel {
     
     // MARK: - Service properties
     
-    private var locationService = WWLocationService()
     private var networkService = WWNetworkService()
-
+    
     
     // MARK: - Init
     
     init() {
-        
-        addObservers()
         networkService.delegate = self
-        
     }
+    
+    convenience init(_ type: WWPageFactory.PageType) {
+        
+        self.init()
+        
+        if case .mainPageWithLocationDetected = type {
+            addObservers()
+        }
+    }
+    
+    // MARK: - Public methods
+    
+    func updateLocation(with location: DecodedLocation) {
+        let longitude = Float(location.longitude)
+        let latitude = Float(location.latitude)
+        
+        state = .didUpdateLocation("\(location.locality), \(location.country)")
+        getForecasts(longitude: longitude, latitude: latitude, timezoneIdentifier: location.timezoneIdentifier)
+    }
+
     
     // MARK: - Private methods
     
@@ -50,46 +68,52 @@ final class WWMainViewModel {
                                                name: WWCLNotifications.locationReceived,
                                                object: nil)
     }
-    
-    
+        
+    private func getForecasts(longitude: Float, latitude: Float, timezoneIdentifier: String?) {
+        
+        networkService.getSevenDayWeatherForecast(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
+        networkService.getTodayWeatherForecast(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
+        networkService.getHourlyTemperature(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
+        
+    }
     
     // MARK: - ObjC methods
     
     @objc private func updateLocation(_ notification: Notification) {
-        guard let currentLocationDegrees = (notification.userInfo?["currentLocation"]) as? [Float],
+        guard let currentLocationDegrees = (notification.userInfo?["currentLocationDegrees"]) as? CLLocationCoordinate2D,
+              let currentLocation = (notification.userInfo?["currentLocation"]) as? CLLocation,
               let currentTimezone = (notification.userInfo?["currentTimezone"]) as? String else { return }
-        state = .didUpdateLocation("\(currentLocationDegrees[0]), \(currentLocationDegrees[1])")
         
-        // TODO: - uncomment the following line to decode coordinates into location name
-//        self.networkService.decodeLocation(from: currentLocationDegrees)
+        WWLocationService.shared.reverseGeoDecode(from: currentLocation) { [weak self] locality, country, _ in
+            guard let localitySafe = locality,
+                  let countrySafe = country else {
+                self?.state = .didUpdateLocation("Unknown location")
+                return
+            }
+            self?.state = .didUpdateLocation("\(localitySafe), \(countrySafe)")
+        }
         
-        networkService.getSevenDayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)
-        networkService.getTodayWeatherForecast(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)
-        networkService.getHourlyTemperature(longitude: currentLocationDegrees[0], latitude: currentLocationDegrees[1], timezone: currentTimezone)
-        
+        getForecasts(longitude: Float(currentLocationDegrees.longitude), latitude: Float(currentLocationDegrees.latitude), timezoneIdentifier: currentTimezone)
     }
     
 }
 
 extension WWMainViewModel: WWNetworkServiceDelegate {
     
-    func networkService(didRecieveLocation decodedGeodata: GeocoderResponse) {
-        let locationName = decodedGeodata.response.geoObjectCollection.featureMember[0].geoObject.name
-        state = .didUpdateLocation(locationName)
-    }
-    
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast) {
-        state = .didUpdateWeeklyWeatherForecast(decodedSevenDayWeatherForecast)
+        let sevenDayWeatherForecast = SevenDayWeatherForecastModel(from: decodedSevenDayWeatherForecast)
+        state = .didUpdateWeeklyWeatherForecast(sevenDayWeatherForecast)
     }
     
     func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast) {
-        let notification = Notification(name: WWNSNotifications.dailyOverallForecastReceived, userInfo: ["dailyOverallForecast": decodedDailyOverallWeatherForecast])
-        NotificationCenter.default.post(notification)
+        let dailyOverallForecast = DailyOverallForecastModel(from: decodedDailyOverallWeatherForecast)
+        state = .didUpdateTodayOverallForecast(dailyOverallForecast)
     }
     
     func networkService(didReceiveHourlyTemperature decodedHourlyTemperature: HourlyTemperature) {
-        state = .didUpdateHourlyTemperature(decodedHourlyTemperature)
+        let hourlyTemperature = HourlyTemperatureModel(from: decodedHourlyTemperature)
+        state = .didUpdateHourlyTemperature(hourlyTemperature)
+        
     }
-    
     
 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol WWOnboardingDelegate: AnyObject {
+    func onboarding(withPermission permission: Bool)
+}
+
 class WWOnboardingViewController: UIViewController {
 
     // MARK: - IBActionos
@@ -20,18 +24,14 @@ class WWOnboardingViewController: UIViewController {
         self.proceedToMainScreen()
     }
     
+    weak var delegate: WWOnboardingDelegate?
     private var locationService = WWLocationService()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad()  {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("Set location auth status to:", locationService.authorizationStatus?.rawValue ?? "Bad status")
-        NotificationCenter.default.addObserver(self, selector: #selector(proceedToMainScreen(_:)), name: WWCLNotifications.permissionGranted, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(proceedToMainScreen(_:)), name: WWCLNotifications.authorizationChanged, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,10 +41,11 @@ class WWOnboardingViewController: UIViewController {
     // MARK: - ObjC methods
     
     @objc private func proceedToMainScreen(_ notification: Notification? = nil) {
-        if let notification = notification {
-            print(notification.userInfo ?? "Bad status")
-        }
+        guard let notification = notification,
+              let userInfo = notification.userInfo as? [String: Bool] else { return }
+        
         UserDefaults.standard.set(true, forKey: "isOnboardingPassed")
+        delegate?.onboarding(withPermission: userInfo["authStatus"] ?? false)
         self.dismiss(animated: true)
         
     }

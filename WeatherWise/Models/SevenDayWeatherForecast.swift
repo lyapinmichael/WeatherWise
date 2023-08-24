@@ -5,6 +5,28 @@
 
 import Foundation
 
+// MARK: - Model to be used in presentation layer
+
+struct SevenDayWeatherForecastModel {
+    let time: [Date]
+    let weatherCode, maxPrecipitationProbabily: [Int]
+    let maxTemperature, minTemperature: [Double]
+    
+    init(from decodedSevenWeahterForecast: SevenDayWeahterForecast) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        let timeArray = decodedSevenWeahterForecast.daily.time
+        self.time = timeArray.map({ dateFormatter.date(from: $0) ?? Date()})
+        self.weatherCode = decodedSevenWeahterForecast.daily.weathercode
+        self.maxPrecipitationProbabily = decodedSevenWeahterForecast.daily.precipitationProbabilityMax.map({ $0 ?? 0})
+        self.maxTemperature = decodedSevenWeahterForecast.daily.temperature2MMax
+        self.minTemperature = decodedSevenWeahterForecast.daily.temperature2MMin
+      
+    }
+}
+
+
+
 // MARK: - SevenDayWeahterForecast
 struct SevenDayWeahterForecast: Codable {
     let latitude, longitude, generationtimeMS: Double
