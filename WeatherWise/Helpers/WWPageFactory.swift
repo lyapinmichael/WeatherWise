@@ -44,6 +44,7 @@ final class WWPageFactory {
             if viewController is WWMainViewController {
                 let viewModel = WWMainViewModel(.mainPageWithLocationDetected)
                 (viewController as? WWMainViewController)?.viewModel = viewModel
+                viewModel.willUseGeolocation()
             }
             handler(viewController)
         case .mainPageWithNewLocation(let location):

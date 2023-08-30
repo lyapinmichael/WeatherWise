@@ -12,10 +12,12 @@ final class WWMainViewModel {
     
     enum State {
         case initial
+        case willUseGeolocation
         case didUpdateLocation(String)
         case didUpdateWeeklyWeatherForecast(SevenDayWeatherForecastModel)
         case didUpdateTodayOverallForecast(DailyOverallForecastModel)
         case didUpdateHourlyTemperature(HourlyTemperatureModel)
+        case reload
         
     }
     
@@ -45,11 +47,19 @@ final class WWMainViewModel {
         self.init()
         
         if case .mainPageWithLocationDetected = type {
-            addObservers()
+            addLocationChangeObservers()
         }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateUnits),
+                                               name: WWSettingsNotification.unitsUpdated, object: nil)
     }
     
     // MARK: - Public methods
+    
+    func willUseGeolocation() {
+        state = .willUseGeolocation
+    }
     
     func updateLocation(with location: DecodedLocation) {
         let longitude = Float(location.longitude)
@@ -62,11 +72,12 @@ final class WWMainViewModel {
     
     // MARK: - Private methods
     
-    private func addObservers() {
+    private func addLocationChangeObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateLocation(_:)),
                                                name: WWCLNotifications.locationReceived,
                                                object: nil)
+        
     }
         
     private func getForecasts(longitude: Float, latitude: Float, timezoneIdentifier: String?) {
@@ -94,6 +105,10 @@ final class WWMainViewModel {
         }
         
         getForecasts(longitude: Float(currentLocationDegrees.longitude), latitude: Float(currentLocationDegrees.latitude), timezoneIdentifier: currentTimezone)
+    }
+    
+    @objc private func updateUnits() {
+        state = .reload
     }
     
 }

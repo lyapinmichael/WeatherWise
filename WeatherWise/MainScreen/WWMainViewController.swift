@@ -11,6 +11,8 @@ final class WWMainViewController: UIViewController {
    
     // MARK: - IBOutlets
     
+    @IBOutlet weak var locationImage: UIImageView!
+    
     @IBOutlet weak var locationLabel: UILabel!
     
     @IBOutlet weak var mainTable: UITableView!
@@ -78,6 +80,9 @@ final class WWMainViewController: UIViewController {
             case .initial:
                 return
                 
+            case .willUseGeolocation:
+                self?.locationImage.isHidden = false
+                
             case .didUpdateLocation(let location):
                 DispatchQueue.main.async {
                     self?.locationLabel.text = location
@@ -91,6 +96,13 @@ final class WWMainViewController: UIViewController {
                 
             case .didUpdateHourlyTemperature(let temperature):
                 self?.hourlyTemperature = temperature
+                
+            case .reload:
+                DispatchQueue.main.async {
+                    self?.mainTable.reloadData()
+                    self?.hourlyPillsCollection.reloadData()
+                    self?.todayContainer?.reload()
+                }
             }
         }
     }

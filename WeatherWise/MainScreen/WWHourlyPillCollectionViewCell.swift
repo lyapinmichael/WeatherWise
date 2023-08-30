@@ -25,33 +25,37 @@ class WWHourlyPillCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
       
-            self.pillView.backgroundColor = UIColor.white
-            self.tempLabel.textColor = UIColor(named: "BaseBlue")
-            self.timeLabel.textColor = UIColor(named: "BaseBlue")
-      
+        self.pillView.backgroundColor = UIColor.white
+        self.tempLabel.textColor = UIColor(named: "BaseBlue")
+        self.timeLabel.textColor = UIColor(named: "BaseBlue")
+        self.layer.shadowOpacity = 0
+        
     }
     
     func update(with hourlyTemperature: HourlyTemperatureModel, at indexPath: IndexPath) {
         let time = hourlyTemperature.time[indexPath.row]
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH"
-        dateFormatter.timeZone = TimeZone(identifier: hourlyTemperature.timezone)
-        
-        let timeString = dateFormatter.string(from: time)
+        dateFormatter.dateFormat = hourlyTemperature.timeFormat
         let currentHour = dateFormatter.string(from: Date())
         
-        if timeString == currentHour {
+        if time == currentHour {
             self.pillView.backgroundColor = UIColor(named: "BaseBlue")
             self.tempLabel.textColor = UIColor.white
             self.timeLabel.textColor = UIColor.white
+            
+            layer.shadowColor = UIColor(named: "BaseBlue")?.cgColor
+            layer.shadowRadius = 5
+            layer.shadowOpacity = 0.5
+            
+            layer.masksToBounds = false
 
         }
         
         let WMOCode = hourlyTemperature.weathercode[indexPath.row]
         
         self.tempLabel.text = String(format: "%.1f", hourlyTemperature.temperature[indexPath.row]) + "°"
-        self.timeLabel.text = timeString + ":00"
+        self.timeLabel.text = time
         self.littleImage.image = WMODecoder.decodeWMOcode(WMOCode, isDay: true)?.image
     }
     

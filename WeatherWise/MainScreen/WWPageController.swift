@@ -17,9 +17,11 @@ final class WWPageController: UIPageViewController {
             setViewControllers([pages[0]], direction: .forward, animated: true)
         }
     }
-    var isCurrentLocationAdded = false
+    private var isCurrentLocationAdded = false
     
     private var savedLocations: [SavedLocation] = []
+    
+    private var isFirstAppearance = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ final class WWPageController: UIPageViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+       
+        guard isFirstAppearance else { return }
+        
         if case .authorizedWhenInUse = WWLocationService.shared.authorizationStatus,
            !isCurrentLocationAdded {
             
@@ -55,6 +60,8 @@ final class WWPageController: UIPageViewController {
                 })
             }
         }
+        
+        isFirstAppearance = false
     }
     
     override func viewDidAppear(_ animated: Bool) {

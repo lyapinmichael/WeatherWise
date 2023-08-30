@@ -12,14 +12,6 @@ struct DecodedLocation {
     let longitude, latitude: Double
     let country, locality, timezoneIdentifier: String
     
-    init(longitude: Double, latitude: Double, country: String, locality: String, timezoneIdentifier: String) {
-        self.longitude = longitude
-        self.latitude = latitude
-        self.country = country
-        self.locality = locality
-        self.timezoneIdentifier = timezoneIdentifier
-    }
-    
     init(from placemark: CLPlacemark) {
         self.longitude = placemark.location?.coordinate.longitude ?? 0.0
         self.latitude = placemark.location?.coordinate.latitude ?? 0.0

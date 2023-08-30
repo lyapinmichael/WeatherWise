@@ -14,8 +14,37 @@ struct HourlyTemperatureModel {
     let latitude, longitue: Double
     let timezone, timezoneAbbreviation: String
     let weathercode: [Int]
-    let temperature: [Double]
-    var time: [Date] = []
+    
+    private let _temperature: [Double]
+    var temperature: [Double] {
+        if UserDefaults.standard.integer(forKey: "temperatureUnit") == 1 {
+            return _temperature.map { $0 * 9 / 5 + 32 }
+        } else {
+            return _temperature
+        }
+    }
+    private var _time: [Date] = []
+    var time: [String] {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: timezone)
+        
+        if UserDefaults.standard.integer(forKey: "timeFormat") == 1 {
+            dateFormatter.dateFormat = "h a"
+        } else {
+            dateFormatter.dateFormat = "HH:00"
+        }
+        
+        return _time.map { dateFormatter.string(from: $0) }
+    }
+    
+    var timeFormat: String {
+        if UserDefaults.standard.integer(forKey: "timeFormat") == 1 {
+            return "h a"
+        } else {
+            return "HH:00"
+        }
+    }
     
     private let utcOffestSeconds: Int
    
@@ -25,12 +54,12 @@ struct HourlyTemperatureModel {
         self.timezone = codableHourlyTemperature.timezone
         self.timezoneAbbreviation = codableHourlyTemperature.timezoneAbbreviation
         self.weathercode = codableHourlyTemperature.hourly.weathercode
-        self.temperature = codableHourlyTemperature.hourly.temperature2M
+        self._temperature = codableHourlyTemperature.hourly.temperature2M
         self.utcOffestSeconds = codableHourlyTemperature.utcOffsetSeconds
         
         for timeString in codableHourlyTemperature.hourly.time {
             if let date = Date.from(iso8601String: timeString, utcOffsetSeconds: codableHourlyTemperature.utcOffsetSeconds) {
-                self.time.append(date)
+                self._time.append(date)
             }
         }
         
