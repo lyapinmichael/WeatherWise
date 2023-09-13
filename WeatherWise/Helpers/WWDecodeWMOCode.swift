@@ -28,7 +28,13 @@ struct WMODecoder {
             
             let currentCode = serializedData.first(where: { $0.key == codeString})
             
-            let description = currentCode?.value.day.description ?? "Failed to decode WMO code description"
+            let description: String
+            if isDay {
+                description = currentCode?.value.day.description ?? "Failed to decode WMO code description"
+            } else {
+                description = currentCode?.value.night.description ?? "Failed to decode WMO code description"
+            }
+            
             let image = UIImage(named: currentCode?.value.day.image ?? "")
             return WMODecoded(description: description, image: image)
         } catch {
@@ -45,6 +51,7 @@ struct WMODecoded {
 
 private struct WMODecodedIntermediate: Codable {
     let day: WMODay
+    let night: WMODay
 }
 
 private struct WMODay: Codable {

@@ -15,31 +15,45 @@ class WWHourlyPillCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    private var isNow = false
+    // MARK: - Overrided properties
+    
+    override var isSelected: Bool {
+       didSet {
+           toggleSelection(isSelected)
+        }
+    }
+    
+    // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setupSubviews()
     }
+
+    // MARK: - Public methods
     
-    override func prepareForReuse() {
-      
-        self.pillView.backgroundColor = UIColor.white
-        self.tempLabel.textColor = UIColor(named: "BaseBlue")
-        self.timeLabel.textColor = UIColor(named: "BaseBlue")
-        self.layer.shadowOpacity = 0
-        
-    }
-    
-    func update(with hourlyTemperature: HourlyTemperatureModel, at indexPath: IndexPath) {
+    func update(with hourlyTemperature: HourlyForecastModel, at indexPath: IndexPath) {
         let time = hourlyTemperature.time[indexPath.row]
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = hourlyTemperature.timeFormat
-        let currentHour = dateFormatter.string(from: Date())
+        let WMOCode = hourlyTemperature.weathercode[indexPath.row]
         
-        if time == currentHour {
+        self.tempLabel.text = String(format: "%.1f", hourlyTemperature.temperature[indexPath.row]) + "°"
+        self.timeLabel.text = time
+        self.littleImage.image = WMODecoder.decodeWMOcode(WMOCode, isDay: true)?.image
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupSubviews() {
+        pillView.layer.cornerRadius = pillView.frame.width / 2
+        pillView.layer.borderColor = UIColor(named: "BaseBlue")?.cgColor
+        pillView.layer.borderWidth = 1
+    }
+    
+    private func toggleSelection(_ isSelected: Bool) {
+       
+        if isSelected {
             self.pillView.backgroundColor = UIColor(named: "BaseBlue")
             self.tempLabel.textColor = UIColor.white
             self.timeLabel.textColor = UIColor.white
@@ -49,19 +63,13 @@ class WWHourlyPillCollectionViewCell: UICollectionViewCell {
             layer.shadowOpacity = 0.5
             
             layer.masksToBounds = false
-
+        } else {
+            self.pillView.backgroundColor = UIColor.white
+            self.tempLabel.textColor = UIColor(named: "BaseBlue")
+            self.timeLabel.textColor = UIColor(named: "BaseBlue")
+            
+            self.layer.shadowOpacity = 0
         }
-        
-        let WMOCode = hourlyTemperature.weathercode[indexPath.row]
-        
-        self.tempLabel.text = String(format: "%.1f", hourlyTemperature.temperature[indexPath.row]) + "°"
-        self.timeLabel.text = time
-        self.littleImage.image = WMODecoder.decodeWMOcode(WMOCode, isDay: true)?.image
-    }
-    
-    private func setupSubviews() {
-        pillView.layer.cornerRadius = pillView.frame.width / 2
-        pillView.layer.borderColor = UIColor(named: "BaseBlue")?.cgColor
-        pillView.layer.borderWidth = 1
+       
     }
 }

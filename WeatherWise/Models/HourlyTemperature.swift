@@ -10,10 +10,11 @@ import Foundation
 
 // MARK: - Model to be used in presentation layer
 
-struct HourlyTemperatureModel {
+struct HourlyForecastModel {
     let latitude, longitue: Double
     let timezone, timezoneAbbreviation: String
-    let weathercode: [Int]
+    let weathercode, precipitationProbability, cloudcover: [Int]
+    let windspeed: [Double]
     
     private let _temperature: [Double]
     var temperature: [Double] {
@@ -23,6 +24,22 @@ struct HourlyTemperatureModel {
             return _temperature
         }
     }
+    
+    private var _windDirection: [Int]
+    var windDirection: [String] {
+        return _windDirection.map {
+            WWWindDirectionAngleDecoder.decode(angle: $0)
+        }
+    }
+    
+    var speedUnit: String {
+        if UserDefaults.standard.integer(forKey: "speedUnit") == 1 {
+            return "уз"
+        } else {
+            return "м/с"
+        }
+    }
+    
     private var _time: [Date] = []
     var time: [String] {
         
@@ -55,7 +72,13 @@ struct HourlyTemperatureModel {
         self.timezoneAbbreviation = codableHourlyTemperature.timezoneAbbreviation
         self.weathercode = codableHourlyTemperature.hourly.weathercode
         self._temperature = codableHourlyTemperature.hourly.temperature2M
+        self.precipitationProbability = codableHourlyTemperature.hourly.precipitationProbability
+        self.cloudcover = codableHourlyTemperature.hourly.cloudcover
+        self.windspeed = codableHourlyTemperature.hourly.windspeed10M
+        self._windDirection = codableHourlyTemperature.hourly.winddirection10M
+        
         self.utcOffestSeconds = codableHourlyTemperature.utcOffsetSeconds
+        
         
         for timeString in codableHourlyTemperature.hourly.time {
             if let date = Date.from(iso8601String: timeString, utcOffsetSeconds: codableHourlyTemperature.utcOffsetSeconds) {
@@ -91,29 +114,31 @@ struct HourlyTemperature: Codable {
 struct Hourly: Codable {
     let time: [String]
     let temperature2M: [Double]
-    let weathercode: [Int]
+    let precipitationProbability, weathercode, cloudcover: [Int]
+    let windspeed10M: [Double]
+    let winddirection10M: [Int]
 
     enum CodingKeys: String, CodingKey {
         case time
         case temperature2M = "temperature_2m"
-        case weathercode
+        case precipitationProbability = "precipitation_probability"
+        case weathercode, cloudcover
+        case windspeed10M = "windspeed_10m"
+        case winddirection10M = "winddirection_10m"
     }
 }
 
 // MARK: - HourlyUnits
 struct HourlyUnits: Codable {
-    let time, temperature2M, weathercode: String
+    let time, temperature2M, precipitationProbability, weathercode: String
+    let cloudcover, windspeed10M, winddirection10M: String
 
     enum CodingKeys: String, CodingKey {
         case time
         case temperature2M = "temperature_2m"
-        case weathercode
-    }
-}
-
-extension ISO8601DateFormatter {
-    convenience init(with formatOptions: Options) {
-        self.init()
-        self.formatOptions = formatOptions
+        case precipitationProbability = "precipitation_probability"
+        case weathercode, cloudcover
+        case windspeed10M = "windspeed_10m"
+        case winddirection10M = "winddirection_10m"
     }
 }

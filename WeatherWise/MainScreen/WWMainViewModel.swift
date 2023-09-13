@@ -10,13 +10,15 @@ import CoreLocation
 
 final class WWMainViewModel {
     
+    // MARK: - State
+    
     enum State {
         case initial
         case willUseGeolocation
         case didUpdateLocation(String)
         case didUpdateWeeklyWeatherForecast(SevenDayWeatherForecastModel)
         case didUpdateTodayOverallForecast(DailyOverallForecastModel)
-        case didUpdateHourlyTemperature(HourlyTemperatureModel)
+        case didUpdateHourlyTemperature(HourlyForecastModel)
         case reload
         
     }
@@ -29,7 +31,19 @@ final class WWMainViewModel {
     
     var onStateDidChange: ((State) -> Void)?
     
+    // MARK: - Delegate
+    
     weak var delegate: WWMainViewController?
+    
+    // MARK: - Embedded current location
+    
+    struct CurrentLocation {
+        let longitude: Float
+        let latitude: Float
+        let timezoneIdentifier: String
+    }
+    
+    var currentLocation: CurrentLocation?
     
     // MARK: - Service properties
     
@@ -62,11 +76,15 @@ final class WWMainViewModel {
     }
     
     func updateLocation(with location: DecodedLocation) {
+        
         let longitude = Float(location.longitude)
         let latitude = Float(location.latitude)
+        let timezoneIdentifier = location.timezoneIdentifier
+        
+        currentLocation = CurrentLocation(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
         
         state = .didUpdateLocation("\(location.locality), \(location.country)")
-        getForecasts(longitude: longitude, latitude: latitude, timezoneIdentifier: location.timezoneIdentifier)
+        getForecasts(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
     }
 
     
@@ -84,7 +102,7 @@ final class WWMainViewModel {
         
         networkService.getSevenDayWeatherForecast(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
         networkService.getTodayWeatherForecast(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
-        networkService.getHourlyTemperature(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
+        networkService.getHourlyForecast(longitude: longitude, latitude: latitude, timezoneIdentifier: timezoneIdentifier)
         
     }
     
@@ -103,6 +121,9 @@ final class WWMainViewModel {
             }
             self?.state = .didUpdateLocation("\(localitySafe), \(countrySafe)")
         }
+        
+        
+        self.currentLocation = CurrentLocation(longitude: Float(currentLocationDegrees.longitude), latitude: Float(currentLocationDegrees.latitude), timezoneIdentifier: currentTimezone)
         
         getForecasts(longitude: Float(currentLocationDegrees.longitude), latitude: Float(currentLocationDegrees.latitude), timezoneIdentifier: currentTimezone)
     }
@@ -125,8 +146,8 @@ extension WWMainViewModel: WWNetworkServiceDelegate {
         state = .didUpdateTodayOverallForecast(dailyOverallForecast)
     }
     
-    func networkService(didReceiveHourlyTemperature decodedHourlyTemperature: HourlyTemperature) {
-        let hourlyTemperature = HourlyTemperatureModel(from: decodedHourlyTemperature)
+    func networkService(didReceiveHourlyForecast decodedHourlyTemperature: HourlyTemperature) {
+        let hourlyTemperature = HourlyForecastModel(from: decodedHourlyTemperature)
         state = .didUpdateHourlyTemperature(hourlyTemperature)
         
     }

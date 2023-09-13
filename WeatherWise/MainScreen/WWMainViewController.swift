@@ -38,13 +38,16 @@ final class WWMainViewController: UIViewController {
         }
     }
     
-    private var hourlyTemperature: HourlyTemperatureModel? {
+    private var hourlyForecast: HourlyForecastModel? {
         didSet {
             DispatchQueue.main.async {
                 self.hourlyPillsCollection.reloadData()
+                self.selectCurrentHourPill()
             }
         }
     }
+    
+    private var localityString: String?
     
     // MARK: - Init
     
@@ -64,11 +67,31 @@ final class WWMainViewController: UIViewController {
         setupSubviews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.selectCurrentHourPill()
+    }
+    
     // MARK: - Segue related methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedTodayOverallViewController" {
             todayContainer = segue.destination as? WWTodayContainer
+        }
+        
+        if segue.identifier == "pushToDetailedForecastView" {
+            guard let detailedView = segue.destination as? WWDetailedForecastViewController,
+                  let hourlyForecast = self.hourlyForecast else { return }
+            detailedView.update(localityString, with: hourlyForecast)
+        }
+        
+        if segue.identifier == "pushToDailyReportController" {
+            guard let dailyReportController = segue.destination as? WWDailyReportViewController,
+                  let senderCell = sender as? WWWeatherCellTableViewCell,
+                  let weeklyForecast = self.weeklyForecast else { return }
+           
+            dailyReportController.update(localityString, coordinates: viewModel.currentLocation, dates: weeklyForecast.time)
+            dailyReportController.preselectedDateCellIndexPath = senderCell.indexPath
+          
         }
     }
     // MARK: - Private methods
@@ -87,6 +110,7 @@ final class WWMainViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.locationLabel.text = location
                 }
+                self?.localityString = location
                 
             case .didUpdateWeeklyWeatherForecast(let forecast):
                 self?.weeklyForecast = forecast
@@ -95,7 +119,7 @@ final class WWMainViewController: UIViewController {
                 self?.todayContainer?.update(with: forecast)
                 
             case .didUpdateHourlyTemperature(let temperature):
-                self?.hourlyTemperature = temperature
+                self?.hourlyForecast = temperature
                 
             case .reload:
                 DispatchQueue.main.async {
@@ -111,8 +135,26 @@ final class WWMainViewController: UIViewController {
         mainTable.delegate = self
         mainTable.dataSource = self
         mainTable.layer.cornerRadius = 12
+        mainTable.showsVerticalScrollIndicator = false
+        
         locationLabel.text = "Текущая геолокация"
+        
         hourlyPillsCollection.dataSource = self
+        hourlyPillsCollection.showsHorizontalScrollIndicator = false
+
+    }
+    
+    private func selectCurrentHourPill() {
+        guard let hourlyForecast =  self.hourlyForecast else { return }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = hourlyForecast.timeFormat
+        let currentHour = dateFormatter.string(from: Date())
+        
+        guard let currentHourIndex = hourlyForecast.time.firstIndex(where: { $0 == currentHour }) else { return }
+        
+        self.hourlyPillsCollection.selectItem(at: IndexPath(row: currentHourIndex, section: 0), animated: true, scrollPosition: .left)
+        
     }
 }
 
@@ -127,6 +169,9 @@ extension WWMainViewController: UITableViewDataSource {
               let weeklyForecast = self.weeklyForecast else {
             return UITableViewCell()
         }
+        
+        cell.indexPath = indexPath
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM"
         
@@ -158,17 +203,18 @@ extension WWMainViewController: UITableViewDelegate {
 
 extension WWMainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        hourlyTemperature?.time.count ?? 0
+        hourlyForecast?.time.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourlyPill", for: indexPath) as? WWHourlyPillCollectionViewCell,
-              let hourlyTemperature = self.hourlyTemperature
+              let hourlyTemperature = self.hourlyForecast
         else {
             return UICollectionViewCell()
         }
         
         cell.update(with: hourlyTemperature, at: indexPath)
+        cell.isUserInteractionEnabled = false
       
         return cell
     }

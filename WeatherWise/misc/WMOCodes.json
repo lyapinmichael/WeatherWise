@@ -6,7 +6,7 @@
         },
         "night":{
             "description":"Ясно",
-            "image":"LittleSun"
+            "image":"LittleMoon"
         }
     },
     "1":{
@@ -16,7 +16,7 @@
         },
         "night":{
             "description":"В основном ясно",
-            "image":"LittleSun"
+            "image":"LittleMoon"
         }
     },
     "2":{

@@ -43,7 +43,7 @@ struct DailyOverallForecastModel {
         if UserDefaults.standard.integer(forKey: "speedUnit") == 1 {
             return _hourlyWindspeed.map { $0 * 0.5144 }
         } else {
-            return _hourlyWindspeed
+            return _hourlyWindspeed.map { $0 * 0.278}
         }
     }
     

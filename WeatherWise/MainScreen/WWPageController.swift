@@ -35,6 +35,8 @@ final class WWPageController: UIPageViewController {
     
     override func viewWillAppear(_ animated: Bool) {
        
+        navigationController?.navigationBar.isHidden = true
+        
         guard isFirstAppearance else { return }
         
         if case .authorizedWhenInUse = WWLocationService.shared.authorizationStatus,
@@ -68,6 +70,12 @@ final class WWPageController: UIPageViewController {
         if !UserDefaults.standard.bool(forKey: "isOnboardingPassed") {
             performSegue(withIdentifier: "presentOnboarding", sender: self)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        navigationController?.navigationBar.isHidden = false
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
