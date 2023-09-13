@@ -20,7 +20,7 @@ final class WWMainViewModel {
         case didUpdateTodayOverallForecast(DailyOverallForecastModel)
         case didUpdateHourlyTemperature(HourlyForecastModel)
         case reload
-        
+        case didGetPermission
     }
     
     private(set) var state: State = .initial {
@@ -61,7 +61,7 @@ final class WWMainViewModel {
         self.init()
         
         if case .mainPageWithLocationDetected = type {
-            addLocationChangeObservers()
+            addLocationObservers()
         }
         
         NotificationCenter.default.addObserver(self,
@@ -90,12 +90,20 @@ final class WWMainViewModel {
     
     // MARK: - Private methods
     
-    private func addLocationChangeObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateLocation(_:)),
-                                               name: WWCLNotifications.locationReceived,
-                                               object: nil)
+    private func addLocationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateLocation(_:)),
+            name: WWCLNotifications.locationReceived,
+            object: nil
+        )
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateLocationPinButton),
+            name: WWCLNotifications.authorizationChanged,
+            object: nil
+        )
     }
         
     private func getForecasts(longitude: Float, latitude: Float, timezoneIdentifier: String?) {
@@ -132,6 +140,9 @@ final class WWMainViewModel {
         state = .reload
     }
     
+    @objc private func updateLocationPinButton() {
+        state = .didGetPermission
+    }
 }
 
 extension WWMainViewModel: WWNetworkServiceDelegate {

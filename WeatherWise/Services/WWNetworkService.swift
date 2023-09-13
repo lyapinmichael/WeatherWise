@@ -15,8 +15,6 @@ enum WWNSNotifications {
 
 protocol WWNetworkServiceDelegate: AnyObject {
     
-
-    
     func networkService(didReceiveSevenDayWeatherForecast decodedSevenDayWeatherForecast: SevenDayWeahterForecast)
     
     func networkService(didReceiveDailyOverallForecast decodedDailyOverallWeatherForecast: DailyOverallForecast)

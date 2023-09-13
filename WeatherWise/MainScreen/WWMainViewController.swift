@@ -19,6 +19,10 @@ final class WWMainViewController: UIViewController {
     
     @IBOutlet weak var hourlyPillsCollection: UICollectionView!
     
+    @IBOutlet weak var locationPinButton: UIButton!
+    
+    @IBOutlet weak var pushToDetailedForecatScreen: UIButton!
+    
     var todayContainer: WWTodayContainer?
     
     var viewModel: WWMainViewModel {
@@ -67,6 +71,10 @@ final class WWMainViewController: UIViewController {
         setupSubviews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        checkLocationPinButton()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         self.selectCurrentHourPill()
     }
@@ -93,6 +101,13 @@ final class WWMainViewController: UIViewController {
             dailyReportController.preselectedDateCellIndexPath = senderCell.indexPath
           
         }
+        
+        if segue.identifier == "forcePresentOnboarding" {
+            let pageController = self.parent as? WWPageController
+            
+            (segue.destination as? WWOnboardingViewController)?.delegate = pageController
+            
+        }
     }
     // MARK: - Private methods
     
@@ -101,7 +116,7 @@ final class WWMainViewController: UIViewController {
         viewModel.onStateDidChange = { [weak self] state in
             switch state {
             case .initial:
-                return
+                print("initial state of viewModel")
                 
             case .willUseGeolocation:
                 self?.locationImage.isHidden = false
@@ -120,12 +135,18 @@ final class WWMainViewController: UIViewController {
                 
             case .didUpdateHourlyTemperature(let temperature):
                 self?.hourlyForecast = temperature
+                self?.pushToDetailedForecatScreen.isEnabled = true
                 
             case .reload:
                 DispatchQueue.main.async {
                     self?.mainTable.reloadData()
                     self?.hourlyPillsCollection.reloadData()
                     self?.todayContainer?.reload()
+                }
+            
+            case .didGetPermission:
+                DispatchQueue.main.async {
+                    self?.checkLocationPinButton()
                 }
             }
         }
@@ -155,6 +176,12 @@ final class WWMainViewController: UIViewController {
         
         self.hourlyPillsCollection.selectItem(at: IndexPath(row: currentHourIndex, section: 0), animated: true, scrollPosition: .left)
         
+    }
+    
+    private func checkLocationPinButton() {
+        if case .authorizedWhenInUse = WWLocationService.shared.authorizationStatus {
+                self.locationPinButton.isHidden = true
+        }
     }
 }
 

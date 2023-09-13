@@ -16,7 +16,7 @@ class WWOnboardingViewController: UIViewController {
     // MARK: - IBActionos
     
     @IBAction func useLocation(_ sender: Any) {
-        self.locationService.getPermission()
+        WWLocationService.shared.getPermission()
         
     }
     
@@ -41,11 +41,11 @@ class WWOnboardingViewController: UIViewController {
     // MARK: - ObjC methods
     
     @objc private func proceedToMainScreen(_ notification: Notification? = nil) {
-        guard let notification = notification,
-              let userInfo = notification.userInfo as? [String: Bool] else { return }
+        
+        let userInfo = notification?.userInfo as? [String: Bool]
         
         UserDefaults.standard.set(true, forKey: "isOnboardingPassed")
-        delegate?.onboarding(withPermission: userInfo["authStatus"] ?? false)
+        delegate?.onboarding(withPermission: userInfo?["authStatus"] ?? false)
         self.dismiss(animated: true)
         
     }

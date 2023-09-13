@@ -25,7 +25,8 @@
 		EC62CC4B2AAF3D8600BD98C5 /* WWDailyReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC4A2AAF3D8600BD98C5 /* WWDailyReportViewModel.swift */; };
 		EC62CC4D2AAF7AD500BD98C5 /* WWWindDirectionAngleDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC4C2AAF7AD500BD98C5 /* WWWindDirectionAngleDecoder.swift */; };
 		EC62CC4F2AAF7E6B00BD98C5 /* AirQualityIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC4E2AAF7E6B00BD98C5 /* AirQualityIndex.swift */; };
-		EC62CC512AB0F8B800BD98C5 /* UIView+DashedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC502AB0F8B800BD98C5 /* UIView+DashedLine.swift */; };
+		EC62CC512AB0F8B800BD98C5 /* DashedBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC502AB0F8B800BD98C5 /* DashedBorderView.swift */; };
+		EC62CC532AB1F9E900BD98C5 /* ShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC522AB1F9E900BD98C5 /* ShimmeringView.swift */; };
 		EC858C582A5752F300419A13 /* WWLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C572A5752F300419A13 /* WWLocationService.swift */; };
 		EC858C5C2A5AE9E500419A13 /* WWPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C5B2A5AE9E500419A13 /* WWPageController.swift */; };
 		EC858C612A5C005000419A13 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC858C602A5C005000419A13 /* Alamofire */; };
@@ -85,7 +86,8 @@
 		EC62CC4A2AAF3D8600BD98C5 /* WWDailyReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDailyReportViewModel.swift; sourceTree = "<group>"; };
 		EC62CC4C2AAF7AD500BD98C5 /* WWWindDirectionAngleDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWWindDirectionAngleDecoder.swift; sourceTree = "<group>"; };
 		EC62CC4E2AAF7E6B00BD98C5 /* AirQualityIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityIndex.swift; sourceTree = "<group>"; };
-		EC62CC502AB0F8B800BD98C5 /* UIView+DashedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+DashedLine.swift"; sourceTree = "<group>"; };
+		EC62CC502AB0F8B800BD98C5 /* DashedBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedBorderView.swift; sourceTree = "<group>"; };
+		EC62CC522AB1F9E900BD98C5 /* ShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringView.swift; sourceTree = "<group>"; };
 		EC858C572A5752F300419A13 /* WWLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWLocationService.swift; sourceTree = "<group>"; };
 		EC858C5B2A5AE9E500419A13 /* WWPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWPageController.swift; sourceTree = "<group>"; };
 		EC858C622A5C007D00419A13 /* WWNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWNetworkService.swift; sourceTree = "<group>"; };
@@ -164,17 +166,18 @@
 		EC05B2E92A545CBF00F7EB24 /* WeatherWise */ = {
 			isa = PBXGroup;
 			children = (
-				EC402D372AAB3B5000B5A877 /* DailyReport */,
-				EC1490DA2AA74CCB00458BA2 /* DetailedForecastScreen */,
 				ECCDD8732A55DCDE008BCF1D /* App */,
-				EC858C952A60938700419A13 /* misc */,
 				EC858C562A5752D800419A13 /* Services */,
-				EC858C902A60666D00419A13 /* Extensions */,
 				EC62A3862A66B78100246EBB /* Helpers */,
+				EC62CC542AB2026100BD98C5 /* CustomSubclasses */,
+				EC858C902A60666D00419A13 /* Extensions */,
 				EC858C652A5C2F3600419A13 /* Models */,
-				EC006F4E2A55E71B00AAADE7 /* Onboarding */,
 				EC858C592A5AE8B100419A13 /* MainScreen */,
+				EC1490DA2AA74CCB00458BA2 /* DetailedForecastScreen */,
+				EC402D372AAB3B5000B5A877 /* DailyReport */,
+				EC006F4E2A55E71B00AAADE7 /* Onboarding */,
 				EC17BBBB2A990C1F00987727 /* Settings */,
+				EC858C952A60938700419A13 /* misc */,
 				EC05B2F02A545CBF00F7EB24 /* Main.storyboard */,
 				EC05B2F32A545CC000F7EB24 /* Assets.xcassets */,
 				EC05B2F52A545CC000F7EB24 /* LaunchScreen.storyboard */,
@@ -231,6 +234,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		EC62CC542AB2026100BD98C5 /* CustomSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				EC62CC502AB0F8B800BD98C5 /* DashedBorderView.swift */,
+				EC62CC522AB1F9E900BD98C5 /* ShimmeringView.swift */,
+			);
+			path = CustomSubclasses;
+			sourceTree = "<group>";
+		};
 		EC858C562A5752D800419A13 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,7 +284,6 @@
 			children = (
 				EC858C932A60684C00419A13 /* Date+.swift */,
 				EC9C25CF2A6C41E20085F697 /* UIViewController+TextPicker.swift */,
-				EC62CC502AB0F8B800BD98C5 /* UIView+DashedLine.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,7 +449,7 @@
 				EC858C632A5C007D00419A13 /* WWNetworkService.swift in Sources */,
 				EC05B2EB2A545CBF00F7EB24 /* AppDelegate.swift in Sources */,
 				EC9C25D02A6C41E20085F697 /* UIViewController+TextPicker.swift in Sources */,
-				EC62CC512AB0F8B800BD98C5 /* UIView+DashedLine.swift in Sources */,
+				EC62CC512AB0F8B800BD98C5 /* DashedBorderView.swift in Sources */,
 				EC858C922A60671B00419A13 /* SevenDayWeatherForecast.swift in Sources */,
 				EC1490E12AA89A6900458BA2 /* WWDetailedForecastTableViewCell.swift in Sources */,
 				EC9C25E02A8575210085F697 /* DecodedLocation.swift in Sources */,
@@ -453,6 +464,7 @@
 				EC17BBBD2A990C7100987727 /* WWSettingsViewController.swift in Sources */,
 				EC858C6D2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift in Sources */,
 				EC62CC4F2AAF7E6B00BD98C5 /* AirQualityIndex.swift in Sources */,
+				EC62CC532AB1F9E900BD98C5 /* ShimmeringView.swift in Sources */,
 				EC9C25C62A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift in Sources */,
 				EC62A3852A66802800246EBB /* DailyOverallForecast.swift in Sources */,
 				EC62CC4D2AAF7AD500BD98C5 /* WWWindDirectionAngleDecoder.swift in Sources */,

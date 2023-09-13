@@ -15,7 +15,7 @@ class WWDailyReportViewController: UIViewController {
     
     @IBOutlet weak var datesCollection: UICollectionView!
     
-    @IBOutlet weak var dayContainerView: UIView!
+    @IBOutlet weak var dayContainerView: ShimmeringView!
     
     @IBOutlet weak var dayWMODescriptionLabel: UILabel!
     @IBOutlet weak var dayWMOImage: UIImageView!
@@ -26,7 +26,7 @@ class WWDailyReportViewController: UIViewController {
     @IBOutlet weak var dayPrecipitationLabel: UILabel!
     @IBOutlet weak var dayCloudCoverLabel: UILabel!
     
-    @IBOutlet weak var nightContainerView: UIView!
+    @IBOutlet weak var nightContainerView: ShimmeringView!
     
     @IBOutlet weak var nightWMOImage: UIImageView!
     @IBOutlet weak var nightWMODescriptionLabel: UILabel!
@@ -73,6 +73,10 @@ class WWDailyReportViewController: UIViewController {
         self.datesCollection.reloadData()
         
         DispatchQueue.main.async {
+            
+            self.dayContainerView.startShimmerAnimation()
+            self.nightContainerView.startShimmerAnimation()
+            
             self.datesCollection.selectItem(at: self.preselectedDateCellIndexPath, animated: true, scrollPosition: .left)
         }
     }
@@ -145,6 +149,9 @@ class WWDailyReportViewController: UIViewController {
             case .didReceiveDailyDetailedReport(let report):
                 DispatchQueue.main.async {
                     self?.update(with: report)
+                    
+                    self?.dayContainerView.stopShimmerAnimation()
+                    self?.nightContainerView.stopShimmerAnimation()
                 }
                 
             case .didReceiveAirQualityIndex(let airQualityIndex):
