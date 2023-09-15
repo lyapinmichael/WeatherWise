@@ -7,7 +7,20 @@ import Foundation
 
 // MARK: - Model to be used in presentation layer
 
-struct SevenDayWeatherForecastModel {
+final public class SevenDayWeatherForecastModel: NSObject, NSSecureCoding {
+    
+    public static var supportsSecureCoding: Bool {
+        return true
+    }
+    
+    // MARK: - Encode method
+    public func encode(with coder: NSCoder) {
+        coder.encode(time as Any?, forKey: "time")
+        coder.encode(weatherCode as Any?, forKey: "weatherCode")
+        coder.encode(maxPrecipitationProbabily as Any?, forKey: "maxPrecipitationProbability")
+        coder.encode(_maxTemperature as Any?, forKey: "_maxTemperature")
+        coder.encode(_minTemperature as Any?, forKey: "_minTemperature")
+    }
     
     let time: [Date]
     let weatherCode, maxPrecipitationProbabily: [Int]
@@ -30,6 +43,7 @@ struct SevenDayWeatherForecastModel {
         }
     }
     
+    // MARK: - Init
     
     init(from decodedSevenWeahterForecast: SevenDayWeahterForecast) {
         let dateFormatter = DateFormatter()
@@ -42,6 +56,18 @@ struct SevenDayWeatherForecastModel {
         self._minTemperature = decodedSevenWeahterForecast.daily.temperature2MMin
       
     }
+    
+    // MARK: - Init from coder
+    
+    public init?(coder: NSCoder) {
+        time = coder.decodeObject(forKey: "time") as? [Date] ?? []
+        weatherCode = coder.decodeObject(forKey: "weatherCode") as? [Int] ?? []
+        maxPrecipitationProbabily = coder.decodeObject(forKey: "maxPrecipitationProbability") as? [Int] ?? []
+        _maxTemperature = coder.decodeObject(forKey: "_maxTemperature") as? [Double] ?? []
+        _minTemperature = coder.decodeObject(forKey: "_minTemperature") as? [Double] ?? []
+        
+    }
+    
 }
 
 

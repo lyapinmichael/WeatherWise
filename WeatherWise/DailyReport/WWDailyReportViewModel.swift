@@ -31,7 +31,7 @@ final class WWDailyReportViewModel {
     // MARK: - ViewInput
     
     enum ViewInput {
-        case requestDailyReport(WWMainViewModel.CurrentLocation, Date)
+        case requestDailyReport(DecodedLocation, Date)
         case updateReport(Date)
     }
     
@@ -41,13 +41,13 @@ final class WWDailyReportViewModel {
             self.currentLocation = coordinates
             
             networkService.getDailyDetailedReport(
-                longitude: coordinates.longitude,
-                latitude: coordinates.latitude,
+                longitude: Float(coordinates.longitude),
+                latitude: Float(coordinates.latitude),
                 timezoneIdentifier: coordinates.timezoneIdentifier,
                 date: date)
             networkService.getHourlyAirQuailtyIndex(
-                longitude: coordinates.longitude,
-                latitude: coordinates.latitude,
+                longitude: Float(coordinates.longitude),
+                latitude: Float(coordinates.latitude),
                 timezoneIdentifier: coordinates.timezoneIdentifier,
                 date: date)
             
@@ -55,13 +55,13 @@ final class WWDailyReportViewModel {
             guard let currentLocation = self.currentLocation else { return }
             
             networkService.getDailyDetailedReport(
-                longitude: currentLocation.longitude,
-                latitude: currentLocation.latitude,
+                longitude: Float(currentLocation.longitude),
+                latitude: Float(currentLocation.latitude),
                 timezoneIdentifier: currentLocation.timezoneIdentifier,
                 date: date)
             networkService.getHourlyAirQuailtyIndex(
-                longitude: currentLocation.longitude,
-                latitude: currentLocation.latitude,
+                longitude: Float(currentLocation.longitude),
+                latitude: Float(currentLocation.latitude),
                 timezoneIdentifier: currentLocation.timezoneIdentifier,
                 date: date)
         
@@ -72,7 +72,7 @@ final class WWDailyReportViewModel {
     
     private var networkService = WWNetworkService()
     
-    private var currentLocation: WWMainViewModel.CurrentLocation?
+    private var currentLocation: DecodedLocation?
     
     // MARK: - Init
     

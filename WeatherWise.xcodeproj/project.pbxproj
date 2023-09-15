@@ -27,6 +27,8 @@
 		EC62CC4F2AAF7E6B00BD98C5 /* AirQualityIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC4E2AAF7E6B00BD98C5 /* AirQualityIndex.swift */; };
 		EC62CC512AB0F8B800BD98C5 /* DashedBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC502AB0F8B800BD98C5 /* DashedBorderView.swift */; };
 		EC62CC532AB1F9E900BD98C5 /* ShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC522AB1F9E900BD98C5 /* ShimmeringView.swift */; };
+		EC62CC562AB3735500BD98C5 /* HourlyForecastTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC552AB3735500BD98C5 /* HourlyForecastTransformer.swift */; };
+		EC62CC5A2AB47E3200BD98C5 /* SevenDayForecastTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC62CC592AB47E3200BD98C5 /* SevenDayForecastTransformer.swift */; };
 		EC858C582A5752F300419A13 /* WWLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C572A5752F300419A13 /* WWLocationService.swift */; };
 		EC858C5C2A5AE9E500419A13 /* WWPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C5B2A5AE9E500419A13 /* WWPageController.swift */; };
 		EC858C612A5C005000419A13 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC858C602A5C005000419A13 /* Alamofire */; };
@@ -37,7 +39,7 @@
 		EC858C942A60684C00419A13 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC858C932A60684C00419A13 /* Date+.swift */; };
 		EC858C972A60944500419A13 /* WMOCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = EC858C962A60944500419A13 /* WMOCodes.json */; };
 		EC9C25C62A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */; };
-		EC9C25C82A69409A0085F697 /* HourlyTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */; };
+		EC9C25C82A69409A0085F697 /* HourlyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C72A69409A0085F697 /* HourlyForecast.swift */; };
 		EC9C25CA2A6C140E0085F697 /* WWAddNewLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25C92A6C140E0085F697 /* WWAddNewLocationController.swift */; };
 		EC9C25CC2A6C26BC0085F697 /* WWPageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25CB2A6C26BC0085F697 /* WWPageFactory.swift */; };
 		EC9C25D02A6C41E20085F697 /* UIViewController+TextPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C25CF2A6C41E20085F697 /* UIViewController+TextPicker.swift */; };
@@ -88,6 +90,8 @@
 		EC62CC4E2AAF7E6B00BD98C5 /* AirQualityIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityIndex.swift; sourceTree = "<group>"; };
 		EC62CC502AB0F8B800BD98C5 /* DashedBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedBorderView.swift; sourceTree = "<group>"; };
 		EC62CC522AB1F9E900BD98C5 /* ShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringView.swift; sourceTree = "<group>"; };
+		EC62CC552AB3735500BD98C5 /* HourlyForecastTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastTransformer.swift; sourceTree = "<group>"; };
+		EC62CC592AB47E3200BD98C5 /* SevenDayForecastTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenDayForecastTransformer.swift; sourceTree = "<group>"; };
 		EC858C572A5752F300419A13 /* WWLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWLocationService.swift; sourceTree = "<group>"; };
 		EC858C5B2A5AE9E500419A13 /* WWPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWPageController.swift; sourceTree = "<group>"; };
 		EC858C622A5C007D00419A13 /* WWNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWNetworkService.swift; sourceTree = "<group>"; };
@@ -98,7 +102,7 @@
 		EC858C932A60684C00419A13 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		EC858C962A60944500419A13 /* WMOCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WMOCodes.json; sourceTree = "<group>"; };
 		EC9C25C52A686DD60085F697 /* WWHourlyPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWHourlyPillCollectionViewCell.swift; sourceTree = "<group>"; };
-		EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyTemperature.swift; sourceTree = "<group>"; };
+		EC9C25C72A69409A0085F697 /* HourlyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecast.swift; sourceTree = "<group>"; };
 		EC9C25C92A6C140E0085F697 /* WWAddNewLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWAddNewLocationController.swift; sourceTree = "<group>"; };
 		EC9C25CB2A6C26BC0085F697 /* WWPageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWPageFactory.swift; sourceTree = "<group>"; };
 		EC9C25CF2A6C41E20085F697 /* UIViewController+TextPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TextPicker.swift"; sourceTree = "<group>"; };
@@ -243,6 +247,24 @@
 			path = CustomSubclasses;
 			sourceTree = "<group>";
 		};
+		EC62CC572AB47DFD00BD98C5 /* HourlyForecast */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C25C72A69409A0085F697 /* HourlyForecast.swift */,
+				EC62CC552AB3735500BD98C5 /* HourlyForecastTransformer.swift */,
+			);
+			path = HourlyForecast;
+			sourceTree = "<group>";
+		};
+		EC62CC582AB47E1200BD98C5 /* SevenDayForecast */ = {
+			isa = PBXGroup;
+			children = (
+				EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */,
+				EC62CC592AB47E3200BD98C5 /* SevenDayForecastTransformer.swift */,
+			);
+			path = SevenDayForecast;
+			sourceTree = "<group>";
+		};
 		EC858C562A5752D800419A13 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,9 +290,9 @@
 		EC858C652A5C2F3600419A13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EC858C912A60671B00419A13 /* SevenDayWeatherForecast.swift */,
+				EC62CC582AB47E1200BD98C5 /* SevenDayForecast */,
+				EC62CC572AB47DFD00BD98C5 /* HourlyForecast */,
 				EC62A3842A66802800246EBB /* DailyOverallForecast.swift */,
-				EC9C25C72A69409A0085F697 /* HourlyTemperature.swift */,
 				EC9C25DC2A8570AF0085F697 /* WWSavedLocation.xcdatamodeld */,
 				EC9C25DF2A8575210085F697 /* DecodedLocation.swift */,
 				EC62CC482AAF227600BD98C5 /* DailyDetailedReport.swift */,
@@ -459,7 +481,7 @@
 				EC9C25CA2A6C140E0085F697 /* WWAddNewLocationController.swift in Sources */,
 				EC62A3832A65744900246EBB /* WWTodayOverallView.swift in Sources */,
 				EC858C6B2A5C829200419A13 /* WWMainViewModel.swift in Sources */,
-				EC9C25C82A69409A0085F697 /* HourlyTemperature.swift in Sources */,
+				EC9C25C82A69409A0085F697 /* HourlyForecast.swift in Sources */,
 				EC9C25DB2A8570050085F697 /* WWSavedLocaitonService.swift in Sources */,
 				EC17BBBD2A990C7100987727 /* WWSettingsViewController.swift in Sources */,
 				EC858C6D2A5CA11E00419A13 /* WWWeatherCellTableViewCell.swift in Sources */,
@@ -471,6 +493,8 @@
 				EC858C5C2A5AE9E500419A13 /* WWPageController.swift in Sources */,
 				EC402D392AAB3B7200B5A877 /* WWDailyReportViewController.swift in Sources */,
 				EC05B2ED2A545CBF00F7EB24 /* SceneDelegate.swift in Sources */,
+				EC62CC5A2AB47E3200BD98C5 /* SevenDayForecastTransformer.swift in Sources */,
+				EC62CC562AB3735500BD98C5 /* HourlyForecastTransformer.swift in Sources */,
 				ECF8E85F2AADFC3900A0A17B /* WWDatesCollectionViewCell.swift in Sources */,
 				EC858C582A5752F300419A13 /* WWLocationService.swift in Sources */,
 				EC858C942A60684C00419A13 /* Date+.swift in Sources */,

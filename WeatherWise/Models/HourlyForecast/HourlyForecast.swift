@@ -10,7 +10,29 @@ import Foundation
 
 // MARK: - Model to be used in presentation layer
 
-struct HourlyForecastModel {
+final public class HourlyForecastModel: NSObject, NSSecureCoding {
+    
+    public static var supportsSecureCoding: Bool {
+        return true
+    }
+    
+    
+    // MARK: - Enocde method
+    public func encode(with coder: NSCoder) {
+        coder.encode(latitude as Any?, forKey: "latitude")
+        coder.encode(longitue as Any?, forKey: "longitue")
+        coder.encode(timezone as Any?, forKey: "timezone")
+        coder.encode(timezoneAbbreviation as Any?, forKey: "timezoneAbbreviation")
+        coder.encode(weathercode as Any?, forKey: "weathercode")
+        coder.encode(precipitationProbability as Any?, forKey: "precipitationProbability")
+        coder.encode(cloudcover as Any?, forKey: "cloudcover")
+        coder.encode(windspeed as Any?, forKey: "windspeed")
+        coder.encode(_temperature as Any?, forKey: "_temperature")
+        coder.encode(_windDirection as Any?, forKey: "_windDirection")
+        coder.encode(_time as Any?, forKey: "_time")
+        coder.encode(utcOffestSeconds as Any?, forKey: "utcOffestSeconds")
+    }
+    
     let latitude, longitue: Double
     let timezone, timezoneAbbreviation: String
     let weathercode, precipitationProbability, cloudcover: [Int]
@@ -64,6 +86,8 @@ struct HourlyForecastModel {
     }
     
     private let utcOffestSeconds: Int
+    
+    // MARK: - Init
    
     init(from codableHourlyTemperature: HourlyTemperature) {
         self.latitude = codableHourlyTemperature.latitude
@@ -85,6 +109,24 @@ struct HourlyForecastModel {
                 self._time.append(date)
             }
         }
+        
+    }
+    
+    // MARK: - Init from coder
+    
+    public init?(coder: NSCoder) {
+        latitude = coder.decodeObject(forKey: "latitude") as? Double ?? 0.0
+        longitue = coder.decodeObject(forKey: "longitude") as? Double ?? 0.0
+        timezone = coder.decodeObject(forKey: "timezone") as? String ?? "Europe/Moscow"
+        timezoneAbbreviation = coder.decodeObject(forKey: "timezoneAbbreviation") as? String ?? "MSK"
+        weathercode = coder.decodeObject(forKey: "weathercode") as? [Int] ?? []
+        precipitationProbability = coder.decodeObject(forKey: "precipitationProbability") as? [Int] ?? []
+        cloudcover = coder.decodeObject(forKey: "cloudcover") as? [Int] ?? []
+        windspeed = coder.decodeObject(forKey: "windspeed") as? [Double] ?? []
+        _temperature = coder.decodeObject(forKey: "_temperature") as? [Double] ?? []
+        _windDirection = coder.decodeObject(forKey: "_windDirection") as? [Int] ?? []
+        _time = coder.decodeObject(forKey: "_time") as? [Date] ?? []
+        utcOffestSeconds = coder.decodeObject(forKey: "utcOffestSeconds") as? Int ?? 0
         
     }
 }

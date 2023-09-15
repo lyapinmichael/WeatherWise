@@ -83,7 +83,7 @@ class WWDailyReportViewController: UIViewController {
     
     // MARK: - Public methods
     
-    func update(_ locality: String?, coordinates: WWMainViewModel.CurrentLocation?, dates: [Date]) {
+    func update(_ locality: String?, coordinates: DecodedLocation?, dates: [Date]) {
         self.locality = locality
         self.dates = dates
         
@@ -188,6 +188,10 @@ class WWDailyReportViewController: UIViewController {
         let wmoDecodedNight = WMODecoder.decodeWMOcode(report.dominantWeatherCodeNight, isDay: false)
         nightWMOImage.image = wmoDecodedNight?.image
         nightWMODescriptionLabel.text = wmoDecodedNight?.description ?? ""
+        
+        sunriseLabel.isHidden = false
+        sunsetLabel.isHidden = false
+        solarDayLengthLabel.isHidden = false
         
         sunriseLabel.text = report.sunrise
         sunsetLabel.text = report.sunset
