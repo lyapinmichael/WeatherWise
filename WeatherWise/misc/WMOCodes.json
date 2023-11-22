@@ -1,0 +1,282 @@
+{
+    "0":{
+        "day":{
+            "description":"Солнечно",
+            "image":"LittleSun"
+        },
+        "night":{
+            "description":"Ясно",
+            "image":"LittleMoon"
+        }
+    },
+    "1":{
+        "day":{
+            "description":"В основном солнечно",
+            "image":"LittleSun"
+        },
+        "night":{
+            "description":"В основном ясно",
+            "image":"LittleMoon"
+        }
+    },
+    "2":{
+        "day":{
+            "description":"Малооблачно",
+            "image":"LittleCloud"
+        },
+        "night":{
+            "description":"Малооблачно",
+            "image":"LittleCloud"
+        }
+    },
+    "3":{
+        "day":{
+            "description":"Облачно",
+            "image":"LittleCloud"
+        },
+        "night":{
+            "description":"Облачно",
+            "image":"LittleCloud"
+        }
+    },
+    "45":{
+        "day":{
+            "description":"Туманно",
+            "image":"LittleCloud"
+        },
+        "night":{
+            "description":"Туманно",
+            "image":"LittleCloud"
+        }
+    },
+    "48":{
+        "day":{
+            "description":"Ледяной туман",
+            "image":"LittleCloud"
+        },
+        "night":{
+            "description":"Ледяной туман",
+            "image":"LittleCloud"
+        }
+    },
+    "51":{
+        "day":{
+            "description":"Небольшая морось",
+            "image":"LittleCloud"
+        },
+        "night":{
+            "description":"Небольшая морось",
+            "image":"LittleCloud"
+        }
+    },
+    "53":{
+        "day":{
+            "description":"Морось",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Морось",
+            "image":"LittleRain"
+        }
+    },
+    "55":{
+        "day":{
+            "description":"Сильная морось",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Сильная морось",
+            "image":"LittleRain"
+        }
+    },
+    "56":{
+        "day":{
+            "description":"Небольшая ледяная морось",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Небольшая ледяная морось",
+            "image":"LittleRain"
+        }
+    },
+    "57":{
+        "day":{
+            "description":"Ледяная морось",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Ледяная морось",
+            "image":"LittleRain"
+        }
+    },
+    "61":{
+        "day":{
+            "description":"Небольшой дождь",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Небольшой дождь",
+            "image":"LittleRain"
+        }
+    },
+    "63":{
+        "day":{
+            "description":"Дождь",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Дождь",
+            "image":"LittleRain"
+        }
+    },
+    "65":{
+        "day":{
+            "description":"Сильный дождь",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Сильный дождь",
+            "image":"LittleShower"
+        }
+    },
+    "66":{
+        "day":{
+            "description":"Ледяной дождь",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Ледяной дождь",
+            "image":"LittleRain"
+        }
+    },
+    "67":{
+        "day":{
+            "description":"Ледяной дождь",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Ледяной дождь",
+            "image":"LittleRain"
+        }
+    },
+    "71":{
+        "day":{
+            "description":"Небольшой снегопад",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Небольшой снегопад",
+            "image":"LittleRain"
+        }
+    },
+    "73":{
+        "day":{
+            "description":"Снегопад",
+            "image":"LittleRain"
+        },
+        "night":{
+            "description":"Снегопад",
+            "image":"LittleRain"
+        }
+    },
+    "75":{
+        "day":{
+            "description":"Сильный снегопад",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Сильный снегопад",
+            "image":"LittleShower"
+        }
+    },
+    "77":{
+        "day":{
+            "description":"Град",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Град",
+            "image":"LittleShower"
+        }
+    },
+    "80":{
+        "day":{
+            "description":"Небольшой ливень",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Небольшой ливень",
+            "image":"LittleShower"
+        }
+    },
+    "81":{
+        "day":{
+            "description":"Ливень",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Ливень",
+            "image":"LittleShower"
+        }
+    },
+    "82":{
+        "day":{
+            "description":"Сильный ливень",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Сильный ливень",
+            "image":"LittleShower"
+        }
+    },
+    "85":{
+        "day":{
+            "description":"Метель",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Метель",
+            "image":"LittleShower"
+        }
+    },
+    "86":{
+        "day":{
+            "description":"Метель",
+            "image":"LittleShower"
+        },
+        "night":{
+            "description":"Метель",
+            "image":"LittleShower"
+        }
+    },
+    "95":{
+        "day":{
+            "description":"Гроза",
+            "image":"LittleThunder"
+        },
+        "night":{
+            "description":"Гроза",
+            "image":"LittleThunder"
+        }
+    },
+    "96":{
+        "day":{
+            "description":"Гроза с градом",
+            "image":"LittleThunder"
+        },
+        "night":{
+            "description":"Гроза с градом",
+            "image":"LittleThunder"
+        }
+    },
+    "99":{
+        "day":{
+            "description":"Гроза с градом",
+            "image":"LittleThunder"
+        },
+        "night":{
+            "description":"Гроза с градом",
+            "image":"LittleThunder"
+        }
+    }
+}
