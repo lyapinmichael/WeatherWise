@@ -46,16 +46,16 @@ final class WWLocationService: NSObject {
         self.coreLocationManager.requestLocation()
     }
     
-    func reverseGeoDecode(from location: CLLocation, completion: @escaping (String?, String?, String?) -> Void) {
+    func reverseGeoDecode(from location: CLLocation, completion: @escaping (CLPlacemark?, String?, String?, String?) -> Void) {
         let geoCoder = CLGeocoder()
         
         geoCoder.reverseGeocodeLocation(location) { locationName, error  in
-            guard let location = locationName?.last else {
+            guard let placemark = locationName?.last else {
                 print(error ?? "Something went wrong while performing reverse geocoding")
                 return
             }
             
-            completion(location.locality, location.country, location.timeZone?.identifier)
+            completion(placemark, placemark.locality, placemark.country, placemark.timeZone?.identifier)
         }
     }
     

@@ -16,7 +16,7 @@ final class WWSavedLocaitonService {
     
     static let shared = WWSavedLocaitonService()
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    private lazy var persistentContainer: NSPersistentContainer = {
        let container = NSPersistentContainer(name: "WWSavedLocation")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             
@@ -34,7 +34,9 @@ final class WWSavedLocaitonService {
     var savedLocations: [SavedLocation] = []
     
     private init() {
+        ValueTransformer.setValueTransformer(HourlyForecastTransformer(), forName: NSValueTransformerName("HourlyForecastTransformer"))
         
+        ValueTransformer.setValueTransformer(SevenDayForecastTransformer(), forName: NSValueTransformerName("SevenDayForecastTransformer"))
     }
     
     func fetchSavedLocations() -> [SavedLocation]? {
@@ -63,6 +65,60 @@ final class WWSavedLocaitonService {
             }
         })
     }
+    
+    func update(lastReceivedSevenDayForecast forecast: SevenDayWeatherForecastModel, for location: DecodedLocation) {
+        
+        self.persistentContainer.performBackgroundTask({ backgoundContext in
+            
+            let fetchRequest: NSFetchRequest<SavedLocation> = SavedLocation.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "locality == %@", location.locality)
+            fetchRequest.fetchLimit = 1
+            
+            guard let savedLocation = try? backgoundContext.fetch(fetchRequest) else {
+                print("Location \(location.locality) not found in CoreData.")
+                return
+            }
+            
+            savedLocation.first?.lastSavedSevenDayForecast = forecast
+            
+            do {
+                try backgoundContext.save()
+                print("New seven daty forecast successfully saved")
+            } catch {
+                print(error)
+            }
+            
+        })
+    }
+    
+    func update(lastReceivedHourlyForecast forecast: HourlyForecastModel, for location: DecodedLocation) {
+        
+        self.persistentContainer.performBackgroundTask({backgroundContext in
+            
+            let fetchRequest: NSFetchRequest<SavedLocation> = SavedLocation.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "locality == %@", location.locality)
+            fetchRequest.fetchLimit = 1
+            
+            guard let savedLocation = try? backgroundContext.fetch(fetchRequest) else {
+                print("Location \(location.locality) not found in CoreData.")
+                return
+            }
+            
+            savedLocation.first?.lastSavedHourlyForecast = forecast
+            
+            do {
+                try backgroundContext.save()
+                print("New hourly forecast successfully saved")
+            } catch {
+                print(error)
+            }
+        
+                    
+     
+        })
+        
+    }
+    
     
     private func localityAlreadySaved(_ locality: String) -> Bool {
         let fetchRequest: NSFetchRequest<SavedLocation> = SavedLocation.fetchRequest()

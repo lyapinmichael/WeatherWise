@@ -2,6 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SavedLocation" representedClassName="SavedLocation" syncable="YES" codeGenerationType="class">
         <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="lastSavedHourlyForecast" optional="YES" attributeType="Transformable" valueTransformerName="HourlyForecastTransformer" customClassName="HourlyForecastModel"/>
+        <attribute name="lastSavedSevenDayForecast" optional="YES" attributeType="Transformable" valueTransformerName="SevenDayForecastTransformer" customClassName="SevenDayWeatherForecastModel"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="locality" optional="YES" attributeType="String"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

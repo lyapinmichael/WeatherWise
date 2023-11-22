@@ -10,8 +10,52 @@ import Foundation
 struct DailyOverallForecastModel {
     let timezone: TimeZone?
     let sunrise, sunset: Date
-    let hourlyTemperature, hourlyWindspeed: [Double]
-    let maxTemperature, minTemperature, maxUVindex: Double
+    
+    private let _hourlyTemperature: [Double]
+    var hourlyTemperature: [Double] {
+        if UserDefaults.standard.integer(forKey: "temperatureUnit") == 1 {
+            return _hourlyTemperature.map { $0 * 9 / 5 + 32 }
+        } else {
+            return _hourlyTemperature
+        }
+    }
+    
+    private let _maxTemperature: Double
+    var maxTemperature: Double {
+        if UserDefaults.standard.integer(forKey: "temperatureUnit") == 1 {
+            return _maxTemperature * 9 / 5 + 32
+        } else {
+            return _maxTemperature
+        }
+    }
+
+    private let _minTemperature: Double
+    var minTemperature: Double {
+        if UserDefaults.standard.integer(forKey: "temperatureUnit") == 1 {
+            return _maxTemperature * 9 / 5 + 32
+        } else {
+            return _maxTemperature
+        }
+    }
+    
+    private let _hourlyWindspeed: [Double]
+    var hourlyWindspeed: [Double] {
+        if UserDefaults.standard.integer(forKey: "speedUnit") == 1 {
+            return _hourlyWindspeed.map { $0 * 0.5144 }
+        } else {
+            return _hourlyWindspeed.map { $0 * 0.278}
+        }
+    }
+    
+    var speedUnit: String {
+        if UserDefaults.standard.integer(forKey: "speedUnit") == 1 {
+            return "уз"
+        } else {
+            return "м/с"
+        }
+    }
+            
+    let maxUVindex: Double
     let hourlyWeatherCode: [Int]
     let maxPrecipitationProbability: Int
     
@@ -19,10 +63,10 @@ struct DailyOverallForecastModel {
         self.timezone = TimeZone(secondsFromGMT: codableDailyOverallForecast.utcOffsetSeconds)
         self.sunrise = Date.from(iso8601String: codableDailyOverallForecast.daily.sunrise.first ?? "1998.08.04T00:00", utcOffsetSeconds: codableDailyOverallForecast.utcOffsetSeconds) ?? Date()
         self.sunset = Date.from(iso8601String: codableDailyOverallForecast.daily.sunset.first ?? "1998.08.04T00:00", utcOffsetSeconds: codableDailyOverallForecast.utcOffsetSeconds) ?? Date()
-        self.hourlyTemperature = codableDailyOverallForecast.hourly.temperature2M
-        self.maxTemperature = codableDailyOverallForecast.daily.temperature2MMax.first ?? 0.0
-        self.minTemperature = codableDailyOverallForecast.daily.temperature2MMin.first ?? 0.0
-        self.hourlyWindspeed = codableDailyOverallForecast.hourly.windspeed10M
+        self._hourlyTemperature = codableDailyOverallForecast.hourly.temperature2M
+        self._maxTemperature = codableDailyOverallForecast.daily.temperature2MMax.first ?? 0.0
+        self._minTemperature = codableDailyOverallForecast.daily.temperature2MMin.first ?? 0.0
+        self._hourlyWindspeed = codableDailyOverallForecast.hourly.windspeed10M
         self.hourlyWeatherCode = codableDailyOverallForecast.hourly.weathercode
         self.maxPrecipitationProbability = codableDailyOverallForecast.daily.precipitationProbabilityMax.first ?? 0
         self.maxUVindex = codableDailyOverallForecast.daily.uvIndexMax.first ?? 0.0

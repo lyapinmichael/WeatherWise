@@ -17,7 +17,13 @@ extension Date {
     }
     
     static func from(iso8601String: String, utcOffsetSeconds: Int) -> Self? {
-        let iso8601Formatter = ISO8601DateFormatter(with: [.withFullDate, .withDashSeparatorInDate, .withTime, .withColonSeparatorInTime, .withTimeZone] )
+        
+        /// В строке ниже мне пришлось изменить инициализацию ISO8601DateFormatter(),
+        /// потому что в какой-то момент проект просто перестал собираться, а
+        /// компилятор стал выдавать ошибки, хотя я в этой части ничего не менял от предыдщуего комита,
+        /// в котором все работало.
+        
+        let iso8601Formatter = ISO8601DateFormatter()
         let hours = utcOffsetSeconds / 3600
         let minutes = abs(utcOffsetSeconds / 60) % 60
         let utcOffset = String(format: "%+02d:%.2d", hours, minutes)

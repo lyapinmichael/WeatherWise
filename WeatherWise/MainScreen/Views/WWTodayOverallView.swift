@@ -10,10 +10,11 @@ import UIKit
 protocol WWTodayContainer {
     
     func update(with dailyOverallForecast: DailyOverallForecastModel)
+    func reload()
     
 }
 
-final class WWTodayOverallViewController: UIViewController{
+final class WWTodayOverallViewController: UIViewController {
 
     @IBOutlet weak var minMaxTempLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -39,6 +40,12 @@ final class WWTodayOverallViewController: UIViewController{
         return gradientLayer
     }()
 
+    private var dailyOverallForecast: DailyOverallForecastModel? {
+        didSet {
+            reload()
+        }
+    }
+    
     private var isUpdated = false
     
     override func viewDidLoad() {
@@ -106,6 +113,14 @@ final class WWTodayOverallViewController: UIViewController{
 
 extension WWTodayOverallViewController: WWTodayContainer {
     func update(with dailyOverallForecast: DailyOverallForecastModel) {
+        self.dailyOverallForecast = dailyOverallForecast
+        self.isUpdated = true
+    }
+    
+    func reload() {
+       
+        guard let dailyOverallForecast = self.dailyOverallForecast else { return }
+        
         let today = Date()
         let todayFormatter = DateFormatter()
         todayFormatter.dateFormat = "H:mm, EEE dd MMMM"
@@ -121,22 +136,20 @@ extension WWTodayOverallViewController: WWTodayContainer {
         let sunsetTime = dailyOverallForecast.sunset
         
         let hourIndex = Int(roughHourFormatter.string(from: today)) ?? 11
-        let currentTemperature = dailyOverallForecast.hourlyTemperature[hourIndex]
-        let currentWindspeed = dailyOverallForecast.hourlyTemperature[hourIndex]
+        let currentWindspeed = dailyOverallForecast.hourlyWindspeed[hourIndex]
         let currentOverallCondition = WMODecoder.decodeWMOcode(dailyOverallForecast.hourlyWeatherCode[hourIndex], isDay: true)?.description
         
-        minMaxTempLabel.text = "\(dailyOverallForecast.minTemperature)°/\(dailyOverallForecast.maxTemperature)°"
-        currentTempLabel.text = "\(currentTemperature)°"
+        minMaxTempLabel.text = String(format: "%.1f", dailyOverallForecast.minTemperature) + "°/" + String(format: "%.1f", dailyOverallForecast.maxTemperature) + "°"
+        currentTempLabel.text = String(format: "%.1f", dailyOverallForecast.hourlyTemperature[hourIndex]) + "°"
         sunriseTimeLabel.text = timeFormatter.string(from: sunriseTime)
         sunsetTimeLabel.text = timeFormatter.string(from: sunsetTime)
         todayLabel.text = todayFormatter.string(from: today)
         overallConditionLabel.text = currentOverallCondition
-        windspeedLabel.text = "\(currentWindspeed) м/с"
+        windspeedLabel.text = String(format: "%.1f", currentWindspeed) + " " + dailyOverallForecast.speedUnit
         precipitationProbabilityLabel.text = "\(dailyOverallForecast.maxPrecipitationProbability) %"
         UVindexLabel.text = "\(dailyOverallForecast.maxUVindex)"
         gradientLayer.removeFromSuperlayer()
 
-        isUpdated = true
         stopShimmerAnimation()
     }
 }

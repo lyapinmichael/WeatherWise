@@ -18,6 +18,8 @@ class WWWeatherCellTableViewCell: UITableViewCell {
     @IBOutlet weak var precipitationLabel: UILabel!
     @IBOutlet weak var weatherContentView: UIView!
     
+    var indexPath: IndexPath = IndexPath(row: 0, section: 0)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4))

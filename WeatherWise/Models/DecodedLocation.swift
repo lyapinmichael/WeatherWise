@@ -11,14 +11,8 @@ import CoreLocation
 struct DecodedLocation {
     let longitude, latitude: Double
     let country, locality, timezoneIdentifier: String
-    
-    init(longitude: Double, latitude: Double, country: String, locality: String, timezoneIdentifier: String) {
-        self.longitude = longitude
-        self.latitude = latitude
-        self.country = country
-        self.locality = locality
-        self.timezoneIdentifier = timezoneIdentifier
-    }
+    let lastSavedHourlyForecast: HourlyForecastModel?
+    let lastSavedSevenDayForecast: SevenDayWeatherForecastModel?
     
     init(from placemark: CLPlacemark) {
         self.longitude = placemark.location?.coordinate.longitude ?? 0.0
@@ -26,6 +20,8 @@ struct DecodedLocation {
         self.country = placemark.country ?? "Unknown country"
         self.locality = placemark.locality ?? "Unknown locality"
         self.timezoneIdentifier = placemark.timeZone?.identifier ?? "GMT"
+        lastSavedHourlyForecast = nil
+        lastSavedSevenDayForecast = nil
     }
     
     init(from savedLocation: SavedLocation) {
@@ -34,6 +30,8 @@ struct DecodedLocation {
         self.country = savedLocation.country ?? "Unknown country"
         self.locality = savedLocation.locality ?? "Unknown locality"
         self.timezoneIdentifier = savedLocation.timezoneIdentifier ?? "GMT"
+        self.lastSavedHourlyForecast = savedLocation.lastSavedHourlyForecast
+        self.lastSavedSevenDayForecast = savedLocation.lastSavedSevenDayForecast
     }
 
 }
